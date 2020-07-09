@@ -43,47 +43,57 @@ In order for us to study awkward state machines in any detail, we are going to n
 A \textit{cycle graph} is a directed, connected graph whose points form a circle. More explicity, for any $n > 1$, the cycle graph $CG_n$ has points $\{$ $p_0, p_1, ..., p_{n-1}$ $\}$ such that for any $i < n - 1$, $p_i$ has only one edge which goes to $p_{i + 1}$, and $p_{n-1}$ has only one edge going to $p_0$.\\
 \\ 
 
-We shall note a few things about cycle graphs before we begin. First, for any point $p_j \in CG_n$, there is only one edge that can be traversed. As such, there is only a single walk that can be made from $p_j$ of length $k$, for any $k$. Secondly, since we've labeled our points such that point $t$'s only edge goes to point $t + 1$ for $t < n - 1$, we have that for any $j < k < n$, the shortest walk from point $p_j$ to $p_k$ will be of length $k - j$.\\
+We shall note a few things about cycle graphs before we begin. First, for any point $p_j \in CG_n$, there is only one edge that can be traversed. As such, there is only a single walk that can be made from $p_j$ of length $k$, for any $k$. Secondly, since we've labeled our points such that point $t$'s only edge goes to point $t + 1$ for $t < n - 1$; then for any $j < k < n$, we can think of a walk from $p_j$ to $p_k$ as a walk down the number line, and as such, the shortest walk from point $p_j$ to $p_k$ will be of length $k - j$.\\
 \\
 \\
 \textbf{Lemma}\\
-For any cycle graph $CG_n$, for any $p_i \in CG_n$, a walk of length $k = n - i$ will end at point $p_0$.\\
+For any cycle graph $CG_n$, for any $p_i \in CG_n$, a walk of length $k = n - i$ will end at point $p_0$. Furthermore, this the shortest walk between any point $p_i$ and $p_0$.\\
 \\
 \textit{Proof}\\
-First, let us consider the trivial cases where $j = n - 1$. By definition of a cycle graph, the point $p_{n-1}$ has only one edge going to point $p_0$, therefor, our walk has length $1 = (n - n) + 1 = n - (n - 1)$.\\
+First, let us consider the trivial cases where $j = n - 1$. By definition of a cycle graph, the point $p_{n-1}$ has only one edge going to point $p_0$, therefor, our walk has length $1 = (n - n) + 1 = n - (n - 1)$. Furthermore, a walk of length $1$ is the shortest possible walk of any graph, thus our walk from $p_{n-1}$ to $p_0$ is trivially the shortest walk possible between these two points.\\
 \\ 
 Now, let us consider the walk from $p_j$ to the point $p_{n-1}$ for $j < n - 1$.\\
 \\
-As we noted above, the shortest between any two points $a < b < n$ will be of length $b - a$ by virtue of our labeling of the points of a cycle graph. As such, the shortest walk from $p_j$ to $p_{n-1}$ will have length $(n - 1) - j$.\\
+As we noted above, the shortest walk between any two points $a < b < n$ will be of length $b - a$ by virtue of our labeling of the points of a cycle graph. As such, the shortest walk from $p_j$ to $p_{n-1}$ will have length $(n - 1) - j$.\\
 \\
-By definition of a cycle graph, we know that point $p_{n-1}$'s only edge goes to point $p_0$. As such, if we extend our walk from point $j$ to $k$ one step further, we will have arrived at point $p_0$, thus giving us a length of $((n - 1) - j) + 1 = n - j$.
+By definition of a cycle graph, we know that point $p_{n-1}$'s only edge goes to point $p_0$. As such, if we extend our walk from point $j$ to $k$ one step further, we will have arrived at point $p_0$, thus giving us a length of $((n - 1) - j) + 1 = n - j$.\\
+\\
+Furthermore, our walk from $p_j$ to $p_{n-1}$ was the shortest possible walk from $p_j$ and $p_{n-1}$; and our extension of that walk from $p_{n-1}$ to $p_0$ was also the shortest possible walk from $p_{n-1}$ to $p_0$. As such, our composite walk from $p_j$ to $p_0$ must be the shortest possbile walk from $p_j$ to $p_0$.
 \\
 \textit{Q.E.D}\\ 
 \\ 
 
-We shall take a moment to note that as a direct result of the above lemma, the shortest walk from point $p_0$ back to point $p_0$ will have length $n - 0 = n$.\\
-\\
+We shall take a moment to note that as a direct result of the above lemma, the shortest walk from point $p_0$ back to point $p_0$ will have length $n - 0 = n$. This matches our intuition nicely since any walk from $p_0$ back to itself is akin to taking laps on a racetrack, and as such, a walk of length $n$ corresponds to taking a single lap around our imaginary track.\\
+
+In our next lemma, we will see that a walk of length $n$ from any point in our graph will return us back to the point whence our walk originated. This should be fairly obvious since for any point $p_j$, we could relabel our graph to make $p_j$ our initial point $p_0$, and we already know that the shortest walk from $p_0$ back to itself has length $n$.\\
 \\
 \textbf{Lemma}\\
-For any cycle graph $CG_n$, a walk of length $n$ from $p_i$ will end at point $p_i$.\\
+For any cycle graph $CG_n$, a walk of length $n$ from $p_i$ will end at point $p_i$. Furthermore, this is the shortest possible walk from any point back to itself.\\
 \\
 \textit{Proof}\\
-As we saw above, for any point $p_i \in CG_n$, a walk of length $n - i$ will end at point $p_0$.\\
+As we saw in the previous lemma, for any point $p_i \in CG_n$, a walk of length $n - i$ is the shortest possible walk from $p_i$ to point $p_0$.\\
 \\
-Furthermore, the shortest walk from $p_0$ to any point $p_j$ for $j > 0$ will have length $j - 0 = j$.\\
+Furthermore, we also know that the shortest walk from $p_0$ to any point $p_j$ for $j > 0$ will have length $j - 0 = j$.\\
 \\
 Combining these two facts together, we can take a walk from $p_i$ back to $p_i$ by first taking a walk to $p_0$ in $n - i$ steps, and then continuing our walk from $p_0$ to $p_i$ in $i$ more steps, giving us a total walk length of $(n - i) + i = n$.\\
+\\
+Furthermore, our constructed walk is composed of two shortest possible walks, and is therefor the shortest possible walk from $p_i$ back to itself.\\
 \textit{Q.E.D}\\
 \\
+
+Now that we know we can return to point $p_i$ by taking a walk of length $n$ around our graph, we can easily extend this idea to show that a walk of length $kn$ for $k > 0$ will also return us to point $p_i$. In other words, a walk of length $kn$ is equivelant to taking $k$ laps around our imaginary racetrack.\\ 
 \\
 \textbf{Corollary}\\
-For any cycle graph $CG_n$, a walk of length $kn$, $k > 0$, from $p_0$ will end at point $p_0$.\\
+For any cycle graph $CG_n$, a walk of length $kn$, $k > 0$, from $p_i$ will end at point $p_i$.\\
 \\
 \textit{Proof}\\
-If we move $n$ steps from $p_i$ we will return to $p_i$ by the above.\\
-Assume after moving $in$, $i \geq 1$ steps from $p_i$, you have returned to point $p_i$.\\
-Then, moving $n$ more steps from there will again return to point $p_i$.\\
-Thus moving $in + n = (i+1)n$ steps from $p_i$ returns you to $p_i$.\\
+Before we begin our proof, let us note that if we move $n$ steps from $p_i$ we will return to $p_i$ by the above lemma. Now, let us prove this corollary via induction on $k$, the number of laps around our graph.\\
+\\
+The base case, $k=1$, is the result of our previous lemma, in particular, that a walk of length $n = 1n=$ will return us back to point $p_i$.\\
+\\
+Now, let us assume that for all $j < l \leq k$, that a walk of length $jn$ from point $p_i$ will return us to point $p_i$.\\
+\\
+By the above lemma, we know can extend our walk of length $jn$ by $n$ more steps to once again return to point $p_i$, thus giving us a total walk of length $jn +n = (j+1)n$.\\
 \textit{Q.E.D}\\
 \\
 \\
