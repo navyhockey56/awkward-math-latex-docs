@@ -50,13 +50,13 @@ We shall note a few things about cycle graphs before we begin. First, for any po
 For any cycle graph $CG_n$, for any $p_i \in CG_n$, a walk of length $k = n - i$ will end at point $p_0$. Furthermore, this the shortest walk between any point $p_i$ and $p_0$.\\
 \\
 \textit{Proof}\\
-First, let us consider the trivial cases where $j = n - 1$. By definition of a cycle graph, the point $p_{n-1}$ has only one edge going to point $p_0$, therefor, our walk has length $1 = (n - n) + 1 = n - (n - 1)$. Furthermore, a walk of length $1$ is the shortest possible walk of any graph, thus our walk from $p_{n-1}$ to $p_0$ is trivially the shortest walk possible between these two points.\\
+First, let us consider the trivial cases where $j = n - 1$. By definition of a cycle graph, the point $p_{n-1}$ has only one edge going to point $p_0$, therefor, our walk has length $1 = (n - n) + 1 = n - (n - 1)$. Furthermore, a walk of length $1$ is the shortest possible walk of any graph, thus our walk from $p_{n-1}$ to $p_0$ must be the shortest walk possible between these two points.\\
 \\ 
 Now, let us consider the walk from $p_j$ to the point $p_{n-1}$ for $j < n - 1$.\\
 \\
 As we noted above, the shortest walk between any two points $a < b < n$ will be of length $b - a$ by virtue of our labeling of the points of a cycle graph. As such, the shortest walk from $p_j$ to $p_{n-1}$ will have length $(n - 1) - j$.\\
 \\
-By definition of a cycle graph, we know that point $p_{n-1}$'s only edge goes to point $p_0$. As such, if we extend our walk from point $j$ to $k$ one step further, we will have arrived at point $p_0$, thus giving us a length of $((n - 1) - j) + 1 = n - j$.\\
+By definition of a cycle graph, we know that point $p_{n-1}$'s only edge goes to point $p_0$. As such, if we extend our walk from point $p_j$ to $p_{n-1}$ one step further, we will have arrived at point $p_0$, thus giving us a length of $((n - 1) - j) + 1 = n - j$.\\
 \\
 Furthermore, our walk from $p_j$ to $p_{n-1}$ was the shortest possible walk from $p_j$ and $p_{n-1}$; and our extension of that walk from $p_{n-1}$ to $p_0$ was also the shortest possible walk from $p_{n-1}$ to $p_0$. As such, our composite walk from $p_j$ to $p_0$ must be the shortest possbile walk from $p_j$ to $p_0$.
 \\
@@ -87,13 +87,13 @@ Now that we know we can return to point $p_i$ by taking a walk of length $n$ aro
 For any cycle graph $CG_n$, a walk of length $kn$, $k > 0$, from $p_i$ will end at point $p_i$.\\
 \\
 \textit{Proof}\\
-Before we begin our proof, let us note that if we move $n$ steps from $p_i$ we will return to $p_i$ by the above lemma. Now, let us prove this corollary via induction on $k$, the number of laps around our graph.\\
+Let us prove this corollary via induction on $k$, the number of laps around our graph.\\
 \\
 The base case, $k=1$, is the result of our previous lemma, in particular, that a walk of length $n = 1n=$ will return us back to point $p_i$.\\
 \\
-Now, let us assume that for all $j < l \leq k$, that a walk of length $jn$ from point $p_i$ will return us to point $p_i$.\\
+Now, let us assume that for all $j < k$, that a walk of length $jn$ from point $p_i$ will return us to point $p_i$.\\
 \\
-By the above lemma, we know can extend our walk of length $jn$ by $n$ more steps to once again return to point $p_i$, thus giving us a total walk of length $jn +n = (j+1)n$.\\
+By assumption, we can take a walk of length $jn$ starting at point $p_i$ to arrive back at point $p_i$. As such, if we extend this walk by $n$ more steps, we will again return to $p_i$ by the above lemma; thus giving us a total walk of length $jn +n = (j+1)n$.\\
 \textit{Q.E.D}\\
 \\
 
