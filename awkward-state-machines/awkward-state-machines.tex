@@ -96,6 +96,10 @@ Now, let us assume that for all $j < l \leq k$, that a walk of length $jn$ from 
 By the above lemma, we know can extend our walk of length $jn$ by $n$ more steps to once again return to point $p_i$, thus giving us a total walk of length $jn +n = (j+1)n$.\\
 \textit{Q.E.D}\\
 \\
+
+With the proof of the above lemma, we now have enough basic knowledge about cycle graphs in order to reason about the result of any walk on our graph. Furthermore, we shall see that our cycle graphs, and the walks we take around them, are merely another way of thinking about modular arithmetic.\\
+
+Before we state our next lemma, let us get some notation out of the way. For any integers $k, j$, and non-zero integer, $n$, we write $j$ $mod$ $n = k$ (read "$j$ modulo $n$ is $k$") to imply that $j = mn + k$ for some integer $m$.\\
 \\
 \textbf{Lemma}\\
 For any cycle graph $C_n$, for any $k > 0$, for any $p_i \in C_n$, a walk of length $k$ starting at $p_i$ will end at point $p_j$ where $j = i + k$ $mod$ $n$.\\
