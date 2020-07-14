@@ -122,10 +122,12 @@ Rather than trying to prove that the statement is true for arbitrary $k$, we sha
 \item When our walk takes us past point $p_0$, but is no longer than the number of points in our graph: $n - i < k \leq n$
 \item When our walk is longer than the number of points in our graph: $n < k$
 \end{enumerate}
+For each of these cases, we shall show that we will end our walk on some point, $p_j$, such that $0 \leq j < n$; and $i + k = j + xn$, for some integer $x$. In doing so, we will have proven that $j = (i +k)$ $mod$ $n$ by the definition of modular arithmetic.\\
+\\ 
 \textit{Case 1}\\
 Let us first consider the case where our walk is short enough to not take us past point $p_{n-1}$, in other words, let us consider the case where $k < n - i$.\\
 \\
-In this case, we know our walk will end at some point $p_j$, where $j = i + k$. Since we have $k < n - i$, we also know that $0 < i + k < n$. Furthermore, $j = j + 0n = (i + k) + 0n$, and as such, $j = (i + k)$ $mod$ $n$.\\
+In this case, we know our walk will end at some point $p_j$, where $j = i + k$. Since we have $k < n - i$, we also know that $0 < i + k = j < n$. Furthermore, $i + k = j = j + 0n$, and as such, $j = (i + k)$ $mod$ $n$.\\
 \\
 \textit{Case 2}\\
 Now let us consider the simple case where $k = n - i$. By a previous lemma, we know that a walk of lenth $n - i$ will end on point $p_0$ if started from point $p_i$. Furthermore, $i + k = i + (n - i) = n = 1n + 0$, thus, $0 = (i + k)$ $mod$ $n$.\\
@@ -146,9 +148,8 @@ Thus, we know that $j = (i + k)$ $mod$ $n$.\\
 \textit{Case 4}\\
 Now let us turn to the final case we must consider, the case where our walk length is greater than the number of points in our graph; in other words, let $k > n$. To complete our proof, we shall show that we can reduce this final case to one of our previous three cases.\\
 \\
-Since $k$ is a positive integer, we can find a positive another integer $a$ such that $an < k \leq (a + 1)n$. As such, by one of our previous lemmas, we know that we can walk the first $an$ steps around our graph to return us to point $p_i$, and leave us with a remainder of $l = k - an$ steps in our walk of length $k$.\\
+Since $k$ is a positive integer, we can find a positive another integer $a$ such that $an < k \leq (a + 1)n$. As such, by our previous corollary, we know that we can walk the first $an$ steps around our graph to return us to point $p_i$, and leave us with a remainder of $l = k - an$ steps in our walk of length $k$.\\
 \\
-Furthermore, we know:
 Since we have returned to point $p_i$ with $0 < l \leq n$ steps remaining in our walk, we have now reduced our problem to one of our three previous cases. For each of the cases, we have:
 \begin{enumerate}
 \item If $l < n - i$, then we know we will end our walk on point $p_j$ where $j = l + i < n$. Thus, we have that $i + k = i + l + an = j + an$.
@@ -160,6 +161,8 @@ Since we have returned to point $p_i$ with $0 < l \leq n$ steps remaining in our
 \end{center}
 
 \section{Activation Cycle Machines}
+Now that we know a bit about cycle graphs, we shall continue to build our understanding of the components of awkward state machines by extending our ideas about cycle graphs in to create activation cycle machines.\\
+\\
 \textbf{Definition}
 An \textit{activation cycle machine} (ACM) is state machine that runs on top of a cycle graph $CG_n$, that has been equipped with a subset of $0 < a < n$ activator points $A = \{$ $p_i$ $|$ $0 \leq i < a < n$ $\}$.\\
 \\
