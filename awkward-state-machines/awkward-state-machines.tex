@@ -144,10 +144,17 @@ $i + k = k + i + (n - n) = k - n + i + n = k - (n - i) + n = j + n$
 Thus, we know that $j = (i + k)$ $mod$ $n$.\\
 \\
 \textit{Case 4}\\
-Now let us turn to the final case we must consider, the case where our walk length is greater than the number of points in our graph; in other words, let $k > n$.\\
+Now let us turn to the final case we must consider, the case where our walk length is greater than the number of points in our graph; in other words, let $k > n$. To complete our proof, we shall show that we can reduce this final case to one of our previous three cases.\\
 \\
-We can find a positive integer $a$ such that $an \leq k < (a + 1)n$. As such, we can walk the first $an$ steps around our graph to return us to point $p_i$ by our previous lemma, and leave us with a remainder of $l = k - an$ steps in our walk of length $k$. Furthermore, we know:
-\begin{center} $an - an = 0 \leq k - an = i < (a + 1)n - an = n$ \end{center}
+Since $k$ is a positive integer, we can find a positive another integer $a$ such that $an < k \leq (a + 1)n$. As such, by one of our previous lemmas, we know that we can walk the first $an$ steps around our graph to return us to point $p_i$, and leave us with a remainder of $l = k - an$ steps in our walk of length $k$.\\
+\\
+Furthermore, we know:
+Since we have returned to point $p_i$ with $0 < l \leq n$ steps remaining in our walk, we have now reduced our problem to one of our three previous cases. For each of the cases, we have:
+\begin{enumerate}
+\item If $l < n - i$, then we know we will end our walk on point $p_j$ where $j = l + i < n$. Thus, we have that $i + k = i + l + an = j + an$.
+\item If $l = n - i$, then we know we will end our walk on point $p_0$. Thus, we have that $i + k = i + l + an = i + (n - i) + an = (a + 1)n + 0$.
+\item Finally, if $n - i < l \leq n$, then we know we will end our walk at point $p_j$ where $j = l - (n - i)$. Thus, we have that $i + k = i + l + an = l + i - n + (a + 1)n = l - (n - i) + (a + 1)n = j + (a + 1)n$.
+\end{enumerate}
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
