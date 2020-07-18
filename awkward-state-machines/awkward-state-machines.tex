@@ -161,44 +161,43 @@ Since we have returned to point $p_i$ with $0 < l \leq n$ steps remaining in our
 \end{center}
 
 \section{Activation Cycle Machines}
-With just a minor modification to cycle graphs, we can create activation cycle machines.
-
-Now that we know a bit about cycle graphs, we can begin to talk about \textit{activation cycle machines}. An activation cycle machine is a simple, state machine whose states can be represented using a cycle graph.
-
-we shall continue to build our understanding of the components of awkward state machines by extending our ideas about cycle graphs in to create activation cycle machines.\\
+With a few, minor modifications to cycle graphs, we can create \textit{activation cycle machines}; and in doing so, bring ourselves one step closer to understanding awkward state machines. So what exactly is an activation cycle machine? Let us answer that question by first looking at the formal definition; and then taking some time to examine its meaning afterward.\\
 \\
-
 \begin{tcolorbox}
 \textbf{Definition}\\
 An \textit{activation cycle machine} is a state machine with $n > 1$ states, $s_0, s_1, ..., s_{n-1}$, such that for any state, $s_k$ where $k < n - 1$, state $s_k$ has only a single transition to state $s_{k+1}$; and state $s_{n-1}$ has only a single transition to $s_0$. Furthermore, all activation cycle machines always start at state $s_0$.\\
 \\
-The first $a$ states, where $1 < a < n - 1$, of an activation cycle machine are called \textit{activators}. An activation cycle machine is said to be \textit{active} when it's current state is one of it's activators, and is called \textit{inactive} when it's not active. We write $C_{n,a}$ to refer to the activation cycle machine with $n$ states and $a$ activators.\\
+The first $a$ states, where $1 < a < n$, of an activation cycle machine are called \textit{activators}. An activation cycle machine is said to be \textit{active} when it's current state is one of it's activators, and is called \textit{inactive} when it's not active. We write $C_{n,a}$ to refer to the activation cycle machine with $n$ states and $a$ activators.\\
 \\
 When an activation cycle machine's current state is $s_k$, for any $k$, we call $k$ its \textit{position}, and write $\overline{C}(j)$ to refer to the position of the machine after it's $j^{th}$ transition. 
 \end{tcolorbox}
 \noindent
 \\
-As you can see, an activation cycle machine is nothing more than a fancy cycle graph. In fact, we'll begin our study of activation cycle machines by showing that they can be represented using a cycle graph. However, before we get there, I have written a working code example, in \textit{ruby}, of an activation cycle machine for any programmers who may be reading this.
+The first part of our definition is almost exactly the same as our definition of cycle graphs. However, instead of talking about points in a graph, and the edges between those points; we define the states of a machine, and the transitions between those states. With such similar definitions, it seems reasonable that we can represent the states of an activation cycle machine by using a cycle graph. In fact, we'll begin our study of activation cycle machines by proving just that.\\
+\\
+Our definition then extends beyond cycle graphs by incorporating the idea of \textit{activators}, which simply are the first $a$ states of the machine, $s_0, ..., s_{a-1}$. Our definition also stipulates that while there is always at least one activator, there are never as many activators as there are states in the machine. As such, every activation cycle machine will become \textit{active} at least once and \textit{inactive} at least once as it transitions between its states.\\
+\\
+Before we dive into our study of activation cycle machines, below you will find two working examples of an activation cycle machine coded in \textit{ruby}. The first example is easier to follow, it relies on the fact that we can keep track of our \textit{position} using arithmetic, rather than keeping track of a bunch of states. Our second example, on the other hand, is represented using states, and as such, needn't rely on arithmetic to function.
 \begin{tcolorbox}
 \begin{verbatim}
 class ActivationCycleMachine
-  def initialize(number_of_states, number_of_activators)
-    @number_of_states = number_of_states
-    @number_of_activators = number_of_activators
-    @position = 0
-    
-    unless @number_of_states > 1
+  def initialize(number_of_states, number_of_activators)    
+    unless number_of_states > 1
       raise 'There must be more than one state'
     end
     
-    unless @number_of_activators.positive?
+    unless number_of_activators.positive?
       raise 'The number of activators must be positive'
     end
     
-    unless @number_of_activators < @number_of_states
+    unless number_of_activators < number_of_states
       raise 'The number of activators must be less ' \
             'than the number of states'
     end
+    
+    @number_of_states = number_of_states
+    @number_of_activators = number_of_activators
+    @position = 0
   end
 
   def next_state
@@ -224,6 +223,83 @@ end
 \end{verbatim}
 \end{tcolorbox}
 \noindent
+\\
+As you can see, our first example simply increments the position of our state machine by one to simulate a transition, with the exception that it resets the position to 0 once its gotten to the maximum position.\\
+\\
+We'll need to break our second example into two seperate classes. The first class we will define will represent a single state in our machine, and will be implemented as a node in a linked list would. Our second class will be the actual activation cycle machine, which we will see is implemented much the same way that a linked list would be.\\
+\\
+\begin{tcolorbox}
+\begin{verbatim}
+class State
+  def initialize(is_activator, position)
+    @is_activator = is_activator
+    @position = position
+  end
+
+  def activator?
+    @is_activator
+  end
+  
+  def next_state=(next_state)
+  	@next_state = next_state
+  end
+  
+  def next_state
+  	@next_state
+  end
+  
+  def position
+  	@position
+  end
+end
+\end{verbatim}
+\end{tcolorbox}
+\begin{tcolorbox}
+\begin{verbatim}
+class ActivationCycleMachine
+  def initialize(number_of_states, number_of_activators)
+    unless number_of_states > 1
+      raise 'There must be more than one state'
+    end
+
+    unless number_of_activators.positive?
+      raise 'The number of activators must be positive'
+    end
+
+    unless number_of_activators < number_of_states
+      raise 'The number of activators must be less ' \
+            'than the number of states'
+    end
+
+    initial_state = State.new(true, 0)
+    current_state = initial_state
+    (1...number_of_states).each do |i|
+      activator = i < number_of_activators
+      current_state.next_state = State.new(activator, i)
+      current_state = current_state.next_state
+    end
+    current_state.next_state = initial_state
+
+    @current_state = initial_state
+  end
+
+  def next_state
+    @current_state = @current_state.next_state
+  end
+
+  def active?
+    @current_state.activator?
+  end
+
+  def position
+    @current_state.position
+  end
+end
+\end{verbatim}
+\end{tcolorbox}
+\noindent
+\\
+As you can see, our second example matches our formal mathematical definition very closely. In particular, the activation cycle machine, once initialized, only has a notion of a current state. The machine is operated by simply replacing the current state with its next state, thus simulating a transition. Furthermore, since the states themselves encode whether or not its an activator; the activation cycle machine is able to determine if its active by simply asking if its current state is an activator; matching our mathematical definition exactly.\\
 \\
 Without further ado, let us now tie activation cycle machines and cycle graphs together.\\
 \begin{tcolorbox}
