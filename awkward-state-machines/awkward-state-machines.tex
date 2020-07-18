@@ -172,13 +172,13 @@ we shall continue to build our understanding of the components of awkward state 
 \textbf{Definition}\\
 An \textit{activation cycle machine} is a state machine with $n > 1$ states, $s_0, s_1, ..., s_{n-1}$, such that for any state, $s_k$ where $k < n - 1$, state $s_k$ has only a single transition to state $s_{k+1}$; and state $s_{n-1}$ has only a single transition to $s_0$. Furthermore, all activation cycle machines always start at state $s_0$.\\
 \\
-The first $a$, where $1 < a < n - 1$, states are called \textit{activators}. An activation cycle machine is said to be \textit{active} when it's current state is one of it's activators, and is called \textit{inactive} when it's not active. We write $C_{n,a}$ to refer to the activation cycle machine with $n$ states and $a$ activators.\\
+The first $a$ states, where $1 < a < n - 1$, of an activation cycle machine are called \textit{activators}. An activation cycle machine is said to be \textit{active} when it's current state is one of it's activators, and is called \textit{inactive} when it's not active. We write $C_{n,a}$ to refer to the activation cycle machine with $n$ states and $a$ activators.\\
 \\
 When an activation cycle machine's current state is $s_k$, for any $k$, we call $k$ its \textit{position}, and write $\overline{C}(j)$ to refer to the position of the machine after it's $j^{th}$ transition. 
 \end{tcolorbox}
 \noindent
 \\
-An activation cycle machine should make you think of a fancy cycle graph. In fact, we'll begin our study of activation cycle machines by showing that they can be represented using a cycle graph. However, before we get there, I have written a working code example, in \textit{ruby}, of an activation cycle machine for any programmers who may be reading this.
+As you can see, an activation cycle machine is nothing more than a fancy cycle graph. In fact, we'll begin our study of activation cycle machines by showing that they can be represented using a cycle graph. However, before we get there, I have written a working code example, in \textit{ruby}, of an activation cycle machine for any programmers who may be reading this.
 \begin{tcolorbox}
 \begin{verbatim}
 class ActivationCycleMachine
@@ -223,47 +223,69 @@ class ActivationCycleMachine
 end
 \end{verbatim}
 \end{tcolorbox}
-
+\noindent
+\\
+Without further ado, let us now tie activation cycle machines and cycle graphs together.\\
 \begin{tcolorbox}
 \textbf{Lemma}\\
 An activation cycle machine with $n$ states can be represented by the cycle graph with $n$ points, where state $s_k$ corresponds to point $p_k$, and a transition to the next state from some state, $s_k$, can be represented by a walk of length $1$ starting at point $p_k$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-Words.\\
-\textbf{Theorem}\\
-For any ACM, $C_{n,a}$, for any state, $k$, the position of state $(k + i)$ is given by taking a walk of length $i$ starting at position $\overline{C^k}$ around $CG_n$, thus the position of state $k + i$ is: $\overline{C^k} + i$ $mod$ $n$.\\
+Our proof is rather trivial and will come directly from our definitions. Let us assume we have some activation cycle machine with $n$ states, $S = \{s_0, s_1, ..., s_{n-1}\}$, and the cycle graph with $n$ points, $P = \{p_0, p_1, ..., p_{n-1}\}$. Let us define the mapping $\theta: S \rightarrow P$ as $\theta(s_k) = p_k$, and it's inverse $\gamma: P \rightarrow S$ which is clearly $\gamma(p_k) = s_k$.\\
 \\
-\textit{Proof}\\
-By defininiton of an ACM, if the position of an ACM is $p_j$ on state $i - 1$, then the position at state $i$ will be the point connected to by $p_j$, which is equivalent to taking a walk of length 1 on $CG_n$ starting on point $p_j$.\\
+To begin, we will show that if our activation cycle machine is on any state, $s_k$, that we can determine the next state our machine will transition to by taking a walk of length $1$ starting at point $\theta(s_k) = p_k$ and mapping the resulting point, $p_j$, back to state $\gamma(p_j) = s_j$.\\
 \\
-Assume for some $j$, $1 \leq j \leq i$, that the position of state $k + j$ is given by taking a walk of length $j$ starting at position $\overline{C^k}$ around $CG_{n,a}$.\\
+Let our activation cycle machine be at position $n - 1$. If we were to take a walk of length $1$ from point $\theta(s_{n-1}) = p_{n-1}$, then we will arrive at point $p_0$ by definition of a cycle graph. Mapping point $p_0$ back to our cycle machine under $\gamma$ yields state $\gamma(p_0) = s_0$. By definition of an activation cycle machine, we know that state $s_{n-1}$ transitions to state $s_0$, thus our mappings hold for $n - 1$.\\
 \\
-Then the position on state $k + j$ is given by $\overline{C^k} + j$ $mod$ $n$.\\
-Thus, the the next state's position will be given by $\overline{C}^{k + j + 1} = \overline{C^k} + j + 1$ $mod$ $n$, which is the end position of a walk of length $j + 1$ when starting at point $\overline{C^k}$ on $CG_{n,a}$.\\
-\textit{Q.E.D}\\
+Now let us assume our activation cycle machine is at position $k < n - 1$. If we were to take a walk of length $1$ from point $\theta(s_k) = p_k$, then we will arrive at point $p_{k+1}$ by definition of a cycle graph. Mapping point $p_{k+1}$ back to our cycle machine under $\gamma$ yields state $\gamma(p_{k+1}) = s_{k+1}$. By definition of an activation cycle machine, we know that state $s_k$ transitions to state $s_{k+1}$, thus our mappings hold for all $k$.
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent
 \\
-\\
+With the proof of this simple lemma, we can immediately apply all our knowledge of cycle graphs to activation cycle machines. Most importantly, we gain the ability to predict the position of any activation cycle machine after any number of transitions.\\
+\begin{tcolorbox}
 \textbf{Corollary}\\
-The position of $C_{n,a}$ on state $k$ is given by $k$ $mod$ $n$.\\
-\\
-\textit{Proof}\\ 
-The initial state, $0$, starts at position $0 = 0$ $mod$ $n$.\\
-Thus the position of state $k = k + 0$ is given by:\\
-$|C^0| + k$ $mod$ $n = 0 + k$ $mod$ $n = k$ $mod$ $n$.\\
-\textit{Q.E.D}\\   
-\\
-\\
-\textbf{Corollary}\\
-$C_{n,a}$ is active on state $k$ if and only if $k$ $mod$ $n < a$.\\
-\\
+For any $n$, for any $k$, the position of the activation cycle machine with $n$ states after $k$ transitions starting from any position $j$ can be determined by taking a walk of length $k$ starting from point $p_j$ around the cycle graph with $n$ points.
+\end{tcolorbox}
+\noindent
 \textit{Proof}\\
-An ACM, $C_{n,a}$ is active if and only if it's position is on one of it's activators.\\
-The activators of $C_{n,a}$ are defined to be $p_{0 \leq i < a}$, or equivalenty positions $0 \leq i < a$.\\
+Since we can predict the resulting state of a transition of our cycle machine by instead taking a walk of length $1$ on our corresponding cycle graph, it should be obvious that we can also predict the resulting state of our cycle machine after $k$ transitions by instead taking a walk of length $k$ on our cycle graph.\\
 \\
-Thus, an $C_{n,a}$ is only active if it's position is less than $a$.\\
-Thus, $C$ is active if and only if $a > \overline{C^k} = k$ $mod$ $n$.\\
-\textit{Q.E.D} 
+We shall prove our corollary by induction on $k$, the number of transitions our state machine undergoes. Our base case, $k = 1$, is the direct result of our previos lemma. As such, let us assume for all $j \leq k$, that the resulting position of our cycle machine after $j$ transitions from any position, $i$, can be determined by instead taking a walk of length $j$ starting at point $p_i$ on our cycle graph and mapping the resulting point back to our cycle machine under our mapping $\gamma: P \rightarrow S$, $\gamma(p_l) = s_l$.\\
+\\
+To transition $k + 1$ states, let us first transition $k$ states from our position, $i$. By assumption, we know that our resulting state will be given by taking a walk from point $p_i$ of length $k$ and mapping the resulting point, $p_l$, back to our machine under $\gamma$, giving us state $\gamma(p_l) = s_l$. We now only have one transition left to complete our $k + 1$ transitions. By our lemma, we know this final transition from our state $s_l$ is given by taking extending our walk one more step from $p_l$ and mapping the result back to our machine. As such, mapping the result of a walk of length $k + 1$ around our cycle graph does in fact result in the same position as $k + 1$ transitions would have.
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent
+\\
+\begin{tcolorbox}
+\textbf{Corollary}\\
+For any $n$, for any $k$, the position of the activation cycle machine with $n$ states after $k$ transitions starting from any position $j$ is given by $(j + k)$ $mod$ $n$.
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+By our previous corollary, we know the position of our cycle machine after $k$ transitions starting at any position, $j$, can be determined by instead taking a walk of length $k$ starting from point $p_j$ around the cycle graph with $n$ points.\\
+\\
+By our previous theorem on cycle graphs, we know our walk of length $k$ will end at point $p_i$, where $i = (j + k)$ $mod$ $n$. As such, the position of our cycle graph after $k$ transitions will also be $i$.
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any activation cycle machine $C_{n,a}$, for any $k$, the activation cycle machine is active if and only if $a > (k$ $mod$ $n)$.
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+By our previous corollary, we know that the position of our cycle machine, $C_{n,a}$, after $k$ transitions will be given by $j =(k + i)$ $mod$ $n$, where $i$ is the initial position of our machine. By definition of an activation cycle machine, we know that $i = 0$, thus, our position after the first $k$ transitions is given by $j = k$ $mod$ $n$.\\
+\\
+Furthermore, an activation cycle machine is defined to be active whenever its current state is one of its activators, in other words, whenever its position is less than $a$. Putting the two together, we get that our cycle machine is active after the initial $k$ transitions whenever $a > k$ $mod$ $n$
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
   
 \section{Awkward State Machines}
 
