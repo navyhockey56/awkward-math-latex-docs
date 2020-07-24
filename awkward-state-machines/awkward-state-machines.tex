@@ -41,17 +41,116 @@ In order for us to study awkward state machines in any detail, we are going to n
 \\
 \begin{tcolorbox}
 \textbf{Definition}\\
-A \textit{cycle graph} is a directed, connected graph whose points form a circle. More explicity, for any $n > 1$, the cycle graph $CG_n$ has points $\{$ $p_0, p_1, ..., p_{n-1}$ $\}$ such that for any $i < n - 1$, $p_i$ has only one edge which goes to $p_{i + 1}$, and $p_{n-1}$ has only one edge going to $p_0$.
+A \textit{cycle graph} is a directed, connected graph whose points form a circle. More explicity, for any $n > 1$, the cycle graph $G_n$ has points:
+\begin{center}
+$P = \{$ $p_i$ $|$ $0 \leq i < n$ $\}$
+\end{center}
+such that for any $i < n - 1$, $p_i$ has only one edge which goes to $p_{i + 1}$, and $p_{n-1}$ has only one edge going to $p_0$.
 \end{tcolorbox}
 \noindent
-We shall note a few things about cycle graphs before we begin. First, for any point $p_j \in CG_n$, there is only one edge that can be traversed. As such, there is only a single walk that can be made from $p_j$ of length $k$, for any $k$. Secondly, since we've labeled our points such that point $t$'s only edge goes to point $t + 1$ for $t < n - 1$; then for any $j < k < n$, we can think of a walk from $p_j$ to $p_k$ as a walk down the number line, and as such, the shortest walk from point $p_j$ to $p_k$ will be of length $k - j$.\\
-
+\\
+Our definition tells us that a cycle graph is nothing more than a circular, directed graph with an explicit and straightforward labeling of its points. Our study of cycle graphs will be predominantly focused on the outcomes of walks about cycle graphs. As such, for the sake of clarity in our writing, let us now take the time to define two functions - the \textit{walk function} $\omega$ and the \textit{index walk function} $\Omega$ - that we can use to talk about walks of arbitrary length around any cycle graph.\\
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any cycle graph $G_n$ with points $P$, we define the \textit{walk function} $\omega: (P, \mathbb{N}) \rightarrow P$ to be $\omega(p_i, k) = p_j$, where $p_j$ is the point arrived at after a walk of length $k$ when starting at point $p_i$ on cycle graph $G_n$.\\
+\\
+Furthermore, we define the \textit{index walk function}, $\Omega: (P, \mathbb{N}) \rightarrow \mathbb{N}$ to be $\Omega(p_i, k) = j$, where $j$ is the index of the point $\omega(p_i, k)$.
+\end{tcolorbox}
+\noindent
+\\
+We already know a little bit about the walk and walk index functions from our definition of a cycle graph. Our defition tells us point that $p_{n-1}$ only has one edge going to point $p_0$. Furthermore, for any other point $p_k$ there is only a single edge going to point $p_{k+1}$. Thus, we have:
+\begin{center}
+$\omega(p_{n-1}, 1) = p_0$ and $\Omega(p_{n-1}, 1) = 0$\\
+$\omega(p_k, 1) = p_{k+1}$ and $\Omega(p_k, 1) = k + 1$ for any $k < n - 1$\\
+\end{center}
+\noindent
+In order for our mappings $\omega$ and $\Omega$ are to be valid for walks of arbitrary length, then it must be the case that for any length, $k$, and any point, $p_i$, within a cycle graph, there must be only a single walk that can be taken of length $k$ that starts at point $p_i$. As such, we shall begin our study by proving just this.\\
+\\
 \begin{tcolorbox}
 \textbf{Lemma}\\
-For any cycle graph $CG_n$, for any $p_i \in CG_n$, a walk of length $k = n - i$ will end at point $p_0$. Furthermore, this the shortest walk between any point $p_i$ and $p_0$.\\
+For any cycle graph $G_n$, for any point $p_i$ within that graph, there is only a single walk of length $k$ that begins at point $p_i$.\\
+\\
+In terms of our walk functions, this lemma states that $\omega$ and $\Omega$ are defined for any point $p_i$ and any walk length $k$. Furthermore, $\omega(p_i, k) = \omega(p_j, k)$ and $\Omega(p_i, k) = \Omega(p_j, k)$ if and only if $p_i = p_j$.\\
+\\
+More simply stated, $\omega$ and $\Omega$ are valid mappings.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
+The truth to this lemma is result of the fact that every point in a cycle graph only has a single edge. As such, we shall use this fact to complete a proof by induction on the length of our walk.\\
+\\
+\textit{Base Case}\\ 
+Our base case, a walk of length one starting from any point $p_i$, is obviously true since there is only a single edge that can be traversed from any point. In other words, for any point $p_i$, we know that $\omega(p_i, 1)$ is defined.\\
+\\
+In order to prove the uniqueness aspect of our base case, we shall assume that $\omega(p_i, 1) = \omega(p_j, 1)$ for some points $p_i$ and $p_j$ and then show that $p_i$ and $p_j$ are actually the same point. In other words, if a walk of length one starting at point $p_i$ ends at the same point that a walk of length one from point $p_j$ does, then it must be the case that our starting points $p_i$ and $p_j$ are in fact the same point.\\
+\\
+Let us begin by examing the case where our walk ends at the initial point $p_0$. In other words, let us assume $\omega(p_i, 1) = \omega(p_j, 1) = p_0$. We already know that $\omega(p_{n-1}, 1) = p_0$ by definition of our cycle graph, so now all we have to do is rule out the possibility that for any other point $p_k$, where $k < n - 1$, that $\omega(p_k, 1) \neq p_0$. But we already know this to be true since $\Omega(p_k, 1) = k + 1 > 0$ for all $k < n - 1$.\\
+\\
+Now let us wrap our our uniqueness by assuming $\Omega(p_i, 1) = \Omega(p_j, 1) = k$ for some $k > 0$, and showing that this results in $p_i = p_j$. By the definition of a cycle graph, we know that point $p_{k-1}$ has only a single edge which goes to point $p_k$, thus $\omega(p_{k-1}, 1) = p_k$. Furthermore, for any $l < k - 1$, $\Omega(p_l, 1) = l + 1 \leq k - 1 < k$. Thus, it must be the case that $p_{k-1}$ is the only point that allows us to take a walk of length one to arrive at point $p_k$.\\
+\\
+\textit{Hypothesis}\\
+Assume that for any $k > 1$ and any point $p_i$, that there is only a single walk of length $j < k$ that can be taken when starting at point $p_i$. In other words, $\omega(p_i, j)$ is valid whenever $j < k$.\\
+\\
+\textit{Inductive Step}\\
+If we wish to take a walk of length $k$ starting at any point $p_i$ in our graph, we can do so by first taking a walk of length $k - 1$, and then extend that walk by one more step.\\
+\\
+By our inductive hypothesis, we know that there is only a single walk of length $k - 1$ we can take starting at point $p_i$. Furthermore, if we were to extend that walk by one more step, our base case tells us that there is only a single walk that can be taken from ending point $\omega(p_i,$ $k - 1)$ of length one. Thus, there can only be a single walk of length $k$ since it is a composite of our two shorter walks; furthermore, we have shown:
+\begin{center}
+$\omega(p_i, k) = \omega(\omega(p_i,$ $k - 1),$ $1)$
+\end{center}
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center} 
+\noindent
+Now that we know that our walks starting from any point of any length are not only valid, but also unique with regard to the starting point and length, we shall turn our attention to the predicting which point our walks will end on. To start, we shall examine the shortest walk between any two point $p_j$ and $p_k$ where $j < k$.\\
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$, for any $j < k < n$, the shortest possible walk from point $p_j$ to $p_k$ has length $k - j$.\\
+\\
+Expressed via the walk function, we have that:
+\begin{center}
+$\omega(p_j, k - j) = p_k$ whenever $j < k$
+\end{center}
+Furthermore,
+\begin{center}
+$\omega(p_j, l) \neq p_k$ whenever $l < k - j$
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+
+
+We shall note a few things about cycle graphs before we begin. First, for any point $p_j \in G_n$, there is only one edge that can be traversed. As such, there is only a single walk that can be made from $p_j$ of length $k$, for any $k$. Secondly, since we've labeled our points such that point $t$'s only edge goes to point $t + 1$ for $t < n - 1$; then for any $j < k < n$, we can think of a walk from $p_j$ to $p_k$ as a walk down the number line, and as such, the shortest walk from point $p_j$ to $p_k$ will be of length $k - j$.\\
+\\
+
+Before we get swept up into the theory of cycle graphs, let us first note some properties of our newly defined functions, $\omega$ and $\Omega$\\
+\\
+First off, we acknowledge that $\omega$ is a valid mapping there is only a single walk of length $k$, for any $k$, that we can take starting at any point since each of our points only have a single edge they can traverse.\\
+\\
+By definition of a cycle graph, point $p_{n-1}$ only has one edge going to point $p_0$. Furthermore, for any other point $p_k$ there is only a single edge going to point $p_{k+1}$. Thus, we have:
+\begin{center}
+$\omega(p_{n-1}, 1) = p_0$ and $\Omega(p_{n-1}, 1) = 0$\\
+$\omega(p_k, 1) = p_{k+1}$ and $\Omega(p_k, 1) = k + 1$ for any $k < n - 1$\\
+\end{center}
+\noindent
+Furthermore, we know that if we want to take a walk of length $k$, for any $k > 1$, starting from any point, $p_i$, then this can be accomplished by first taking a walk of length $g$, where $1 \leq g < k$, starting at point $p_i$ to arrive at some point $p_j$; and then we can extend our walk by taking a second walk of length $k - g$ starting at point $p_j$. Applying this to the walk function, we get:
+\begin{center}
+$\omega(p_i, k) = \omega(\omega(p_i, j),$ $k - j)$ for any $0 < j < k$.
+\end{center}
+Now we are ready to dive into the theory of cycle graphs. We shall begin our study by examing the shortest walk to the point $p_0$ from any point within the cycle graph.\\
+
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$ and for any point $p_i$ within that graph, a walk of length $n - i$ will end at point $p_0$. Furthermore, this the shortest walk between any point $p_i$ and $p_0$.\\
+\\
+Applying the lemma to the walk function, we get: $\omega(p_i, n - i) = p_0$ for every point $p_i$; furthermore, $\omega(p_i, j) \neq p_0$ whenever $j < n - i$.
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+We shall break our proof into two cases. We shall first consider the walk from the last point $p_{n-1}$ to the initial point $p_0$. Thus, our second case shall consider the walk to the initial point for all other points in our graph.\\
+\\
+\textit{Case 1}
+
+
 First, let us consider the trivial cases where $j = n - 1$. By definition of a cycle graph, the point $p_{n-1}$ has only one edge going to point $p_0$, therefor, our walk has length $1 = (n - n) + 1 = n - (n - 1)$. Furthermore, a walk of length $1$ is the shortest possible walk of any graph, thus our walk from $p_{n-1}$ to $p_0$ must be the shortest walk possible between these two points.\\
 \\ 
 Now, let us consider the walk from $p_j$ to the point $p_{n-1}$ for $j < n - 1$.\\
@@ -167,17 +266,17 @@ With a few, minor modifications to cycle graphs, we can create \textit{activatio
 \textbf{Definition}\\
 An \textit{activation cycle machine} is a state machine with $n > 1$ states, $s_0, s_1, ..., s_{n-1}$, such that for any state, $s_k$ where $k < n - 1$, state $s_k$ has only a single transition to state $s_{k+1}$; and state $s_{n-1}$ has only a single transition to $s_0$. Furthermore, all activation cycle machines always start at state $s_0$.\\
 \\
-The first $a$ states, where $1 < a < n$, of an activation cycle machine are called \textit{activators}. An activation cycle machine is said to be \textit{active} when it's current state is one of it's activators, and is called \textit{inactive} when it's not active. We write $C_{n,a}$ to refer to the activation cycle machine with $n$ states and $a$ activators.\\
+The first $a$ states, where $1 \leq a < n$, of an activation cycle machine are called \textit{activators}. An activation cycle machine is said to be \textit{active} when it's current state is one of it's activators, and is called \textit{inactive} when it's not active. We write $C_{n,a}$ to refer to the activation cycle machine with $n$ states and $a$ activators.\\
 \\
 When an activation cycle machine's current state is $s_k$, for any $k$, we call $k$ its \textit{position}, and write $\overline{C}(j)$ to refer to the position of the machine after it's $j^{th}$ transition. 
 \end{tcolorbox}
 \noindent
 \\
-The first part of our definition is almost exactly the same as our definition of cycle graphs. However, instead of talking about points in a graph, and the edges between those points; we define the states of a machine, and the transitions between those states. With such similar definitions, it seems reasonable that we can represent the states of an activation cycle machine by using a cycle graph. In fact, we'll begin our study of activation cycle machines by proving just that.\\
+The first part of our definition is almost exactly the same as our definition for a cycle graphs. However, instead of talking about points in a graph, and the edges between those points; we define the states of a machine, and the transitions between those states. With such similar definitions, it seems reasonable that we can represent the states of an activation cycle machine by using a cycle graph. In fact, we'll begin our study of activation cycle machines by proving just that.\\
 \\
-Our definition then extends beyond cycle graphs by incorporating the idea of \textit{activators}, which simply are the first $a$ states of the machine, $s_0, ..., s_{a-1}$. Our definition also stipulates that while there is always at least one activator, there are never as many activators as there are states in the machine. As such, every activation cycle machine will become \textit{active} at least once and \textit{inactive} at least once as it transitions between its states.\\
+The definition of an activation cycle machine extends a bit beyond that of cycle graphs by incorporating the notion of \textit{activators},  which is merely a label applied to the first $a$ states of the machine, $s_0, ..., s_{a-1}$. Furthermore, our definition stipulates that while there is always at least one activator, there are never as many activators as there are states in the machine. As such, every activation cycle machine will become \textit{active} at least once, as well as \textit{inactive} at least once as it transitions between its states.\\
 \\
-Before we dive into our study of activation cycle machines, below you will find two working examples of an activation cycle machine coded in \textit{ruby}. The first example is easier to follow, it relies on the fact that we can keep track of our \textit{position} using arithmetic, rather than keeping track of a bunch of states. Our second example, on the other hand, is represented using states, and as such, needn't rely on arithmetic to function.
+Before we dive into our study of activation cycle machines, below you will find two working examples of an activation cycle machine coded in \textit{ruby}. The first example is more condensed. Rather than keep track of states directly, the first example simulates an activation cycle machine by keeping track of the current position of the machine using arithmetic. Our second example, on the other hand, is represented using states, and as such, needn't rely on arithmetic to function. Whether or not you program, I encourage you to look through both examples carefully; I think you will find they provide a bit of color to our abstract definition.
 \begin{tcolorbox}
 \begin{verbatim}
 class ActivationCycleMachine
@@ -224,9 +323,9 @@ end
 \end{tcolorbox}
 \noindent
 \\
-As you can see, our first example simply increments the position of our state machine by one to simulate a transition, with the exception that it resets the position to 0 once its gotten to the maximum position.\\
+As you can see, our first example simply increments the position of our state machine by one to simulate a transition, with the exception that it resets the position to 0 once its gotten to the maximum position. Since this example does not use states, it does not have a direct understandg of an \textit{activator}. Despite that, the implementation is able to determine activeness indirectly by checking if it's current position is less than the number of activators.\\
 \\
-We'll need to break our second example into two seperate classes. The first class we will define will represent a single state in our machine, and will be implemented as a node in a linked list would. Our second class will be the actual activation cycle machine, which we will see is implemented much the same way that a linked list would be.\\
+We'll need to break our second example into two seperate classes. Within the first class, we will represent a single state in our machine, which will be implemented as a node in a linked list would. Our second class will be the representation of the activation cycle machine, which we implement much the same way that we would a linked list.\\
 \\
 \begin{tcolorbox}
 \begin{verbatim}
@@ -304,7 +403,23 @@ As you can see, our second example matches our formal mathematical definition ve
 Without further ado, let us now tie activation cycle machines and cycle graphs together.\\
 \begin{tcolorbox}
 \textbf{Lemma}\\
-An activation cycle machine with $n$ states can be represented by the cycle graph with $n$ points, where state $s_k$ corresponds to point $p_k$, and a transition to the next state from some state, $s_k$, can be represented by a walk of length $1$ starting at point $p_k$.
+Let $C_{n,a}$ be any activation cycle machine.\\
+Let $S = \{$ $s_i$ $|$ $0 \leq i < n$ $\}$ be the states of $C_{n,a}$.\\
+\\
+Let $G_n$ be the cycle graph of $n$ points.\\
+Let $P = \{$ $p_j$ $|$ $0 \leq j < n$ $\}$ be the points of $G_n$.\\
+\\
+Let $\gamma: P \rightarrow S$ be the mapping from the points in our cycle graph to the states in our activation cycle machine such that $\gamma(p_k) = s_k$.\\
+\\
+Let $\theta: S \rightarrow P$ be the mapping from the states of our activation cycle machine to the points in our graph such that $\theta(s_k) = p_k$.\\
+\\
+Let $\omega: (P, \mathbb{N}) \rightarrow P$ such that $\omega(p_i, k) = p_j$, where $p_j$ is the point arrived to after a walk of length $k$.\\
+\\
+Let $\sigma: (S, \mathbb{N}) \rightarrow S$ such that $\sigma(s_i, k) = s_j$, where $j$ is the position of the machine after $k$ transistions when starting at state $s_i$.\\  
+\\
+Then $\gamma(\omega(p_i, 1)) = \sigma(s_i, 1)$.\\
+\\
+In other words, for any activation cycle machine, we can determine the next state to be transitioned to by instead taking a walk of length one, starting at the point with the same index as the starting state, around the cycle graph with the same number of points as states in our machine; and then finally mapping the resulting point from our walk back to the states in our machine using $\gamma$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
