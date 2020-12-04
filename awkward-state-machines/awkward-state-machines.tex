@@ -52,9 +52,9 @@ such that for any $i < n - 1$, $p_i$ has only one edge which goes to $p_{i + 1}$
 Our definition tells us that a cycle graph is nothing more than a circular, directed graph with an explicit and straightforward labeling of its points. Our study of cycle graphs will be predominantly focused on the outcomes of walks about cycle graphs. As such, for the sake of clarity in our writing, let us now take the time to define two functions - the \textit{walk function} $\omega$ and the \textit{index walk function} $\Omega$ - that we can use to talk about walks of arbitrary length around any cycle graph.\\
 \begin{tcolorbox}
 \textbf{Definition}\\
-For any cycle graph $G_n$ with points $P$, we define the \textit{walk function} $\omega: (P, \mathbb{N}) \rightarrow P$ to be $\omega(p_i, k) = p_j$, where $p_j$ is the point arrived at after a walk of length $k$ when starting at point $p_i$ on cycle graph $G_n$.\\
+For any cycle graph $G_n$ with points $P$, we define the \textit{walk function} $\omega: (P, \mathbb{N}^{+}) \rightarrow P$ to be $\omega(p_i, k) = p_j$, where $p_j$ is the point arrived at after a walk of length $k$ when starting at point $p_i$ on cycle graph $G_n$.\\
 \\
-Furthermore, we define the \textit{index walk function}, $\Omega: (P, \mathbb{N}) \rightarrow \mathbb{N}$ to be $\Omega(p_i, k) = j$, where $j$ is the index of the point $\omega(p_i, k)$.
+Furthermore, we define the \textit{walk index function}, $\Omega: (P, \mathbb{N}^{+}) \rightarrow [n]$, $[n] = \{$ $i \in \mathbb{N}$ $|$ $0 \leq i < n$ $\}$ to be $\Omega(p_i, k) = j$, where $j$ is the index of the point $\omega(p_i, k)$.
 \end{tcolorbox}
 \noindent
 \\
@@ -64,13 +64,13 @@ $\omega(p_{n-1}, 1) = p_0$ and $\Omega(p_{n-1}, 1) = 0$\\
 $\omega(p_k, 1) = p_{k+1}$ and $\Omega(p_k, 1) = k + 1$ for any $k < n - 1$\\
 \end{center}
 \noindent
-In order for our mappings $\omega$ and $\Omega$ are to be valid for walks of arbitrary length, then it must be the case that for any length, $k$, and any point, $p_i$, within a cycle graph, there must be only a single walk that can be taken of length $k$ that starts at point $p_i$. As such, we shall begin our study by proving just this.\\
+In order for our mappings $\omega$ and $\Omega$ to be well defined, they will have defined for all input; furthermore, each input can only map to a single output. Since our functions map to the outcomes of walks of varying length around cycle graphs, they will only be valid if for any walk length, starting at any point, on any cycle graph, that it must be the case that the walk can be completed; furthermore, there must only be a single walk that can be taken. As such, we shall begin our study by proving just this.\\
 \\
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$ within that graph, there is only a single walk of length $k$ that begins at point $p_i$.\\
 \\
-In terms of our walk functions, this lemma states that $\omega$ and $\Omega$ are defined for any point $p_i$ and any walk length $k$. Furthermore, $\omega(p_i, k) = \omega(p_j, k)$ and $\Omega(p_i, k) = \Omega(p_j, k)$ if and only if $p_i = p_j$.\\
+In terms of our walk functions, this lemma states that $\omega$ and $\Omega$ are defined for any point $p_i$ and any walk length $k$.\\
 \\
 More simply stated, $\omega$ and $\Omega$ are valid mappings.
 \end{tcolorbox}
@@ -79,24 +79,64 @@ More simply stated, $\omega$ and $\Omega$ are valid mappings.
 The truth to this lemma is result of the fact that every point in a cycle graph only has a single edge. As such, we shall use this fact to complete a proof by induction on the length of our walk.\\
 \\
 \textit{Base Case}\\ 
-Our base case, a walk of length one starting from any point $p_i$, is obviously true since there is only a single edge that can be traversed from any point. In other words, for any point $p_i$, we know that $\omega(p_i, 1)$ is defined.\\
+Our base case demands us to show that there is only a single walk of length one starting at any point, in any cycle graph. But of course this is true because our definition of a cycle graph stipulates that the point $p_{n-1}$ has only a single edge going to point $p_0$, while all other points $p_k$ only have a single edge going to point $p_{k+1}$. As such, a walk of length one is possible from any point; furthermore, there is only one such walk since there is only a single edge that can be traversed.\\
 \\
-In order to prove the uniqueness aspect of our base case, we shall assume that $\omega(p_i, 1) = \omega(p_j, 1)$ for some points $p_i$ and $p_j$ and then show that $p_i$ and $p_j$ are actually the same point. In other words, if a walk of length one starting at point $p_i$ ends at the same point that a walk of length one from point $p_j$ does, then it must be the case that our starting points $p_i$ and $p_j$ are in fact the same point.\\
-\\
-Let us begin by examing the case where our walk ends at the initial point $p_0$. In other words, let us assume $\omega(p_i, 1) = \omega(p_j, 1) = p_0$. We already know that $\omega(p_{n-1}, 1) = p_0$ by definition of our cycle graph, so now all we have to do is rule out the possibility that for any other point $p_k$, where $k < n - 1$, that $\omega(p_k, 1) \neq p_0$. But we already know this to be true since $\Omega(p_k, 1) = k + 1 > 0$ for all $k < n - 1$.\\
-\\
-Now let us wrap our our uniqueness by assuming $\Omega(p_i, 1) = \Omega(p_j, 1) = k$ for some $k > 0$, and showing that this results in $p_i = p_j$. By the definition of a cycle graph, we know that point $p_{k-1}$ has only a single edge which goes to point $p_k$, thus $\omega(p_{k-1}, 1) = p_k$. Furthermore, for any $l < k - 1$, $\Omega(p_l, 1) = l + 1 \leq k - 1 < k$. Thus, it must be the case that $p_{k-1}$ is the only point that allows us to take a walk of length one to arrive at point $p_k$.\\
-\\
-\textit{Hypothesis}\\
-Assume that for any $k > 1$ and any point $p_i$, that there is only a single walk of length $j < k$ that can be taken when starting at point $p_i$. In other words, $\omega(p_i, j)$ is valid whenever $j < k$.\\
+\textit{Inductive Hypothesis}\\
+Let us assume that for all $1 \leq j < k$, for all cycle graphs, that it is the case that there is only a single walk that can be taken of length $j$ starting from any point within the graph. In other words, that $\omega(p_i, j)$ is defined on all points of all cycle graphs whenever $j < k$.\\
 \\
 \textit{Inductive Step}\\
-If we wish to take a walk of length $k$ starting at any point $p_i$ in our graph, we can do so by first taking a walk of length $k - 1$, and then extend that walk by one more step.\\
+We must now show that we can complete a walk of length $k$ starting from any point in any cycle graph, and that there is only one walk that we can take to do so.\\
 \\
-By our inductive hypothesis, we know that there is only a single walk of length $k - 1$ we can take starting at point $p_i$. Furthermore, if we were to extend that walk by one more step, our base case tells us that there is only a single walk that can be taken from ending point $\omega(p_i,$ $k - 1)$ of length one. Thus, there can only be a single walk of length $k$ since it is a composite of our two shorter walks; furthermore, we have shown:
+Our inductive hypothesis tells us that there is only a single walk of length $k - 1$ we can take starting from any point $p_i$, ending at point $\omega(p_i, k - 1)$.\\
+\\
+Furthermore, our base case tells us that there is only a single walk of length one that can be taken from any point in our graph. As such, it must be the case that there is only a single walk of length one that can be taken from point $\omega(p_i, k - 1)$; equivalently we know $\omega(\omega(p_i, k - 1), 1)$ is defined.\\
+\\
+Since our composite walk $\omega(\omega(p_i, k - 1), 1)$ is composed of a walk of length $k - 1$ and a second walk of length $1$, our composite walk has length $k$. Furthermore, since both components of our walk were the only walks that could have been taken, we can conclude that our composite walk is the only walk that could have been taken of length $k$. As such, not only have we completed our proof, but we have also shown that: 
 \begin{center}
-$\omega(p_i, k) = \omega(\omega(p_i,$ $k - 1),$ $1)$
+$\omega(p_i, k) = \omega(\omega(p_i,$ $k - 1),$ $1)$ whenever $k > 1$
 \end{center}
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center} 
+\noindent
+\\
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$, for any point $p_i$, there is only a single walk of length $k$ that ends at point $p_i$. Stated using the walk function, we have: 
+\begin{center}
+$\omega(p_i, k) = \omega(p_j, k)$ if and only if $p_i = p_j$.
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+We shall again employ induction on the length of our walk in order to complete this proof.\\
+\\
+\textit{Base Case}\\ 
+Our base case requires us to show that there is only a single walk of length one that ends at any point $p_k$.\\
+\\
+Let us begin by examing the case where our walk ends at the initial point $p_0$. We already know that $\omega(p_{n-1}, 1) = p_0$ by definition of our cycle graph. As such, all we have to do is show that $p_{n-1}$ is the only such point in our graph to have a walk end at point $p_0$. But we already know this to be true since $\Omega(p_k, 1) = k + 1 > 0$ for all $k < n - 1$.\\
+\\
+To complete our base case, we need to show that whevener $\Omega(p_i, 1) = k$ for some $k > 0$, that $p_i$ must be the only such point with this property. By the definition of a cycle graph, we know that point $p_{k-1}$ has only a single edge which goes to point $p_k$, thus we know $\omega(p_{k-1}, 1) = p_k$. As such, we must show that whenever $l \neq k - 1$, that it is also the case that $\Omega(p_l, 1) \neq k$.\\
+\\
+Assume $l < k - 1$, then by definition of a cycle graph:
+\begin{center}
+$\Omega(p_l, 1) = l + 1 \leq k - 1 < k$
+\end{center}
+As such, we have eliminated all points with an index less then $k - 1$ from consideration. Now we only need to show that if $k - 1 < l$, that $\Omega(p_l, 1) \neq k$. We already know that $\Omega(p_{n-1}, 1) = 0 < k$, thus leaving us with the cases where $l < n - 1$. For these final cases, our definition tells us:
+\begin{center}
+$\Omega(p_l, 1) = l + 1 > l \geq k$
+\end{center}
+Therefore, it must be the case that $p_{k-1}$ is the only point with the property that $\omega(p_{k-1}, 1) = p_k$ for $k > 0$. In doing so, we have completed our base case.\\
+\\
+\textit{Inductive Hypothesis}\\
+Assume that for any $1 < j < k$, and any point $p_i$, that there is only a single walk of length $j$ that ends at point $p_i$.\\
+\\
+\textit{Inductive Step}\\
+To complete out proof, we need to show that there is only a single walk of length $k$ that ends at point $p_i$.\\
+\\
+Our base case stipulates that there is only a single walk of length $1$, starting from some point $p_j$, which ends at point $p_i$. As such, in order for a walk of length $k$ to end at point $p_i$, the subwalk of length $k - 1$ will have to end at point $p_j$.\\
+\\
+Our inductive hypothesis tells us that there is only a single walk of length $k - 1$ that ends at point $p_j$. Thus, there is only one walk of length $k$ that ends at point $p_i$.
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center} 
