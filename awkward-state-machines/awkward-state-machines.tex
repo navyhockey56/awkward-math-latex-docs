@@ -102,9 +102,141 @@ $\omega(p_i, k) = \omega(\omega(p_i,$ $k - 1),$ $1)$ whenever $k > 1$
 \\
 \begin{tcolorbox}
 \textbf{Lemma}\\
+For any cycle graph $G_n$, for any point $p_i$, for any $0 \leq t \leq j,$:
+\begin{center}
+$\omega(p_i, j)$ $=$ $\omega(\omega(p_i, t), j - t)$ $=$ $\omega(\omega(p_i, j - t), t)$. 
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+\\
+We know there exists a single walk of length $t$ starting at point $p_i$.
+Let $p_w$ be the point this walk ends at, then $p_w = \omega(p_i, t)$.\\
+\\
+We know there exists a single walk of length $j - t$ starting from point $p_w$.
+Let $p_y$ be the point this walk ends at, then $p_y = \omega(p_w, j - t)$.\\
+Applying substitution yields:
+\begin{center}
+$p_y = \omega(\omega(p_i, t), j - t)$
+\end{center}
+Combining the two above walks yields a walk from $p_i$ to $p_y$ of length\\
+$t + (j - t) = j$. Thus, we have shown:
+\begin{center}
+$p_y = \omega(p_i, j) = \omega(\omega(p_i, t), j - t)$
+\end{center}
+To complete our proof, we need to show:
+\begin{center}
+$\omega(p_i, j) = \omega(\omega(p_i, j - t), t)$.
+\end{center}
+Let us define $a = j - t$.\\
+From the first part of this proof, we know that
+\begin{center}
+$\omega(p_i, j) = \omega(\omega(p_i, a), j - a)$
+\end{center}
+Substituting out $a$ yields:
+\begin{center}
+$\omega(p_i, j) = \omega(\omega(p_i, j - t), j - (j - t)) = \omega(\omega(p_i, j - t), t)$.
+\end{center}
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
+\textbf{Corollary}\\
+For any cycle graph $G_n$, for any point $p_i$, for any non-negative integers $t, v$:
+\begin{center}
+$\omega(p_i, t + v) = \omega(\omega(p_i, t), v) = \omega(p_i, v), t)$
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+Let $j = t + v$.
+Through the previous lemma, we know that
+\begin{center}
+$\omega(p_i, t + v) = \omega(p_i, j) = \omega(\omega(p_i, t), j - t)$\\
+$\omega(p_i, t + v) = \omega(p_i, j) = \omega(\omega(p_i, j - t), t)$
+\end{center}
+Substitution brings us:
+\begin{center}
+$\omega(p_i, t + v) = \omega(\omega(p_i, t), (t + v) - t) = \omega(\omega(p_i, t), v)$
+$\omega(p_i, t + v) = \omega(\omega(p_i, (t + v) - t), t) = \omega(\omega(p_i, v), t)$
+\end{center}
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$, for any integers $i, j$ such that
+\begin{center}
+$0 \leq j < i \leq n - 1$
+\end{center}
+then
+\begin{center}
+$\omega(p_j, i - j) = p_i$
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+TODO
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
+\textbf{Corollary}\\
+For any cycle graph $G_n$, for any integers $i, j$ such that
+\begin{center}
+$0 \leq j < i \leq n - 1$
+\end{center}
+the shortest walk from $p_j$ to $p_i$ has length $i - j$.
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+TODO
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$, for any integers $i, j$ such that
+\begin{center}
+$0 \leq i < j \leq n - 1$
+\end{center}
+then
+\begin{center}
+$\omega(p_j, (n - j) + i) = p_i$
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+TODO
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
+\textbf{Corollary}\\
+For any cycle graph $G_n$, for any integers $i, j$ such that
+\begin{center}
+$0 \leq i < j \leq n - 1$
+\end{center}
+the shortest walk from $p_j$ to $p_i$ has length $(n - j) + i$.
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+TODO
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+\begin{tcolorbox}
+\textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$, there is only a single walk of length $k$ that ends at point $p_i$. Stated using the walk function, we have: 
 \begin{center}
-$\omega(p_i, k) = \omega(p_j, k)$ if and only if $p_i = p_j$.
+$\omega(p_i, k) = \omega(p_j, k)$ if and only if $p_i = p_j$
 \end{center}
 \end{tcolorbox}
 \noindent
