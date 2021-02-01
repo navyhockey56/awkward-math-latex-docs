@@ -178,7 +178,39 @@ $\omega(p_j, i - j) = p_i$
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-TODO
+This will be a proof by induction on the length of the walk $l = i - j$.\\
+\\
+\textit{Base Case} ($length = 1$)\\
+Let $l = 1$ be the length of the walk, giving us $l = i - j = 1$ and $i = j + 1$.\\
+Substituting gives us:
+\begin{center}
+$\omega(p_j, l) = \omega(p_j, i - j) = \omega(p_j, 1) = p_{j+1} = p_i$
+\end{center} 
+\noindent
+\\
+\textit{Hypothesis}\\
+Assume for all $l < t \leq n - l$, that $\omega(p_j, l) = \omega(p_j, i - j) = p_i$\\
+\\
+\textit{Inductive Step}\\
+We need to show that $\omega(p_j, t) = \omega(p_j, i - j) = p_i$.\\
+\\
+By a previous lemma, we know that:
+\begin{center}
+$\omega(p_j, t) = \omega(\omega(p_j, t - 1), 1)$
+\end{center}
+Focusing on the inner function and substituting:
+\begin{center}
+$\omega(p_j, t - 1) = \omega(p_j, (i - j) - 1) = \omega(p_j, (i - 1) - j)$
+\end{center}
+Applying the inductive hypothesis:
+\begin{center}
+$\omega(p_j, t - 1) = \omega(p_j, (i - 1) - j) = p_{i-1}$
+\end{center}
+Substituting $p_{i-1}$ back into $\omega(p_j, t)$ yields:
+\begin{center}
+$\omega(p_j, t) = \omega(\omega(p_j, t - 1), 1) = \omega(p_{i-1}, 1) = p_i$
+\end{center}
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
@@ -193,7 +225,32 @@ the shortest walk from $p_j$ to $p_i$ has length $i - j$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-TODO
+Our lemma proved that $\omega(p_j, i - j) = p_i$, for $0 \leq j < i < n$.
+As such, we need to show that for any $l < i - j$, that $\omega(p_j, l) \neq p_i$.\\
+\\
+Let $1 \leq l < i - j$. Let $x$ be the integer such that $l = (i - j) - x$.
+Then,
+\begin{center}
+$\omega(p_j, l) = \omega(p_j, (i - j) - x) = \omega(p_j, (i - x) - j)$ 
+\end{center}
+Our lemma tells us that whenever $j < i - x$, then $\omega(p_j, (i - x) - j) = p_{i-x}$.\\
+From $l = (i - j) - x$, we get $x = (i - j) - l$. Substituting,
+\begin{center}
+$i - x = i - ((i - j) - l) = i - i + j + l = j + l$
+\end{center}
+By stipulation, we have $1 \leq l$. Therefore, $j < j + 1 \leq j + l = i - x$.\\
+\\
+With our inequality shown, we can state $\omega(p_j, l) = p_{i-x}$ for all possible $l$.\\
+\\
+If we can show it is always the case that $x > 0$, then $p_{i-x} \neq p_i$, and we will have completed our proof.\\
+\\
+By stipulation, we know that
+\begin{center}
+$l = (i - j) - x < i - j$
+\end{center}
+We can subtract $(i - j)$ to get $-x < 0$.\\
+\\
+Finally, we can multiply by $-1$, yielding $x > 0$.
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
@@ -231,6 +288,34 @@ TODO
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$, for any point $p_i$, for any integers $a, t \geq 0$
+\begin{center}
+$\omega(p_i, t) = \omega(p_i, t + an)$
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+TODO
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
+\textbf{Theorem}\\
+For any cycle graph $G_n$, for any point $p_i$, for any integer $t \geq 0$
+\begin{center}
+$\omega(p_i, t) = \omega(p_i, t \triangleleft n)$
+\end{center}
+where $t \triangleleft n $ is the remainder of $t$ when divided by $n$.
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+TODO
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
 
 \begin{tcolorbox}
 \textbf{Lemma}\\
