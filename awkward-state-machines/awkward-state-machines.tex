@@ -169,7 +169,7 @@ $\omega(p_i, t + v) = \omega(\omega(p_i, (t + v) - t), t) = \omega(\omega(p_i, v
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
 \begin{center}
-$0 \leq j < i \leq n - 1$
+$0 \leq j \leq i < n$
 \end{center}
 then
 \begin{center}
@@ -180,11 +180,11 @@ $\omega(p_j, i - j) = p_i$
 \textit{Proof}\\
 This will be a proof by induction on the length of the walk $l = i - j$.\\
 \\
-\textit{Base Case} ($length = 1$)\\
-Let $l = 1$ be the length of the walk, giving us $l = i - j = 1$ and $i = j + 1$.\\
+\textit{Base Case} ($length = 0$)\\
+Let $l = 0$ be the length of the walk, giving us $l = i - j = 0$ and $i = j$.\\
 Substituting gives us:
 \begin{center}
-$\omega(p_j, l) = \omega(p_j, i - j) = \omega(p_j, 1) = p_{j+1} = p_i$
+$\omega(p_j, l) = \omega(p_j, i - j) = \omega(p_j, 0) = p_j = p_i$
 \end{center} 
 \noindent
 \\
@@ -219,13 +219,13 @@ $\omega(p_j, t) = \omega(\omega(p_j, t - 1), 1) = \omega(p_{i-1}, 1) = p_i$
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
 \begin{center}
-$0 \leq j < i \leq n - 1$
+$0 \leq j < i < n$
 \end{center}
 the shortest walk from $p_j$ to $p_i$ has length $i - j$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-Our lemma proved that $\omega(p_j, i - j) = p_i$, for $0 \leq j < i < n$.
+Our lemma proved that $\omega(p_j, i - j) = p_i$, for $0 \leq j \leq i < n$.
 As such, we need to show that for any $l < i - j$, that $\omega(p_j, l) \neq p_i$.\\
 \\
 Let $1 \leq l < i - j$. Let $x$ be the integer such that $l = (i - j) - x$.
@@ -259,7 +259,7 @@ Finally, we can multiply by $-1$, yielding $x > 0$.
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
 \begin{center}
-$0 \leq i < j \leq n - 1$
+$0 \leq i \leq j < n - 1$
 \end{center}
 then
 \begin{center}
@@ -268,7 +268,20 @@ $\omega(p_j, (n - j) + i) = p_i$
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-TODO
+We shall prove this directly. Using the previous lemma, we know that:
+\begin{center}
+$\omega(p_j, (n - 1) - j) = p_{n-1}$ since $j \leq (n - 1)$
+\end{center}
+Furthermore, we know that:
+\begin{center}
+$\omega(p_{n-1}, 1) = p_0$ by structure of $G_n$\\
+$\omega(p_0, i) = \omega(p_0, i - 0) = p_i$ since $0 \leq i$
+\end{center}
+As such, we can create a composite of these three walks to form a walk from $p_j$ to $p_i$ having length:
+\begin{center}
+$((n - 1) - j) + 1 + i = (n - j) + i$
+\end{center}
+which completes our proof.
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
@@ -280,6 +293,24 @@ For any cycle graph $G_n$, for any integers $i, j$ such that
 $0 \leq i < j \leq n - 1$
 \end{center}
 the shortest walk from $p_j$ to $p_i$ has length $(n - j) + i$.
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+TODO
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
+\textbf{Corollary}\\
+For any cycle graph $G_n$, for any points $p_i, p_j$, there exists positive integers $a, b \leq n$ such that:
+\begin{center}
+$\omega(p_i, a) = p_j$ and
+$\omega(p_j, b) = p_i$.
+\end{center}
+In other words, it is always possible to walk from any point $p_i$ to any point $p_j$ with a length no greater than $n$.\\
+\\
+Furthermore, whenever $p_j \neq p_i$, then the integers $a, b$ will satisfy the relationship: $a = n - b$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
