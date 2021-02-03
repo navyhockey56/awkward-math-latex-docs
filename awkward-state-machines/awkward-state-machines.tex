@@ -58,7 +58,7 @@ Furthermore, we define the \textit{walk index function}, $\Omega: (P, \mathbb{N}
 \end{tcolorbox}
 \noindent
 \\
-We already know a little bit about the walk and walk index functions from our definition of a cycle graph. Our defition tells us point that $p_{n-1}$ only has one edge going to point $p_0$. Furthermore, for any other point $p_k$ there is only a single edge going to point $p_{k+1}$. Thus, we have:
+We already know a little bit about the walk and walk index functions from our definition of a cycle graph. Our definition tells us point that $p_{n-1}$ only has one edge going to point $p_0$. Furthermore, for any other point $p_k$ there is only a single edge going to point $p_{k+1}$. Thus, we have:
 \begin{center}
 $\omega(p_{n-1}, 1) = p_0$ and $\Omega(p_{n-1}, 1) = 0$\\
 $\omega(p_k, 1) = p_{k+1}$ and $\Omega(p_k, 1) = k + 1$ for any $k < n - 1$\\
@@ -290,13 +290,33 @@ which completes our proof.
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
 \begin{center}
-$0 \leq i < j \leq n - 1$
+$0 \leq i \leq j \leq n - 1$
 \end{center}
 the shortest walk from $p_j$ to $p_i$ has length $(n - j) + i$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-TODO
+We will complete this proof by showing that $\omega(p_j, l) \neq p_i$ for all $l < (n - j) + i$.\\
+\\
+We will start by assuming we have $l \leq (n - j)$. For any such $l$, we can find some $k$ such that $l = (n - j) - k$ where $0 \leq k < n - j$. Substituting yields:
+\begin{center}
+$\omega(p_j, l) = \omega(p_j, (n - j) - k) = \omega(p_j, (n - k) - j)$
+\end{center}
+By a previous lemma, we know that $\omega(p_j, (n - k) - j) = p_{n - k}$ as long as $n - k > j$.\\
+\\
+We know that $k < n - j$ by our selection of $l$. Adding $j$ yields $k + j < n$, followed by subtracting $k$ give us $j < n - k$. Thus, we are able to apply our lemma to give us $\omega(p_j, (n - k) - j) = p_{n - k}$. Furthermore, we know $i \leq j < n - k$, thus we have that $i \neq n - k$, yielding:
+\begin{center}
+$\omega(p_j, l) = \omega(p_j, (n - k) - j) = p_{n-k} \neq p_i$.
+\end{center}
+As such, we have eliminated all $l \leq (n - j)$.\\
+\\
+We now need to show that if $l$ is within: $n - i < l < (n-1) + i$, then $\omega(p_j, l) \neq p_i$.\\
+\\
+For any $l$, we can find some $k$ such that $l = (n - j) + k$ where $1 \leq k < i$. Substituting allows us to apply the previous lemma:
+\begin{center}
+$\omega(p_j, l) = \omega(p_j, (n - j) + k) = p_k \neq p_i$.
+\end{center}
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
@@ -310,7 +330,9 @@ $\omega(p_j, b) = p_i$.
 \end{center}
 In other words, it is always possible to walk from any point $p_i$ to any point $p_j$ with a length no greater than $n$.\\
 \\
-Furthermore, whenever $p_j \neq p_i$, then the integers $a, b$ will satisfy the relationship: $a = n - b$.
+Furthermore, whenever $p_j \neq p_i$, then the integers $a, b$ will satisfy the relationship: $a = n - b$.\\
+\\
+Finally, whenever $p_j = p_i$, then we will have $a = b = n$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
