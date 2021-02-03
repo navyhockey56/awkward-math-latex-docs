@@ -330,13 +330,30 @@ $\omega(p_j, b) = p_i$.
 \end{center}
 In other words, it is always possible to walk from any point $p_i$ to any point $p_j$ with a length no greater than $n$.\\
 \\
-Furthermore, whenever $p_j \neq p_i$, then the integers $a, b$ will satisfy the relationship: $a = n - b$.\\
+Furthermore, whenever $p_j \neq p_i$, then the integers $a, b$ will satisfy the relationship: $a = n - b$ (equivalently $b = n - a$).\\
 \\
 Finally, whenever $p_j = p_i$, then we will have $a = b = n$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-TODO
+The first part of this proof follows directly from the previous two lemmas.\\
+\\
+Let $p_i, p_j$ be any two points such that $i < j$. We know that $\omega(p_i, j - i) = p_j$ by the first of our two previous lemmas. Furthermore, $j - i < j < n$.\\
+\\
+Now assume that $j \leq i$. We know that $\omega(p_i, (n - i) + j) = p_j$ by the second of our two previous lemmas. Furthermore, $(n - i) + j \leq (n - i) + i = n$.\\
+\\
+As such, we completed showing that from any point $p_i$, there exists a walk to any other point $p_j$ with a length less than or equal to $n$.\\
+\\
+We will now prove that whenever $p_j \neq p_i$, that $b = n - a$.\\
+\\
+Assume that $i < j$. We know that $\omega(p_i, j - i) = p_j$, and $\omega(p_j, (n - j) + i) = p_i$. Therefor, it must be the case that
+\begin{center}
+$a = j - i$\\
+$b = (n - j) + i = n - (j - i) = n - a$
+\end{center}
+We will conclude this proof by showing that a walk of length $n$ from any point $p_i$ will return to point $p_i$.\\
+\\
+By the previous lemma, we know a walk of length $(n - i) + i) = n$ will end on point $p_i$ since $i \leq i$.
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
