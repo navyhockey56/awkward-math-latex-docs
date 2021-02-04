@@ -367,7 +367,32 @@ $\omega(p_i, t) = \omega(p_i, t + an)$
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-TODO
+We shall complete this proof by induction on $a$.\\
+\\
+\textit{Base Case} $(a = 1)$\\
+Let $p_i$ be any point in our graph, let $t \geq 0$, and let $p_k = \omega(p_i, t)$.\\
+\\
+By the previous corollary, we know that $\omega(p_k, n) = p_k$. As such, the composition of these walks is $\omega(\omega(p_i, t), n) = \omega(p_i, t + n) = p_k = \omega(p_i, t)$, thus we have completed our base case.\\
+\\
+\textit{Inductive Hypothesis}\\
+Assume for all $1 \leq a < l$ for some $l$, that $\omega(p_i, t) = \omega(p_i, t + an)$.\\
+\\
+\textit{Inductive Step}\\
+We need to show that $\omega(p_i, t + ln) = \omega(p_i, t)$.\\
+\\
+By previous lemma, we know:
+\begin{center}
+$\omega(p_i, t + ln) = \omega(\omega(p_i, n), t + (l - 1)n)$
+\end{center}
+By the previous corollary, we know $\omega(p_i, n) = p_i$. As such, we can substitute:
+\begin{center}
+$\omega(\omega(p_i, n), t + (l - 1)n) = \omega(p_i, t + (l - 1)n)$
+\end{center}
+Since $l - 1 < l$, we can apply our inductive hypothesis to complete our proof
+\begin{center}
+$\omega(p_i, t + (l - 1)n = \omega(p_i, t)$
+\end{center}
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
