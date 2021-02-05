@@ -256,6 +256,30 @@ Finally, we can multiply by $-1$, yielding $x > 0$.
 \end{center}
 
 \begin{tcolorbox}
+\textbf{Corollary}\\
+For any cycle graph $G_n$, for any non-negative integers $i, j$ such that $i + j < n$,
+\begin{center}
+$\Omega(p_i, j) = i + j$
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+Since we have that $i \leq i + j < n$, the previous lemma tells us:
+\begin{center}
+$\omega(p_i, (i + j) - i) = p_{i+j}$
+\end{center}
+\noindent
+\\
+We can simplify $(i + j) - i = j$, thus we have:
+\begin{center}
+$\omega(p_i, j) = p_{i+j}$ and 
+$\Omega(p_i, j) = i + j$.
+\end{center}
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
 \begin{center}
@@ -282,6 +306,43 @@ As such, we can create a composite of these three walks to form a walk from $p_j
 $((n - 1) - j) + 1 + i = (n - j) + i$
 \end{center}
 which completes our proof.
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\begin{tcolorbox}
+\textbf{Corollary}\\
+For any cycle graph $G_n$, for any point $p_i$, for any non-negative integer $j \leq n$ such that $i + j \geq n$, then
+\begin{center}
+$\Omega(p_i, j) = j - (n - i) = (i + j) - n$
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+If we can show that $0 \leq j - (n - i) \leq i$, then the previous lemma tells us that:
+\begin{center}
+$\Omega(p_i, (n - i) + (j - (n - i))) = j - (n - i)$
+\end{center}
+Simplifying our expression yields:
+\begin{center}
+$(n - i) + (j - (n - i)) = (n - i) - (n - i) + j = j$
+\end{center}
+Thus, if we can show $0 \leq j - (n - i) \leq i$, then we will have:
+\begin{center}
+$\Omega(p_i, (n - i) + (j - (n - i))) = \Omega(p_i, j) = j - (n - i))$
+\end{center}
+\noindent
+\\
+We can subtract $i$ from our inequality, $i + j \geq n$, to get $j \geq n - i$.
+As such, it is the case that
+\begin{center}
+$j - (n - i) \geq (n - i) - (n - i) \geq 0$
+\end{center}
+Now we just need to show that $j - (n - i) \leq i$ to complete our proof. The truth of this follows from the fact that $j \leq n$:
+\begin{center}
+$j - (n - i) = (j + i) - n \leq (n + i) - n = i$
+\end{center}
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
@@ -420,7 +481,7 @@ $\rho(n, t) = r$
 \end{tcolorbox}
 \noindent
 \\
-Combining our imported theorem with the remainder function yields: for any positive integer $n$, and any integer $t \geq 0$, there exists a unique integer $q \geq 0$ such that $t = qn + \rho(n, t)$.\\
+Let us quickly note that combining our imported theorem with the remainder function yields: for any positive integer $n$, and any integer $t \geq 0$, there exists a unique integer $q \geq 0$ such that $t = qn + \rho(n, t)$.\\
 \\
 \begin{tcolorbox}
 \textbf{Lemma}\\
@@ -451,217 +512,29 @@ $\omega(p_i, t) = \omega(\omega(p_i, qn), \rho(n, t)) = \omega(p_i, \rho(n, t))$
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
-
-
+\noindent
+\\
+We have now accumulated enough knowledge about cycle graphs with a theorem.\\
+\\
 \begin{tcolorbox}
-\textbf{Theorem}\\
+\textbf{Omega Walk Theorem}\\
 For any cycle graph $G_n$, for any point $p_i$, for any integer $t \geq 0$
 \begin{center}
 $\Omega(p_i, t) = \rho(n, i + t)$
 \end{center}
+In other words, if a walk of length $t$ starting at point $p_i$ ends on point $p_j$, then $j = \rho(n, i + t)$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
-TODO
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
+The previous lemma tells us that $\omega(p_i, t) = \omega(p_i, \rho(n, t))$.\\
+\\
+If $\rho(n, t) + i < n$, then $\Omega(p_i, \rho(n, t)) = i + \rho(n, t) = \rho(n, i + \rho(n, t)) = \rho(n, i + t)$\\
+\\
+If $\rho(n, t) + i \geq n$, then $\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i) = \rho(n, t) + i - n = (n + k) - n = k$ where $k = n - (\rho(n, t) + i)$\\
+\\
+$\rho(n, t) = t - qn$ and $\rho(n, i + t) = (i + t) - kn$\\
+Sub $\rho(n, i + t) = (i + \rho(n, t) + qn) - kn = i + \rho(n, t) + (q - k)n$.\\
 
-\begin{tcolorbox}
-\textbf{Lemma}\\
-For any cycle graph $G_n$, for any point $p_i$, there is only a single walk of length $k$ that ends at point $p_i$. Stated using the walk function, we have: 
-\begin{center}
-$\omega(p_i, k) = \omega(p_j, k)$ if and only if $p_i = p_j$
-\end{center}
-\end{tcolorbox}
-\noindent
-\textit{Proof}\\
-We shall again employ induction on the length of our walk in order to complete this proof.\\
-\\
-\textit{Base Case}\\ 
-Our base case requires us to show that there is only a single walk of length one that ends at any point $p_k$.\\
-\\
-Let us begin by examing the case where our walk ends at the initial point $p_0$. We already know that $\omega(p_{n-1}, 1) = p_0$ by definition of our cycle graph. As such, all we have to do is show that $p_{n-1}$ is the only such point in our graph to have a walk end at point $p_0$. But we already know this to be true since $\Omega(p_k, 1) = k + 1 > 0$ for all $k < n - 1$.\\
-\\
-To complete our base case, we need to show that whevener $\Omega(p_i, 1) = k$ for some $k > 0$, that $p_i$ must be the only such point with this property. By the definition of a cycle graph, we know that point $p_{k-1}$ has only a single edge which goes to point $p_k$, thus we know $\omega(p_{k-1}, 1) = p_k$. As such, we must show that whenever $l \neq k - 1$, that it is also the case that $\Omega(p_l, 1) \neq k$.\\
-\\
-Assume $l < k - 1$, then by definition of a cycle graph:
-\begin{center}
-$\Omega(p_l, 1) = l + 1 \leq k - 1 < k$
-\end{center}
-As such, we have eliminated all points with an index less then $k - 1$ from consideration. Now we only need to show that if $k - 1 < l$, that $\Omega(p_l, 1) \neq k$. We already know that $\Omega(p_{n-1}, 1) = 0 < k$, thus leaving us with the cases where $l < n - 1$. For these final cases, our definition tells us:
-\begin{center}
-$\Omega(p_l, 1) = l + 1 > l \geq k$
-\end{center}
-Therefore, it must be the case that $p_{k-1}$ is the only point with the property that $\omega(p_{k-1}, 1) = p_k$ for $k > 0$. In doing so, we have completed our base case.\\
-\\
-\textit{Inductive Hypothesis}\\
-Assume that for any $1 < j < k$, and any point $p_i$, that there is only a single walk of length $j$ that ends at point $p_i$.\\
-\\
-\textit{Inductive Step}\\
-To complete out proof, we need to show that there is only a single walk of length $k$ that ends at point $p_i$.\\
-\\
-Our base case stipulates that there is only a single walk of length $1$, starting from some point $p_j$, which ends at point $p_i$. As such, in order for a walk of length $k$ to end at point $p_i$, the subwalk of length $k - 1$ will have to end at point $p_j$.\\
-\\
-Our inductive hypothesis tells us that there is only a single walk of length $k - 1$ that ends at point $p_j$. Thus, there is only one walk of length $k$ that ends at point $p_i$.
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center} 
-\noindent
-Now that we know that our walks starting from any point of any length are not only valid, but also unique with regard to the starting point and length, we shall turn our attention to the predicting which point our walks will end on. To start, we shall examine the shortest walk between any two point $p_j$ and $p_k$ where $j < k$.\\
-\begin{tcolorbox}
-\textbf{Lemma}\\
-For any cycle graph $G_n$, for any $j < k < n$, the shortest possible walk from point $p_j$ to $p_k$ has length $k - j$.\\
-\\
-Expressed via the walk function, we have that:
-\begin{center}
-$\omega(p_j, k - j) = p_k$ whenever $j < k$
-\end{center}
-Furthermore,
-\begin{center}
-$\omega(p_j, l) \neq p_k$ whenever $l < k - j$
-\end{center}
-\end{tcolorbox}
-\noindent
-\textit{Proof}\\
-
-
-We shall note a few things about cycle graphs before we begin. First, for any point $p_j \in G_n$, there is only one edge that can be traversed. As such, there is only a single walk that can be made from $p_j$ of length $k$, for any $k$. Secondly, since we've labeled our points such that point $t$'s only edge goes to point $t + 1$ for $t < n - 1$; then for any $j < k < n$, we can think of a walk from $p_j$ to $p_k$ as a walk down the number line, and as such, the shortest walk from point $p_j$ to $p_k$ will be of length $k - j$.\\
-\\
-
-Before we get swept up into the theory of cycle graphs, let us first note some properties of our newly defined functions, $\omega$ and $\Omega$\\
-\\
-First off, we acknowledge that $\omega$ is a valid mapping there is only a single walk of length $k$, for any $k$, that we can take starting at any point since each of our points only have a single edge they can traverse.\\
-\\
-By definition of a cycle graph, point $p_{n-1}$ only has one edge going to point $p_0$. Furthermore, for any other point $p_k$ there is only a single edge going to point $p_{k+1}$. Thus, we have:
-\begin{center}
-$\omega(p_{n-1}, 1) = p_0$ and $\Omega(p_{n-1}, 1) = 0$\\
-$\omega(p_k, 1) = p_{k+1}$ and $\Omega(p_k, 1) = k + 1$ for any $k < n - 1$\\
-\end{center}
-\noindent
-Furthermore, we know that if we want to take a walk of length $k$, for any $k > 1$, starting from any point, $p_i$, then this can be accomplished by first taking a walk of length $g$, where $1 \leq g < k$, starting at point $p_i$ to arrive at some point $p_j$; and then we can extend our walk by taking a second walk of length $k - g$ starting at point $p_j$. Applying this to the walk function, we get:
-\begin{center}
-$\omega(p_i, k) = \omega(\omega(p_i, j),$ $k - j)$ for any $0 < j < k$.
-\end{center}
-Now we are ready to dive into the theory of cycle graphs. We shall begin our study by examing the shortest walk to the point $p_0$ from any point within the cycle graph.\\
-
-\begin{tcolorbox}
-\textbf{Lemma}\\
-For any cycle graph $G_n$ and for any point $p_i$ within that graph, a walk of length $n - i$ will end at point $p_0$. Furthermore, this the shortest walk between any point $p_i$ and $p_0$.\\
-\\
-Applying the lemma to the walk function, we get: $\omega(p_i, n - i) = p_0$ for every point $p_i$; furthermore, $\omega(p_i, j) \neq p_0$ whenever $j < n - i$.
-\end{tcolorbox}
-\noindent
-\textit{Proof}\\
-We shall break our proof into two cases. We shall first consider the walk from the last point $p_{n-1}$ to the initial point $p_0$. Thus, our second case shall consider the walk to the initial point for all other points in our graph.\\
-\\
-\textit{Case 1}
-
-
-First, let us consider the trivial cases where $j = n - 1$. By definition of a cycle graph, the point $p_{n-1}$ has only one edge going to point $p_0$, therefor, our walk has length $1 = (n - n) + 1 = n - (n - 1)$. Furthermore, a walk of length $1$ is the shortest possible walk of any graph, thus our walk from $p_{n-1}$ to $p_0$ must be the shortest walk possible between these two points.\\
-\\ 
-Now, let us consider the walk from $p_j$ to the point $p_{n-1}$ for $j < n - 1$.\\
-\\
-As we noted above, the shortest walk between any two points $a < b < n$ will be of length $b - a$ by virtue of our labeling of the points of a cycle graph. As such, the shortest walk from $p_j$ to $p_{n-1}$ will have length $(n - 1) - j$.\\
-\\
-By definition of a cycle graph, we know that point $p_{n-1}$'s only edge goes to point $p_0$. As such, if we extend our walk from point $p_j$ to $p_{n-1}$ one step further, we will have arrived at point $p_0$, thus giving us a length of $((n - 1) - j) + 1 = n - j$.\\
-\\
-Furthermore, our walk from $p_j$ to $p_{n-1}$ was the shortest possible walk from $p_j$ and $p_{n-1}$; and our extension of that walk from $p_{n-1}$ to $p_0$ was also the shortest possible walk from $p_{n-1}$ to $p_0$. As such, our composite walk from $p_j$ to $p_0$ must be the shortest possbile walk from $p_j$ to $p_0$.
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center} 
-\noindent
-We shall take a moment to note that as a direct result of the above lemma, the shortest walk from point $p_0$ back to point $p_0$ will have length $n - 0 = n$. This matches our intuition nicely since a walk from $p_0$ back to itself is similar to a lap around a race track, and as such will have to visit every point in our cycle graph, and we have $n$ total points.\\
-\\
-In our next lemma, we will see that a walk of length $n$ from any point in our graph will return us back to the point whence our walk originated. This should be fairly obvious since for any point $p_j$, we could relabel our graph to make $p_j$ our initial point $p_0$, and we already know that the shortest walk from $p_0$ back to itself has length $n$.\\
-\\
-\begin{tcolorbox}
-\textbf{Lemma}\\
-For any cycle graph $CG_n$, a walk of length $n$ from $p_i$ will end at point $p_i$. Furthermore, this is the shortest possible walk from any point back to itself.
-\end{tcolorbox}
-\noindent
-\textit{Proof}\\
-As we saw in the previous lemma, for any point $p_i \in CG_n$, a walk of length $n - i$ is the shortest possible walk from $p_i$ to point $p_0$.\\
-\\
-Furthermore, we also know that the shortest walk from $p_0$ to any point $p_j$ for $j > 0$ will have length $j - 0 = j$.\\
-\\
-Combining these two facts together, we can take a walk from $p_i$ back to $p_i$ by first taking a walk to $p_0$ in $n - i$ steps, and then continuing our walk from $p_0$ to $p_i$ in $i$ more steps, giving us a total walk length of $(n - i) + i = n$.\\
-\\
-Furthermore, our constructed walk is composed of two shortest possible walks, and is therefor the shortest possible walk from $p_i$ back to itself.
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center} 
-
-Now that we know we can return to point $p_i$ by taking a walk of length $n$ around our graph, we can easily extend this idea to show that a walk of length $kn$ for $k > 0$ will also return us to point $p_i$. As such, a walk of length $kn$ is equivelant to taking $k$ laps around our cycle graph.\\ 
-\begin{tcolorbox}
-\textbf{Corollary}\\
-For any cycle graph $CG_n$, a walk of length $kn$, $k > 0$, from $p_i$ will end at point $p_i$.
-\end{tcolorbox}
-\noindent
-\textit{Proof}\\
-Let us prove this corollary via induction on $k$, the number of laps around our graph.\\
-\\
-The base case, $k=1$, is the result of our previous lemma, in particular, that a walk of length $n = 1n=$ will return us back to point $p_i$.\\
-\\
-Now, let us assume that for all $j < k$, that a walk of length $jn$ from point $p_i$ will return us to point $p_i$.\\
-\\
-By assumption, we can take a walk of length $jn$ starting at point $p_i$ to arrive back at point $p_i$. As such, if we extend this walk by $n$ more steps, we will again return to $p_i$ by the above lemma; thus giving us a total walk of length $jn +n = (j+1)n$.
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center} 
-
-With the proof of the above lemma, we now have enough basic knowledge about cycle graphs in order to reason about the result of any walk on our graph. Furthermore, we shall see that our cycle graphs, and the walks we take around them, are merely another way of thinking about modular arithmetic.\\
-
-Before we state our main theorem for cycle graphs, let us get some notation out of the way. For non-zero integer, $n$, and any integer $j > 0$, we write $j$ $mod$ $n = k$ (read "$j$ modulo $n$ is $k$") to imply that $j = mn + k$ where $0 \leq k < n$, for some integer $m$.\\
-\begin{tcolorbox}
-\textbf{Theorem}\\
-For any cycle graph $C_n$, for any $k > 0$, for any $p_i \in C_n$, a walk of length $k$ starting at $p_i$ will end at point $p_j$, where $j = (i + k)$ $mod$ $n$.\\
-\end{tcolorbox}
-\noindent
-\textit{Proof}\\
-To began our proof, let $k > 0$ be the length of our walk of arbitrary length around our cycle graph, $CG_n$, starting from any point $p_i$.\\
-\\
-Rather than trying to prove that the statement is true for arbitrary $k$, we shall instead break our proof into four seperate cases:
-\begin{enumerate}
-\item When our walk is short enough to not take us past point $p_{n-1}$: $k < n -i$
-\item When our walk ends at point $p_0$: $k = n - i$
-\item When our walk takes us past point $p_0$, but is no longer than the number of points in our graph: $n - i < k \leq n$
-\item When our walk is longer than the number of points in our graph: $n < k$
-\end{enumerate}
-For each of these cases, we shall show that we will end our walk on some point, $p_j$, such that $0 \leq j < n$; and $i + k = j + xn$, for some integer $x$. In doing so, we will have proven that $j = (i +k)$ $mod$ $n$ by the definition of modular arithmetic.\\
-\\ 
-\textit{Case 1}\\
-Let us first consider the case where our walk is short enough to not take us past point $p_{n-1}$, in other words, let us consider the case where $k < n - i$.\\
-\\
-In this case, we know our walk will end at some point $p_j$, where $j = i + k$. Since we have $k < n - i$, we also know that $0 < i + k = j < n$. Furthermore, $i + k = j = j + 0n$, and as such, $j = (i + k)$ $mod$ $n$.\\
-\\
-\textit{Case 2}\\
-Now let us consider the simple case where $k = n - i$. By a previous lemma, we know that a walk of lenth $n - i$ will end on point $p_0$ if started from point $p_i$. Furthermore, $i + k = i + (n - i) = n = 1n + 0$, thus, $0 = (i + k)$ $mod$ $n$.\\
-\\
-\textit{Case 3}\\
-Now let us consider a slightly longer walk, but is still no longer than the number of points in our graph. In other words, let us consider a walk of length $n - i < k \leq n$.\\
-\\
-We know that the first $n - i$ steps of our walk will end at point $p_0$, leaving us with a remaining of $j = k - (n - i)$ steps in our walk. Furthermore, we have:
-\begin{center}
-$(n - i) - (n - i) = 0 < k - (n - i) = j \leq n - (n - i) = i < n$ 
-\end{center}
-Since $j < n$, we know that extending our walk $j$ more steps from point $p_0$ will end on point $p_j$ to complete our walk of length $k$. Not only that, but we also have
-\begin{center}
-$i + k = k + i + (n - n) = k - n + i + n = k - (n - i) + n = j + n$
-\end{center} 
-Thus, we know that $j = (i + k)$ $mod$ $n$.\\
-\\
-\textit{Case 4}\\
-Now let us turn to the final case we must consider, the case where our walk length is greater than the number of points in our graph; in other words, let $k > n$. To complete our proof, we shall show that we can reduce this final case to one of our previous three cases.\\
-\\
-Since $k$ is a positive integer, we can find a positive another integer $a$ such that $an < k \leq (a + 1)n$. As such, by our previous corollary, we know that we can walk the first $an$ steps around our graph to return us to point $p_i$, and leave us with a remainder of $l = k - an$ steps in our walk of length $k$.\\
-\\
-Since we have returned to point $p_i$ with $0 < l \leq n$ steps remaining in our walk, we have now reduced our problem to one of our three previous cases. For each of the cases, we have:
-\begin{enumerate}
-\item If $l < n - i$, then we know we will end our walk on point $p_j$ where $j = l + i < n$. Thus, we have that $i + k = i + l + an = j + an$.
-\item If $l = n - i$, then we know we will end our walk on point $p_0$. Thus, we have that $i + k = i + l + an = i + (n - i) + an = (a + 1)n + 0$.
-\item Finally, if $n - i < l \leq n$, then we know we will end our walk at point $p_j$ where $j = l - (n - i)$. Thus, we have that $i + k = i + l + an = l + i - n + (a + 1)n = l - (n - i) + (a + 1)n = j + (a + 1)n$.
-\end{enumerate}
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
