@@ -360,7 +360,7 @@ By the previous lemma, we know a walk of length $(n - i) + i) = n$ will end on p
 
 \begin{tcolorbox}
 \textbf{Lemma}\\
-For any cycle graph $G_n$, for any point $p_i$, for any integers $a, t \geq 0$
+For any cycle graph $G_n$, for any point $p_i$, for any integers $t \geq 0, a \geq 1$
 \begin{center}
 $\omega(p_i, t) = \omega(p_i, t + an)$
 \end{center}
@@ -396,14 +396,69 @@ $\omega(p_i, t + (l - 1)n = \omega(p_i, t)$
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
+\noindent
+\\
+In order to do a proper study of awkward state machines, we will need to borrow some well established theory from outside of this paper. We will not bother proving this theory ourselves, and instead, accept it as fact. However, we will explicitly state when we are doing so.
+\begin{tcolorbox}
+\textbf{Outside Theory - Theorem \& Definition}\\
+For any positive integer $n$, for any integer $t \geq 0$, there exists a unique integer $q \geq 0$, and a unique integer $r \in [n]$ such that $t = qn + r$.\\
+\\
+We call $r$ the \textit{remainder} of $t$ when divided by $n$.
+\end{tcolorbox}
+\noindent
+\\
+We will often wish to refer to remainder throughout our study of awkward state machines. However, it would be rather clumsy to have to constantly to write out that ``$r$ is the remainder of $t$ when divided $n$" to make reference to our definition. As such, let us define a new function, $\rho$, that will allow us to reference the remainder without all the fuss.\\
+\\
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any positive integer $n$, for any integer $t \geq 0$, the \textit{remainder function}, $\rho: (\mathbb{N^{+}}, \mathbb{N}) \rightarrow [n]$, maps $(n, t)$ to the remainder of $t$ when divided by $n$.\\
+\\
+As such, if $r$ is the remainder of $t$ when divided by $n$, then we write:
+\begin{center}
+$\rho(n, t) = r$
+\end{center}
+\end{tcolorbox}
+\noindent
+\\
+Combining our imported theorem with the remainder function yields: for any positive integer $n$, and any integer $t \geq 0$, there exists a unique integer $q \geq 0$ such that $t = qn + \rho(n, t)$.\\
+\\
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$, for any point $p_i$, for any integer $t \geq 0$
+\begin{center}
+$\omega(p_i, t) = \omega(p_i, \rho(n, t))$
+\end{center}
+\end{tcolorbox}
+\noindent
+\textit{Proof}\\
+We know there exists some integer $q \geq 0$ such that $t = qn + \rho(n,t)$. As such, we can use this expression to substitute for $t$:
+\begin{center}
+$\omega(p_i, t) = \omega(p_i, qn + \rho(n, t)) = \omega(\omega(p_i, qn), \rho(n, t))$
+\end{center}
+\noindent
+\\
+By previous lemma, we know that:
+\begin{center}
+$\omega(p_i, qn) = \omega(p_i, qn + 0) = \omega(p_i, 0) = p_i$
+\end{center}
+\noindent
+\\
+As such, we can substitute in $p_i$ to complete our proof:
+\begin{center}
+$\omega(p_i, t) = \omega(\omega(p_i, qn), \rho(n, t)) = \omega(p_i, \rho(n, t))$
+\end{center}
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
 
 \begin{tcolorbox}
 \textbf{Theorem}\\
 For any cycle graph $G_n$, for any point $p_i$, for any integer $t \geq 0$
 \begin{center}
-$\omega(p_i, t) = \omega(p_i, t \triangleleft n)$
+$\Omega(p_i, t) = \rho(n, i + t)$
 \end{center}
-where $t \triangleleft n $ is the remainder of $t$ when divided by $n$.
 \end{tcolorbox}
 \noindent
 \textit{Proof}\\
