@@ -1,6 +1,13 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{amsfonts}
 \usepackage{tcolorbox}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue
+}
+
 \begin{document}
 
 \title{Awkward State Machines}
@@ -8,58 +15,57 @@
 \maketitle
 
 \section{Introduction}
-Imagine you had a ball of yarn of infinite length and a pair of scizzors. Now choose some arbitrary length of yarn and cut it - we'll refer to this length as 1. Next, cut a second strand of yarn that has length 2 relative to your original piece of yarn and set it aside. Now, extend the yarn to length 3 and repeat the following instructions:
-\begin{enumerate}
-\item For every strand of yarn you have cut so far (other than the strand of length 1), check if the current extension of yarn can be split into even segments of the same length as the current strand by 'walking' the shorter strand up the longer one until you reach the end of or pass the end of the extended piece of yarn; if you reach the end of the extended piece exactly, then the extension can be divided into even segments. If none of the previous strands can be used to divide the current extension evenly, then double the length of the extended peice of yarn, then cut it in half, finally, set the cut strand aside with the others. Do not cut the extension if one of the previous strands does divide the extension evenly.
-\item Using your strand of length 1, increase the length of the extension by 1.
-\item Repeat the above two steps.
-\end{enumerate} 
-
-If you follow the above instructions, then order the strands of yarn you cut by their length, and finally wrote out their lengths relative to the strand of length 1, then you will find yourself writing down the prime numbers in consequetive order. The fact that this simple experiment derives the prime numbers using relative distance has always fascinated me. I've always had an itching notion that an algorithm based solely on relative distance, rather than integer arithmetic, would outperform the standard methods for discovering the primes in consequetive order. However, the problem of how to encode distance and divisibility without actually using numbers seemed to be impossible; after all, how do you tell a computer to use a ball of yarn and scizzors? And even if we could, the act of walking the strands up the extension is going to be pretty slow. 
-
-Let's modify our experiment slightly to include tacks and a corkboard. Start again by cutting some length of yarn for defining length 1. Now, using your piece of yarn, seperate two tacks on your board 1 unit away from one another. You can now determine the strand of length two by wrapping your ball of yarn around the tacks such that you start at one tack, wrap around the second, and then return to the first tack, then cut the yarn to produce the strand of length two. Now use the strand of length two to place two more tacks in your board at 2 units apart.Now using the tacks for length 1, create a strand of length 3 and repeat the following instructions:   
-\begin{enumerate}
-\item For every pair of tacks on the board (other than the unit tacks), wrap the current extension of yarn around the tacks to check for divisibility. The extension is divisible if the yarn perfectly touches one of the tacks when it runs out of length. If none of the current pairs of tacks divide the extension evenly, then double the extension, cut it in half, and use the new strand to set apart a new pair of tacks on your board.
-\item Use the unit pair of tacks to increase the length of the extension by 1.
-\item Repeat the above two steps.
-\end{enumerate} 
-
-The above experiment is very simliar to the first. The pairs of tacks you've placed will wind up enumerating the primes once again. We are also still stuck with the problem of how could we encode this algorithm without integers, and the algorithm still isn't performing very quickly. However, the algorithm does highlight an important concept, our tacks use circles (technically ovals) in order to check the length of the extended piece of yarn. This is amazing because it allows us to check for divisiblity without counting anything out, instead, we just keep wrapping the yarn around until we get to the end; thus we don't need to know \textit{how} many times we've wrapped the yarn around, we just have to look where it winds up at the end.   
-
-Let's modify our experiment once again. This time, you need tacks, a corkboard, and little flags that you can stick into the board (a needle with red tape for example). Start by placing two tacks down on the leftmost side of the board in a vertical line, and place a flag next to the bottom tack. Next, place three tacks in a vertical line to the right of those (imagine you are creating a bar graph with the tacks) and place a flag next to the highest tack. This expirement will require you to keep the vertical lines you create with the tacks distinct from one another, we shall refer to each line as a bar. Each bar in your board will always have a flag next to one of it's tacks. Repeat the following to run the experiment:
-\begin{enumerate}
-\item For every bar except the rightmost, move the flag to the tack above the one it is currently at; unless the flag is currently at the topmost tack in the bar, then move the flag to the bottom tack in the bar.
-\item If there are no flags on any of the bottom tacks after you've moved every bar (other than the rightmost), then move the flag of the rightmost bar to its bottom tack and then create a new bar to the right of it that has one more tack than it, and place the new bar's flag at it's top tack.  
-\item If there was a flag on one of the bottom tacks, then add a new tack to the top of the rightmost bar, and place it's flag next to the new tack.
-\item Repeat the above three steps. 
-\end{enumerate}
-
-If you run the above experiment and then count the number of tacks in each bar, you will find that the number of tacks in the bars enumerate the prime numbers in consequetive order. How did this happen? Well, this experiment is much more similar to the last two than it first appears. In this case, the way we move the flags on each bar is the same as wrapping the extended piece of yarn around the tacks in experiment two, or 'walking' the yarn up the extended piece of yarn from experiment one. However, this time our flags our able to preserve the state from the last iteration since you just have to move the flags one tack forward. The moving of each tack can be done in constant time for each bar, and is incredibly fast relative to the time it takes to re-wrap the extended strand of yarn around the tacks, or perform the 'walks'. Furthermore, this expirement doesn't need distance; rather, it only needs relative position (bottom tack, tack above that, ..., tack below top tack, top tack). By replacing distance with relative position, we can easily encode our experiment without the use of numbers using cycle graphs implemented via linked lists. 
+TODO motivate the reader
   
-\section{Assumed Knowledge}
-The study of awkward state machines requires that we make use of preexisting theory. In this section, we will specify any such knowledge that is required.  
+\section{Notations \& Assumed Knowledge}
+\label{sec:assumed_knowledge}
+The study of awkward state machines requires that we make use of preexisting theory. In this section, we will specify any such knowledge that is required.
 
+
+\subsection{Notations}
 \begin{tcolorbox}
-\textbf{Notation}\\
-We will use:
+\textbf{Notation: Sets}
 \begin{itemize}
 \item $\mathbb{Z}$ to represent the set of integers.
 \item $\mathbb{N}$ to represent the set of natural numbers, which we will define to be the non-negative integers.
 \item $\mathbb{N^{+}}$ to represent the set of positive nature numbers
 \item $[n]$ to represent all natural numbers less than $n$.
+\item $x \in Y$ to mean $x$ is an element of the set $Y$.
 \end{itemize}
 \end{tcolorbox}
+\label{notation:sets}
+
+
+\subsection{The Remainder Theorem}
+We will need to borrow the concept of the \textit{remainder} from basic number theory. We will not bother proving the associated theorem ourselves, as it is well known, see \url{https://en.wikipedia.org/wiki/Remainder} for a basic overview.\\
 
 \begin{tcolorbox}
-\textbf{Theorem \& Definition}\\
+\textbf{\hypertarget{theorem:remainder}{The Remainder Theorem}}\\
 For any positive integer $n \in \mathbb{N^{+}}$, for any non-negative integer $t \in \mathbb{N}$, there exists a unique integer $q \in \mathbb{N}$, and a unique integer $r \in [n]$ such that $t = qn + r$.\\
 \\
 We call $r$ the \textit{remainder} of $t$ when divided by $n$.
 \end{tcolorbox}
+\label{theorem:remainder}
+\label{definition:remainder}
+\noindent
+\\
+It should be noted that there is a wealth more knowledge known about the remainder; however, we will take the time to prove any other results we might need throughout the rest of this paper.
+
+
+\subsection{Graphs}
+\url{https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)}\\
+\url{https://en.wikipedia.org/wiki/Directed_graph}
 
 \section{Cycle Graphs}
+\label{sec:cycle_graphs}
+
+
 In order for us to study awkward state machines in any detail, we are going to need to understand their underlying components. As such, let us start by examining the simplest component in an awkward state machine: the cycle graph.
-\\
+
+
+
+\subsection{Basic Definitions}
+\label{sec:cycle_graphs_basic_definitions}
 \begin{tcolorbox}
 \textbf{Definition}\\
 A \textit{cycle graph} is a directed, connected graph whose points form a circle. More explicity, for any $n > 1$, the cycle graph $G_n$ has points:
@@ -86,7 +92,8 @@ We already know a little bit about the walk and walk index functions from our de
 $\omega(p_{n-1}, 1) = p_0$ and $\Omega(p_{n-1}, 1) = 0$\\
 $\omega(p_k, 1) = p_{k+1}$ and $\Omega(p_k, 1) = k + 1$ for any $k < n - 1$\\
 \end{center}
-\noindent
+
+\subsection{Validity of the Walk Function}
 In order for our mappings $\omega$ and $\Omega$ to be valid mappings, they will have defined for all input; furthermore, each input can only map to a single output. Since our functions map to the outcomes of walks of varying length around cycle graphs, they will only be valid if for any walk length, starting at any point, on any cycle graph, that it must be the case that the walk can be completed; furthermore, there must only be a single walk that can be taken. As such, we shall begin our study by proving just this.\\
 \\
 \begin{tcolorbox}
@@ -119,8 +126,8 @@ $\omega(p_i, k) = \omega(\omega(p_i,$ $k - 1),$ $1)$ whenever $k > 1$
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center} 
-\noindent
-\\
+
+\subsection{Composition of Walks}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$, for any integers $0 \leq t \leq j,$:
@@ -185,6 +192,8 @@ $\omega(p_i, t + v) = \omega(\omega(p_i, (t + v) - t), t) = \omega(\omega(p_i, v
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
+
+\subsection{Shortest Walks}
 
 \begin{tcolorbox}
 \textbf{Lemma}\\
@@ -440,6 +449,8 @@ By the previous lemma, we know a walk of length $(n - i) + i) = n$ will end on p
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+\subsection{Repetition of Walks}
+
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$, for any integers $t \geq 0, a \geq 1$
@@ -480,16 +491,8 @@ $\omega(p_i, t + (l - 1)n = \omega(p_i, t)$
 \end{center}
 \noindent
 \\
-In order to do a proper study of awkward state machines, we will need to borrow some well established theory from outside of this paper. We will not bother proving this theory ourselves, and instead, accept it as fact. However, we will explicitly state when we are doing so.
-\begin{tcolorbox}
-\textbf{Outside Theory - Theorem \& Definition}\\
-For any positive integer $n$, for any integer $t \geq 0$, there exists a unique integer $q \geq 0$, and a unique integer $r \in [n]$ such that $t = qn + r$.\\
-\\
-We call $r$ the \textit{remainder} of $t$ when divided by $n$.
-\end{tcolorbox}
-\noindent
-\\
-We will often wish to refer to remainder throughout our study of awkward state machines. However, it would be rather clumsy to have to constantly to write out that ``$r$ is the remainder of $t$ when divided $n$" to make reference to our definition. As such, let us define a new function, $\rho$, that will allow us to reference the remainder without all the fuss.\\
+\subsection{Remainders}
+We will often wish to refer to \hyperlink{theorem:remainder}{remainder} throughout our study of awkward state machines. However, it would be rather clumsy to have to constantly to write out that ``$r$ is the remainder of $t$ when divided $n$" to make reference to our definition. As such, let us define a new function, $\rho$, that will allow us to reference the remainder without all the fuss.\\
 \\
 \begin{tcolorbox}
 \textbf{Definition}\\
@@ -518,7 +521,8 @@ Since $i < n$, then $i$ and $q$ must be the unique integers from the remainder t
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
-\noindent
+
+\subsection{Omega Walk Theorem}
 
 \begin{tcolorbox}
 \textbf{Lemma}\\
@@ -553,6 +557,7 @@ $\omega(p_i, t) = \omega(\omega(p_i, qn), \rho(n, t)) = \omega(p_i, \rho(n, t))$
 \\
 We have now accumulated enough knowledge about cycle graphs with a theorem.\\
 \\
+\label{theorem:omega}
 \begin{tcolorbox}
 \textbf{Omega Walk Theorem}\\
 For any cycle graph $G_n$, for any point $p_i$, for any $t \in \mathbb{N}$
