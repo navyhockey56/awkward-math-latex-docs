@@ -66,17 +66,31 @@ In order for us to study awkward state machines in any detail, we are going to n
 
 \subsection{Basic Definitions}
 \label{sec:cycle_graphs_basic_definitions}
+
+\label{definition:cycle_graph}
 \begin{tcolorbox}
 \textbf{Definition}\\
-A \textit{cycle graph} is a directed, connected graph whose points form a circle. More explicity, for any $n > 1$, the cycle graph $G_n$ has points:
+A \textit{cycle graph} is a directed, connected graph whose points form a circle. More explicitly, for any $n > 1$, the cycle graph $G_n$ has $n$ points:
+
 \begin{center}
 $P = \{$ $p_i$ $|$ $i \in [n]$ $\}$
 \end{center}
+\noindent
+
 such that for any $i < n - 1$, $p_i$ has only one edge which goes to $p_{i + 1}$, and $p_{n-1}$ has only one edge going to $p_0$.
 \end{tcolorbox}
+
+
 \noindent
 \\
-Our definition tells us that a cycle graph is nothing more than a circular, directed graph with an explicit and straightforward labeling of its points. Our study of cycle graphs will be predominantly focused on the outcomes of walks about cycle graphs. As such, for the sake of clarity in our writing, let us now take the time to define two functions - the \textit{walk function} $\omega$ and the \textit{index walk function} $\Omega$ - that we can use to talk about walks of arbitrary length around any cycle graph.\\
+Our definition tells us that a cycle graph is nothing more than a circular, directed graph with an explicit and straightforward labeling of its points.
+
+
+\subsubsection{The Walk Functions}
+
+Our study of cycle graphs will be predominantly focused on the outcomes of walks about cycle graphs. As such, for the sake of clarity in our writing, let us now take the time to define two functions - the \textit{walk function} $\omega$ and the \textit{index walk function} $\Omega$ - that we can use to talk about walks of arbitrary length around any cycle graph.\\
+
+\label{definition:walk_functions}
 \begin{tcolorbox}
 \textbf{Definition}\\
 For any cycle graph $G_n$ with points $P$, we define the \textit{walk function} $\omega: (P, \mathbb{N}) \rightarrow P$ to be $\omega(p_i, k) = p_j$, where $p_j$ is the point arrived at after a walk of length $k$ when starting at point $p_i$ on cycle graph $G_n$.\\
@@ -85,49 +99,80 @@ We define $\omega(p_i, 0) = p_i$ for completeness and consistency, even though a
 \\
 Furthermore, we define the \textit{walk index function}, $\Omega: (P, \mathbb{N}) \rightarrow [n]$ to be $\Omega(p_i, k) = j$, where $j$ is the index of the point $\omega(p_i, k)$.
 \end{tcolorbox}
+
+
 \noindent
 \\
-We already know a little bit about the walk and walk index functions from our definition of a cycle graph. Our definition tells us point that $p_{n-1}$ only has one edge going to point $p_0$. Furthermore, for any other point $p_k$ there is only a single edge going to point $p_{k+1}$. Thus, we have:
-\begin{center}
-$\omega(p_{n-1}, 1) = p_0$ and $\Omega(p_{n-1}, 1) = 0$\\
-$\omega(p_k, 1) = p_{k+1}$ and $\Omega(p_k, 1) = k + 1$ for any $k < n - 1$\\
-\end{center}
+We already know a little bit about the walk and walk index functions from our definition of a cycle graph. Our definition tells us point that $p_{n-1}$ only has one edge going to point $p_0$. Furthermore, for any other point $p_k$ there is only a single edge going to point $p_{k+1}$. Thus, we have:\\
+
+
+\label{lemma:walk_1}
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$:
+\begin{itemize}
+\item $\omega(p_{n-1}, 1) = p_0$ and $\Omega(p_{n-1}, 1) = 0$
+\item For any $k < n - 1$, $\omega(p_k, 1) = p_{k+1}$ and $\Omega(p_k, 1) = k + 1$
+\end{itemize}
+\end{tcolorbox}
+
 
 \subsection{Validity of the Walk Function}
+\label{sec:validatity_of_walk_function}
+
 In order for our mappings $\omega$ and $\Omega$ to be valid mappings, they will have defined for all input; furthermore, each input can only map to a single output. Since our functions map to the outcomes of walks of varying length around cycle graphs, they will only be valid if for any walk length, starting at any point, on any cycle graph, that it must be the case that the walk can be completed; furthermore, there must only be a single walk that can be taken. As such, we shall begin our study by proving just this.\\
-\\
+
+
+\label{lemma:omega_is_valid}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$ within that graph, there is only a single walk of length $k$ that begins at point $p_i$.\\
 \\
 In other words, $\omega$ and $\Omega$ are valid mappings.
 \end{tcolorbox}
+
+
 \noindent
 \textit{Proof}\\
 The truth to this lemma is result of the fact that every point in a cycle graph only has a single edge. As such, we shall use this fact to complete a proof by induction on the length of our walk.\\
-\\
+
+\noindent
 \textit{Base Case}\\ 
 Our base case demands us to show that there is only a single walk of length one starting at any point, in any cycle graph. But of course this is true because our definition of a cycle graph stipulates that the point $p_{n-1}$ has only a single edge going to point $p_0$, while all other points $p_k$ only have a single edge going to point $p_{k+1}$. As such, a walk of length one is possible from any point; furthermore, there is only one such walk since there is only a single edge that can be traversed.\\
-\\
+
+\noindent
 \textit{Inductive Hypothesis}\\
 Let us assume that for all $1 \leq j < k$, for all cycle graphs, that it is the case that there is only a single walk that can be taken of length $j$ starting from any point within the graph. In other words, that $\omega(p_i, j)$ is defined on all points of all cycle graphs whenever $j < k$.\\
-\\
+
+\noindent
 \textit{Inductive Step}\\
 We must now show that we can complete a walk of length $k$ starting from any point in any cycle graph, and that there is only one walk that we can take to do so.\\
-\\
-Our inductive hypothesis tells us that there is only a single walk of length $k - 1$ we can take starting from any point $p_i$, ending at point $\omega(p_i, k - 1)$.\\
-\\
-Furthermore, our base case tells us that there is only a single walk of length one that can be taken from any point in our graph. As such, it must be the case that there is only a single walk of length one that can be taken from point $\omega(p_i, k - 1)$; equivalently we know $\omega(\omega(p_i, k - 1), 1)$ is defined.\\
-\\
-Since our composite walk $\omega(\omega(p_i, k - 1), 1)$ is composed of a walk of length $k - 1$ and a second walk of length $1$, our composite walk has length $k$. Furthermore, since both components of our walk were the only walks that could have been taken, we can conclude that our composite walk is the only walk that could have been taken of length $k$. As such, not only have we completed our proof, but we have also shown that: 
+
+\noindent Our inductive hypothesis tells us that there is only a single walk of length $k - 1$ we can take starting from any point $p_i$, ending at point $\omega(p_i, k - 1)$.\\
+
+\noindent Furthermore, our base case tells us that there is only a single walk of length one that can be taken from any point in our graph. As such, it must be the case that there is only a single walk of length one that can be taken from point $\omega(p_i, k - 1)$; equivalently we know $\omega(\omega(p_i, k - 1), 1)$ is defined.\\
+
+\noindent Since our composite walk $\omega(\omega(p_i, k - 1), 1)$ is composed of a walk of length $k - 1$ and a second walk of length $1$, our composite walk has length $k$. Furthermore, since both components of our walk were the only walks that could have been taken, we can conclude that our composite walk is the only walk that could have been taken of length $k$. As such, not only have we completed our proof, but we have also shown that:
+
 \begin{center}
 $\omega(p_i, k) = \omega(\omega(p_i,$ $k - 1),$ $1)$ whenever $k > 1$
 \end{center}
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center} 
 
+
+
+
 \subsection{Composition of Walks}
+
+In order to show a walk of a certain length has some property, we will often need to ``split up" the walk into two or more shorter walks and then reason about the composition of the shorter walks in order to reason about the original longer walk.\\
+
+\noindent To start, we will show that a walk of any length $j$ is equivalent to first taking a walk of length $t < j$, followed by a walk of length $j - t$; or first taking a walk of length $j - t$, followed by a walk of length $t$.\\
+
+
+\label{lemma:composition_of_sub_walks}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$, for any integers $0 \leq t \leq j,$:
@@ -135,40 +180,50 @@ For any cycle graph $G_n$, for any point $p_i$, for any integers $0 \leq t \leq 
 $\omega(p_i, j)$ $=$ $\omega(\omega(p_i, t), j - t)$ $=$ $\omega(\omega(p_i, j - t), t)$. 
 \end{center}
 \end{tcolorbox}
+
 \noindent
-\textit{Proof}\\
-\\
-We know there exists a single walk of length $t$ starting at point $p_i$.
+\textit{Proof}
+
+\noindent We know there exists a single walk of length $t$ starting at point $p_i$.
 Let $p_w$ be the point this walk ends at, then $p_w = \omega(p_i, t)$.\\
-\\
-We know there exists a single walk of length $j - t$ starting from point $p_w$.
+
+\noindent We know there exists a single walk of length $j - t$ starting from point $p_w$.
 Let $p_y$ be the point this walk ends at, then $p_y = \omega(p_w, j - t)$.\\
 Applying substitution yields:
+
 \begin{center}
 $p_y = \omega(\omega(p_i, t), j - t)$
 \end{center}
-Combining the two above walks yields a walk from $p_i$ to $p_y$ of length\\
+
+\noindent Combining the two above walks yields a walk from $p_i$ to $p_y$ of length\\
 $t + (j - t) = j$. Thus, we have shown:
 \begin{center}
 $p_y = \omega(p_i, j) = \omega(\omega(p_i, t), j - t)$
 \end{center}
-To complete our proof, we need to show:
+
+\noindent To complete our proof, we need to show:
 \begin{center}
 $\omega(p_i, j) = \omega(\omega(p_i, j - t), t)$.
 \end{center}
-Let us define $a = j - t$.\\
-From the first part of this proof, we know that
+
+\noindent Let us define $a = j - t$.\\
+
+\noindent From the first part of this proof, we know that
 \begin{center}
 $\omega(p_i, j) = \omega(\omega(p_i, a), j - a)$
 \end{center}
-Substituting out $a$ yields:
+
+\noindent Substituting out $a$ yields:
 \begin{center}
 $\omega(p_i, j) = \omega(\omega(p_i, j - t), j - (j - t)) = \omega(\omega(p_i, j - t), t)$.
 \end{center}
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+
+\label{corollary:composition_of_walks}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any point $p_i$, for any non-negative integers $t, v$:
@@ -176,22 +231,28 @@ For any cycle graph $G_n$, for any point $p_i$, for any non-negative integers $t
 $\omega(p_i, t + v) = \omega(\omega(p_i, t), v) = \omega(p_i, v), t)$
 \end{center}
 \end{tcolorbox}
+
 \noindent
-\textit{Proof}\\
-Let $j = t + v$.
-Through the previous lemma, we know that
+\textit{Proof}
+
+\noindent Let $j = t + v$. Through the \hyperref[lemma:composition_of_sub_walks]{previous lemma}, we know that
 \begin{center}
 $\omega(p_i, t + v) = \omega(p_i, j) = \omega(\omega(p_i, t), j - t)$\\
 $\omega(p_i, t + v) = \omega(p_i, j) = \omega(\omega(p_i, j - t), t)$
 \end{center}
-Substitution brings us:
+
+\noindent Substitution brings us:
 \begin{center}
 $\omega(p_i, t + v) = \omega(\omega(p_i, t), (t + v) - t) = \omega(\omega(p_i, t), v)$
 $\omega(p_i, t + v) = \omega(\omega(p_i, (t + v) - t), t) = \omega(\omega(p_i, v), t)$
 \end{center}
+
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
+
+
 
 \subsection{Shortest Walks}
 
