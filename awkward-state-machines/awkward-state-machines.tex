@@ -68,7 +68,7 @@ In order for us to study awkward state machines in any detail, we are going to n
 \label{sec:cycle_graphs_basic_definitions}
 
 \label{definition:cycle_graph}
-\hypertarget{definition:cycle_graph}
+\hypertarget{definition:cycle_graph}{}
 \begin{tcolorbox}
 \textbf{Definition}\\
 A \textit{cycle graph} is a directed, connected graph whose points form a circle. More explicitly, for any $n > 1$, the cycle graph $G_n$ has $n$ points:
@@ -92,6 +92,7 @@ Our definition tells us that a cycle graph is nothing more than a circular, dire
 Our study of cycle graphs will be predominantly focused on the outcomes of walks about cycle graphs. As such, for the sake of clarity in our writing, let us now take the time to define two functions - the \textit{walk function} $\omega$ and the \textit{index walk function} $\Omega$ - that we can use to talk about walks of arbitrary length around any cycle graph.\\
 
 \label{definition:walk_functions}
+\hypertarget{definition:walk_functions}{}
 \begin{tcolorbox}
 \textbf{Definition}\\
 For any cycle graph $G_n$ with points $P$, we define the \textit{walk function} $\omega: (P, \mathbb{N}) \rightarrow P$ to be $\omega(p_i, k) = p_j$, where $p_j$ is the point arrived at after a walk of length $k$ when starting at point $p_i$ on cycle graph $G_n$.\\
@@ -108,6 +109,7 @@ We already know a little bit about the walk and walk index functions from our de
 
 
 \label{lemma:walk_1}
+\hypertarget{lemma:walk_1}{}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$:
@@ -125,6 +127,7 @@ In order for our mappings $\omega$ and $\Omega$ to be valid mappings, they will 
 
 
 \label{lemma:omega_is_valid}
+\hypertarget{lemma:omega_is_valid}{}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$ within that graph, there is only a single walk of length $k$ that begins at point $p_i$.\\
@@ -167,6 +170,7 @@ $\omega(p_i, k) = \omega(\omega(p_i,$ $k - 1),$ $1)$ whenever $k > 1$
 
 
 \subsection{Composition of Walks}
+\label{sec:composition_of_walks}
 
 In order to show a walk of a certain length has some property, we will often need to ``split up" the walk into two or more shorter walks and then reason about the composition of the shorter walks in order to reason about the original longer walk.\\
 
@@ -174,6 +178,7 @@ In order to show a walk of a certain length has some property, we will often nee
 
 
 \label{lemma:composition_of_sub_walks}
+\hypertarget{lemma:composition_of_sub_walks}{}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$, for any integers $0 \leq t \leq j,$:
@@ -225,6 +230,7 @@ $\omega(p_i, j) = \omega(\omega(p_i, j - t), j - (j - t)) = \omega(\omega(p_i, j
 
 
 \label{corollary:composition_of_walks}
+\hypertarget{corollary:composition_of_walks}{}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any point $p_i$, for any non-negative integers $t, v$:
@@ -236,7 +242,8 @@ $\omega(p_i, t + v) = \omega(\omega(p_i, t), v) = \omega(p_i, v), t)$
 \noindent
 \textit{Proof}
 
-\noindent Let $j = t + v$. Through the \hyperref[lemma:composition_of_sub_walks]{previous lemma}, we know that
+\noindent Let $j = t + v$. Through the \hyperlink{lemma:composition_of_sub_walks}
+{previous lemma}, we know that
 \begin{center}
 $\omega(p_i, t + v) = \omega(p_i, j) = \omega(\omega(p_i, t), j - t)$\\
 $\omega(p_i, t + v) = \omega(p_i, j) = \omega(\omega(p_i, j - t), t)$
@@ -260,7 +267,9 @@ $\omega(p_i, t + v) = \omega(\omega(p_i, (t + v) - t), t) = \omega(\omega(p_i, v
 
 Now that we have the ability to compose walks around our cycle graph, we will now show that from any point $p_i$ that there exists a walk to any other point $p_j$. Furthermore, we will be able to determine what the length of shortest possible walk from point $p_i$ to $p_j$.\\
 
+
 \label{lemma:existence_of_walk_1}
+\hypertarget{lemma:existence_of_walk_1}{}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
@@ -297,7 +306,7 @@ Assume for all $l < t \leq n - l$, that $\omega(p_j, l) = \omega(p_j, i - j) = p
 \textit{Inductive Step}\\
 We need to show that $\omega(p_j, t) = \omega(p_j, i - j) = p_i$.\\
 
-\noindent By \hyperref[lemma:composition_of_sub_walks]{previous lemma}, we know that:
+\noindent By \hyperlink{lemma:composition_of_sub_walks}{previous lemma}, we know that:
 \begin{center}
 $\omega(p_j, t) = \omega(\omega(p_j, t - 1), 1)$
 \end{center}
@@ -325,7 +334,9 @@ $\omega(p_j, t) = \omega(\omega(p_j, t - 1), 1) = \omega(p_{i-1}, 1) = p_i$
 \noindent Now that we know there exists a walk of length $j - i$ from point $p_i$ to point $p_j$ whenever $i \leq j$, we will now show that this is the shortest possible such walk whenever $i \neq j$. We exclude the case where $i = j$ since there is no such thing as a walk of length $0$, even though $\omega(p_i, 0 = i - j) = p_i$.\\
 
 
+
 \label{corollary:shortest_walk_1}
+\hypertarget{corollary:shortest_walk_1}{}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
@@ -355,7 +366,7 @@ $k = l - t = (i - j) - t = (i - t) - j$
 
 \noindent Since $t < l = i - j$, then $t - i < j$. Multiplying by -$1$ gives $i - t > j$.\\
 
-\noindent As such we can apply the \hyperref[lemma:existence_of_walk_1]{previous lemma}:
+\noindent As such we can apply the \hyperlink{lemma:existence_of_walk_1}{previous lemma}:
 \begin{center}
 $\omega(p_j, k) = \omega(p_j, (i - t) - j) = p_{i - t}$.
 \end{center}
@@ -367,7 +378,10 @@ $\omega(p_j, k) = \omega(p_j, (i - t) - j) = p_{i - t}$.
 \end{center}
 
 
+
+
 \label{corollary:Omega_result_1}
+\hypertarget{corollary:Omega_result_1}{}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any non-negative integers $i, j$ such that $i + j < n$,
@@ -379,7 +393,7 @@ $\Omega(p_i, j) = i + j$
 \noindent
 \textit{Proof}
 
-\noindent Since we have that $i \leq i + j < n$, the \hyperref[lemma:existence_of_walk_1]{previous lemma} tells us:
+\noindent Since we have that $i \leq i + j < n$, the \hyperlink{lemma:existence_of_walk_1}{previous lemma} tells us:
 \begin{center}
 $\omega(p_i, (i + j) - i) = p_{i+j}$
 \end{center}
@@ -398,6 +412,8 @@ $\Omega(p_i, j) = i + j$.
 
 \noindent We now have a strong understanding about walks from any point $p_i$ to any other point $p_j$ where $i \leq j$. As such, we shall now move on to examine walks where $j \leq i$.\\
 
+
+
 \label{lemma:existence_of_walk_2}
 \hypertarget{lemma:existence_of_walk_2}{}
 \begin{tcolorbox}
@@ -415,14 +431,15 @@ $\omega(p_j, (n - j) + i) = p_i$
 
 \noindent
 \textit{Proof}\\
-We shall prove this directly. Using the \hyperref[lemma:existence_of_walk_1]{previous lemma}, we know that:
+We shall prove this directly. Using the \hyperlink{lemma:existence_of_walk_1}{previous lemma}, we know that:
 \begin{center}
 $\omega(p_j, (n - 1) - j) = p_{n-1}$ since $j \leq (n - 1)$
 \end{center}
+
 Furthermore, we know that:
 \begin{itemize}
 \item $\omega(p_{n-1}, 1) = p_0$ by structure of $G_n$
-\item $\omega(p_0, i) = \omega(p_0, i - 0) = p_i$ by the \hyperref[lemma:existence_of_walk_1]{previous lemma} since $0 \leq i$
+\item $\omega(p_0, i) = \omega(p_0, i - 0) = p_i$ by the \hyperlink{lemma:existence_of_walk_1}{previous lemma} since $0 \leq i$
 \end{itemize}
 
 \noindent As such, we can create a composite of these three walks to form a walk from $p_j$ to $p_i$ having length:
@@ -438,7 +455,10 @@ $((n - 1) - j) + 1 + i = (n - j) + i$
 \end{center}
 
 
+
+
 \label{corollary:Omega_result_2}
+\hypertarget{corollary:Omega_result_2}{}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any point $p_i$, for any non-negative integer $j \leq n$ such that $i + j \geq n$, then
@@ -480,7 +500,9 @@ $j - (n - i) = (j + i) - n \leq (n + i) - n = i$
 \end{center}
 
 
+
 \label{corollary:shortest_walk_2}
+\hypertarget{corollary:shortest_walk_2}{}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
@@ -489,25 +511,29 @@ $0 \leq i \leq j \leq n - 1$
 \end{center}
 the shortest walk from $p_j$ to $p_i$ has length $(n - j) + i$.
 \end{tcolorbox}
+
 \noindent
-\textit{Proof}\\
-We will complete this proof by showing that $\omega(p_j, l) \neq p_i$ for all $l < (n - j) + i$.\\
-\\
-We will start by assuming we have $l \leq (n - j)$. For any such $l$, we can find some $k$ such that $l = (n - j) - k$ where $0 \leq k < n - j$. Substituting yields:
+\textit{Proof}
+
+\noindent We will complete this proof by showing that $\omega(p_j, l) \neq p_i$ for all $l < (n - j) + i$.\\
+
+\noindent We will start by assuming we have $l \leq (n - j)$. For any such $l$, we can find some $k$ such that $l = (n - j) - k$ where $0 \leq k < n - j$. Substituting yields:
 \begin{center}
 $\omega(p_j, l) = \omega(p_j, (n - j) - k) = \omega(p_j, (n - k) - j)$
 \end{center}
-By a previous lemma, we know that $\omega(p_j, (n - k) - j) = p_{n - k}$ as long as $n - k > j$.\\
-\\
-We know that $k < n - j$ by our selection of $l$. Adding $j$ yields $k + j < n$, followed by subtracting $k$ give us $j < n - k$. Thus, we are able to apply our lemma to give us $\omega(p_j, (n - k) - j) = p_{n - k}$. Furthermore, we know $i \leq j < n - k$, thus we have that $i \neq n - k$, yielding:
+
+\noindent By a \hyperlink{lemma:existence_of_walk_1}{previous lemma}, we know that $\omega(p_j, (n - k) - j) = p_{n - k}$ as long as $j \leq n - k < n$.\\
+
+\noindent We know that $k < n - j$ by our selection of $l$. Adding $j$ yields $k + j < n$, followed by subtracting $k$ give us $j < n - k$. Thus, we are able to apply our lemma to give us $\omega(p_j, (n - k) - j) = p_{n - k}$. Furthermore, we know $i \leq j < n - k$, thus we have that $i \neq n - k$, yielding:
 \begin{center}
 $\omega(p_j, l) = \omega(p_j, (n - k) - j) = p_{n-k} \neq p_i$.
 \end{center}
-As such, we have eliminated all $l \leq (n - j)$.\\
-\\
-We now need to show that if $l$ is within: $n - i < l < (n-1) + i$, then $\omega(p_j, l) \neq p_i$.\\
-\\
-For any $l$, we can find some $k$ such that $l = (n - j) + k$ where $1 \leq k < i$. Substituting allows us to apply the previous lemma:
+
+\noindent As such, we have eliminated all $l \leq (n - j)$.\\
+
+\noindent We now need to show that if $l$ is within: $n - i < l < (n-1) + i$, then $\omega(p_j, l) \neq p_i$.\\
+
+\noindent For any $l$, we can find some $k$ such that $l = (n - j) + k$ where $1 \leq k < i$. Substituting allows us to apply the previous lemma:
 \begin{center}
 $\omega(p_j, l) = \omega(p_j, (n - j) + k) = p_k \neq p_i$.
 \end{center}
@@ -516,6 +542,9 @@ $\omega(p_j, l) = \omega(p_j, (n - j) + k) = p_k \neq p_i$.
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+
+
+\label{corollary:inverse_Omega_relationship}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any points $p_i, p_j$, there exists positive integers $a, b \leq n$ such that:
@@ -523,35 +552,44 @@ For any cycle graph $G_n$, for any points $p_i, p_j$, there exists positive inte
 $\omega(p_i, a) = p_j$ and
 $\omega(p_j, b) = p_i$.
 \end{center}
-In other words, it is always possible to walk from any point $p_i$ to any point $p_j$ with a length no greater than $n$.\\
-\\
-Furthermore, whenever $p_j \neq p_i$, then the integers $a, b$ will satisfy the relationship: $a = n - b$ (equivalently $b = n - a$).\\
-\\
-Finally, whenever $p_j = p_i$, then we will have $a = b = n$.
+
+\noindent In other words, it is always possible to walk from any point $p_i$ to any point $p_j$ with a length no greater than $n$.\\
+
+\noindent Furthermore, whenever $p_j \neq p_i$, then the integers $a, b$ will satisfy the relationship: $a = n - b$ (equivalently $b = n - a$).\\
+
+\noindent Finally, whenever $p_j = p_i$, then we will have $a = b = n$.
 \end{tcolorbox}
+
+
 \noindent
-\textit{Proof}\\
-The first part of this proof follows directly from the previous two lemmas.\\
-\\
-Let $p_i, p_j$ be any two points such that $i < j$. We know that $\omega(p_i, j - i) = p_j$ by the first of our two previous lemmas. Furthermore, $j - i < j < n$.\\
-\\
-Now assume that $j \leq i$. We know that $\omega(p_i, (n - i) + j) = p_j$ by the second of our two previous lemmas. Furthermore, $(n - i) + j \leq (n - i) + i = n$.\\
-\\
-As such, we completed showing that from any point $p_i$, there exists a walk to any other point $p_j$ with a length less than or equal to $n$.\\
-\\
-We will now prove that whenever $p_j \neq p_i$, that $b = n - a$.\\
-\\
-Assume that $i < j$. We know that $\omega(p_i, j - i) = p_j$, and $\omega(p_j, (n - j) + i) = p_i$. Therefor, it must be the case that
+\textit{Proof}
+
+\noindent The first part of this proof follows directly from the previous two lemmas.\\
+
+\noindent Let $p_i, p_j$ be any two points such that $i < j$. We know that $\omega(p_i, j - i) = p_j$ by the \hyperlink{lemma:existence_of_walk_1}{first of our two previous lemmas}. Furthermore, $j - i < j < n$.\\
+
+\noindent Now assume that $j \leq i$. We know that $\omega(p_i, (n - i) + j) = p_j$ by the \hyperlink{lemma:existence_of_walk_2}{second of our two previous lemmas}. Furthermore, $(n - i) + j \leq (n - i) + i = n$.\\
+
+\noindent As such, we completed showing that from any point $p_i$, there exists a walk to any other point $p_j$ with a length less than or equal to $n$.\\
+
+\noindent We will now prove that whenever $p_j \neq p_i$, that $b = n - a$.\\
+
+\noindent Assume that $i < j$. We know that $\omega(p_i, j - i) = p_j$, and $\omega(p_j, (n - j) + i) = p_i$. Therefor, it must be the case that
 \begin{center}
 $a = j - i$\\
 $b = (n - j) + i = n - (j - i) = n - a$
 \end{center}
-We will conclude this proof by showing that a walk of length $n$ from any point $p_i$ will return to point $p_i$.\\
-\\
-By the previous lemma, we know a walk of length $(n - i) + i) = n$ will end on point $p_i$ since $i \leq i$.
+
+\noindent We will conclude this proof by showing that a walk of length $n$ from any point $p_i$ will return to point $p_i$.\\
+
+\noindent By the \hyperlink{lemma:existence_of_walk_2}{previous lemma}, we know a walk of length $(n - i) + i) = n$ will end on point $p_i$ since $i \leq i$.
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
+
+
+
 
 \subsection{Repetition of Walks}
 
