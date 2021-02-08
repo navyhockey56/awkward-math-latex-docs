@@ -544,7 +544,8 @@ $\omega(p_j, l) = \omega(p_j, (n - j) + k) = p_k \neq p_i$.
 
 
 
-\label{corollary:inverse_Omega_relationship}
+\label{corollary:inverse_omega_relationship}
+\hypertarget{corollary:inverse_omega_relationship}{}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any points $p_i, p_j$, there exists positive integers $a, b \leq n$ such that:
@@ -592,7 +593,13 @@ $b = (n - j) + i = n - (j - i) = n - a$
 
 
 \subsection{Repetition of Walks}
+\label{sec:repetition_of_walks}
 
+We have been focused on the result of walks with length no greater than $n$, the number of points within our graph. We will now move onto considering what happens when we take a walk with length greater than $n$.\\
+
+
+\label{lemma:walk_repetition_of_n}
+\hypertarget{lemma:walk_repetition_of_n}{}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$, for any integers $t \geq 0, a \geq 1$
@@ -600,72 +607,99 @@ For any cycle graph $G_n$, for any point $p_i$, for any integers $t \geq 0, a \g
 $\omega(p_i, t) = \omega(p_i, t + an)$
 \end{center}
 \end{tcolorbox}
+
 \noindent
-\textit{Proof}\\
-We shall complete this proof by induction on $a$.\\
-\\
+\textit{Proof}
+
+\noindent We shall complete this proof by induction on $a$.\\
+
+
+\noindent
 \textit{Base Case} $(a = 1)$\\
 Let $p_i$ be any point in our graph, let $t \geq 0$, and let $p_k = \omega(p_i, t)$.\\
-\\
-By the previous corollary, we know that $\omega(p_k, n) = p_k$. As such, the composition of these walks is $\omega(\omega(p_i, t), n) = \omega(p_i, t + n) = p_k = \omega(p_i, t)$, thus we have completed our base case.\\
-\\
+
+\noindent By the \hyperlink{corollary:inverse_omega_relationship}{previous corollary}, we know that $\omega(p_k, n) = p_k$. As such, the composition of these walks is $\omega(\omega(p_i, t), n) = \omega(p_i, t + n) = p_k = \omega(p_i, t)$, thus we have completed our base case.\\
+
+
+\noindent
 \textit{Inductive Hypothesis}\\
 Assume for all $1 \leq a < l$ for some $l$, that $\omega(p_i, t) = \omega(p_i, t + an)$.\\
-\\
+
+
+\noindent
 \textit{Inductive Step}\\
 We need to show that $\omega(p_i, t + ln) = \omega(p_i, t)$.\\
-\\
-By previous lemma, we know:
+
+\noindent By previous lemma, we know:
 \begin{center}
 $\omega(p_i, t + ln) = \omega(\omega(p_i, n), t + (l - 1)n)$
 \end{center}
-By the previous corollary, we know $\omega(p_i, n) = p_i$. As such, we can substitute:
+
+\noindent By the \hyperlink{corollary:inverse_omega_relationship}{previous corollary}, we know $\omega(p_i, n) = p_i$. As such, we can substitute:
 \begin{center}
 $\omega(\omega(p_i, n), t + (l - 1)n) = \omega(p_i, t + (l - 1)n)$
 \end{center}
-Since $l - 1 < l$, we can apply our inductive hypothesis to complete our proof
+
+\noindent Since $l - 1 < l$, we can apply our inductive hypothesis to complete our proof
 \begin{center}
 $\omega(p_i, t + (l - 1)n = \omega(p_i, t)$
 \end{center}
 
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
-\noindent
-\\
+
+
+
 \subsection{Remainders}
+\label{sec:remainders}
+
 We will often wish to refer to \hyperlink{theorem:remainder}{remainder} throughout our study of awkward state machines. However, it would be rather clumsy to have to constantly to write out that ``$r$ is the remainder of $t$ when divided $n$" to make reference to our definition. As such, let us define a new function, $\rho$, that will allow us to reference the remainder without all the fuss.\\
-\\
+
+
 \begin{tcolorbox}
 \textbf{Definition}\\
-For any positive integer $n$, for any integer $t \geq 0$, the \textit{remainder function}, $\rho: (\mathbb{N^{+}}, \mathbb{N}) \rightarrow [n]$, maps $(n, t)$ to the remainder of $t$ when divided by $n$.\\
-\\
-As such, if $r$ is the remainder of $t$ when divided by $n$, then we write:
+For any positive integer $n \in \mathbb{N^{+}}$, for any integer $t \in \mathbb{N}$, the \textit{remainder function}, $\rho: (\mathbb{N^{+}}, \mathbb{N}) \rightarrow [n]$, maps $(n, t)$ to the remainder of $t$ when divided by $n$.\\
+
+\noindent As such, if $r$ is the remainder of $t$ when divided by $n$, then we write:
 \begin{center}
 $\rho(n, t) = r$
 \end{center}
 \end{tcolorbox}
-\noindent
-\\
-Let us quickly note that combining our imported theorem with the remainder function yields: for any positive integer $n$, and any integer $t \geq 0$, there exists a unique integer $q \geq 0$ such that $t = qn + \rho(n, t)$.\\
-\\
+
+
+\noindent Let us quickly note that combining the \hyperlink{theorem:remainder}{remainder theorem} with the remainder function yields: for any positive integer $n$, and any integer $t \geq 0$, there exists a unique integer $q \geq 0$ such that $t = qn + \rho(n, t)$.\\
+
+
+\label{lemma:remainder_subtraction}
+\hypertarget{lemma:remainder_subtraction}{}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any $i \in [n]$, if $i = j - qn$ for some integers $j, q \in \mathbb{N}$, then $\rho(n, j) = i$.
 \end{tcolorbox}
+
 \noindent
-\textit{Proof}\\
-Assume $i \in [n]$ and $i = j - qn$ for some integers $j, q \in \mathbb{N}$.\\
-\\
-Solving for $j$ yields. $j = i + qn$.\\
-\\
-Since $i < n$, then $i$ and $q$ must be the unique integers from the remainder theorem. As such $i$ is defined to be remainder of $j$ when divided by $n$. 
+\textit{Proof}
+
+\noindent Assume $i \in [n]$ and $i = j - qn$ for some integers $j, q \in \mathbb{N}$.\\
+
+\noindent Solving for $j$ yields. $j = i + qn$.\\
+
+\noindent Since $i < n$, then $i$ and $q$ must be the unique integers from the remainder theorem. As such $i$ is defined to be remainder of $j$ when divided by $n$. 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
-\subsection{Omega Walk Theorem}
 
+
+\subsection{Omega Walk Theorem}
+\label{sec:omega_walk_theorem}
+
+\noindent TODO: Add background and motivation\\
+
+\label{lemma:omega_rho_reduction}
+\hypertarget{lemma:omega_rho_reduction}{}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any point $p_i$, for any integer $t \geq 0$
@@ -673,21 +707,21 @@ For any cycle graph $G_n$, for any point $p_i$, for any integer $t \geq 0$
 $\omega(p_i, t) = \omega(p_i, \rho(n, t))$
 \end{center}
 \end{tcolorbox}
+
 \noindent
-\textit{Proof}\\
-We know there exists some integer $q \geq 0$ such that $t = qn + \rho(n,t)$. As such, we can use this expression to substitute for $t$:
+\textit{Proof}
+
+\noindent We know there exists some integer $q \geq 0$ such that $t = qn + \rho(n,t)$. As such, we can use this expression to substitute for $t$:
 \begin{center}
 $\omega(p_i, t) = \omega(p_i, qn + \rho(n, t)) = \omega(\omega(p_i, qn), \rho(n, t))$
 \end{center}
-\noindent
-\\
-By previous lemma, we know that:
+
+\noindent By previous lemma, we know that:
 \begin{center}
 $\omega(p_i, qn) = \omega(p_i, qn + 0) = \omega(p_i, 0) = p_i$
 \end{center}
-\noindent
-\\
-As such, we can substitute in $p_i$ to complete our proof:
+
+\noindent As such, we can substitute in $p_i$ to complete our proof:
 \begin{center}
 $\omega(p_i, t) = \omega(\omega(p_i, qn), \rho(n, t)) = \omega(p_i, \rho(n, t))$
 \end{center}
@@ -695,51 +729,71 @@ $\omega(p_i, t) = \omega(\omega(p_i, qn), \rho(n, t)) = \omega(p_i, \rho(n, t))$
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
-\noindent
-\\
-We have now accumulated enough knowledge about cycle graphs with a theorem.\\
-\\
-\label{theorem:omega}
+
+
+\noindent We have now accumulated enough knowledge about cycle graphs with a theorem.\\
+
+
+
+\label{theorem:omega_walk_theorem}
+\hypertarget{theorem:omega_walk_theorem}{}
 \begin{tcolorbox}
-\textbf{Omega Walk Theorem}\\
-For any cycle graph $G_n$, for any point $p_i$, for any $t \in \mathbb{N}$
+\textbf{Omega Walk Theorem}
+
+\noindent For any cycle graph $G_n$, for any point $p_i$, for any $t \in \mathbb{N}$
 \begin{center}
 $\Omega(p_i, t) = \rho(n, i + t)$
 \end{center}
-In other words, if a walk of length $t$ starting at point $p_i$ ends on point $p_j$, then $j = \rho(n, i + t)$.
+
+\noindent In other words, if a walk of length $t$ starting at point $p_i$ ends on point $p_j$, then $j = \rho(n, i + t)$.
 \end{tcolorbox}
+
+
 \noindent
-\textit{Proof}\\
-Let $p_i$ be any point. Let $t \in \mathbb{N}$.\\
-\\
-Let $q \in N$ be the integer such that $t = \rho(n, t) + qn$. Then $\rho(n, t) = t - qn$.\\
-\\
-The previous lemma tells us that $\Omega(p_i, t) = \Omega(p_i, \rho(n, t))$.\\
-\\
-Since $\rho(n, t) < n$, our previous corollaries tell us that
-\begin{center}
-$\Omega(p_i, \rho(n, t)) = i + \rho(n, t)$ whenever $i + \rho(n, t) < n$\\
-$\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i)$ whenever $i + \rho(n, t) \geq n$
-\end{center}
-As such, we need to show that both of these cases are in fact equal to $\rho(i + t)$.\\
-\\
-\textit{Case 1}\\
-Let $\rho(n, t) + i < n$, then 
+\textit{Proof}
+
+\noindent Let $p_i$ be any point. Let $t \in \mathbb{N}$.\\
+
+\noindent Let $q \in N$ be the integer such that $t = \rho(n, t) + qn$. Then $\rho(n, t) = t - qn$.\\
+
+\noindent The \hyperlink{lemma:omega_rho_reduction}{previous lemma} tells us that $\Omega(p_i, t) = \Omega(p_i, \rho(n, t))$.\\
+
+\noindent Since $\rho(n, t) < n$, our previous corollaries tell us that
+\begin{itemize}
+\item $\Omega(p_i, \rho(n, t)) = i + \rho(n, t)$ whenever $i + \rho(n, t) < n$ by \hyperlink{corollary:Omega_result_1}{corollary}
+\item $\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i)$ whenever $i + \rho(n, t) \geq n$ by \hyperlink{corollary:Omega_result_2}{corollary}
+\end{itemize}
+
+\noindent As such, we need to show that both of these cases are in fact equal to $\rho(i + t)$.\\
+
+
+\noindent
+\textit{Case 1}
+
+\noindent Let $\rho(n, t) + i < n$, then 
 \begin{center}
 $\Omega(p_i, \rho(n, t)) = i + \rho(n, t) = i + (t - qn) = (i + t) - qn$
 \end{center}
-Since $\Omega(p_i, \rho(n, t)) \in [n]$, then $\Omega(p_i, \rho(n, t)) = \rho(i + t)$ by previous lemma.\\
-\\
-\textit{Case 2}\\
-Let $\rho(n, t) + i \geq n$, then 
+Since $\Omega(p_i, \rho(n, t)) \in [n]$, then $\Omega(p_i, \rho(n, t)) = \rho(i + t)$ by \hyperlink{lemma:remainder_subtraction}{previous lemma}.\\
+
+
+\noindent
+\textit{Case 2}
+
+\noindent Let $\rho(n, t) + i \geq n$, then 
 \begin{center}
 $\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i) = (t - qn) - (n - i) = (i + t) - (q + 1)n$
 \end{center}
-Since $\Omega(p_i, \rho(n, t)) \in [n]$, then $\Omega(p_i, \rho(n, t)) = \rho(i + t)$ by previous lemma.
+
+\noindent Since $\Omega(p_i, \rho(n, t)) \in [n]$, then $\Omega(p_i, \rho(n, t)) = \rho(i + t)$ by \hyperlink{lemma:remainder_subtraction}{previous lemma}.
+
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
+
+
+
 
 \section{Activation Cycle Machines}
 With a few, minor modifications to cycle graphs, we can create \textit{activation cycle machines}; and in doing so, bring ourselves one step closer to understanding awkward state machines. So what exactly is an activation cycle machine? Let us answer that question by first looking at the formal definition; and then taking some time to examine its meaning afterward.\\
