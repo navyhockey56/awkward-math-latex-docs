@@ -46,7 +46,7 @@ For any positive integer $n \in \mathbb{N^{+}}$, for any non-negative integer $t
 We call $r$ the \textit{remainder} of $t$ when divided by $n$.
 \end{tcolorbox}
 \label{theorem:remainder}
-\label{definition:remainder}
+\hypertarget{theorem:remainder}{}
 \noindent
 \\
 It should be noted that there is a wealth more knowledge known about the remainder; however, we will take the time to prove any other results we might need throughout the rest of this paper.
@@ -68,6 +68,7 @@ In order for us to study awkward state machines in any detail, we are going to n
 \label{sec:cycle_graphs_basic_definitions}
 
 \label{definition:cycle_graph}
+\hypertarget{definition:cycle_graph}
 \begin{tcolorbox}
 \textbf{Definition}\\
 A \textit{cycle graph} is a directed, connected graph whose points form a circle. More explicitly, for any $n > 1$, the cycle graph $G_n$ has $n$ points:
@@ -366,6 +367,7 @@ $\omega(p_j, k) = \omega(p_j, (i - t) - j) = p_{i - t}$.
 \end{center}
 
 
+\label{corollary:Omega_result_1}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any non-negative integers $i, j$ such that $i + j < n$,
@@ -373,83 +375,102 @@ For any cycle graph $G_n$, for any non-negative integers $i, j$ such that $i + j
 $\Omega(p_i, j) = i + j$
 \end{center}
 \end{tcolorbox}
+
 \noindent
-\textit{Proof}\\
-Since we have that $i \leq i + j < n$, the previous lemma tells us:
+\textit{Proof}
+
+\noindent Since we have that $i \leq i + j < n$, the \hyperref[lemma:existence_of_walk_1]{previous lemma} tells us:
 \begin{center}
 $\omega(p_i, (i + j) - i) = p_{i+j}$
 \end{center}
-\noindent
-\\
-We can simplify $(i + j) - i = j$, thus we have:
+
+\noindent We can simplify $(i + j) - i = j$, thus we have:
 \begin{center}
 $\omega(p_i, j) = p_{i+j}$ and 
 $\Omega(p_i, j) = i + j$.
 \end{center}
+
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+
+\noindent We now have a strong understanding about walks from any point $p_i$ to any other point $p_j$ where $i \leq j$. As such, we shall now move on to examine walks where $j \leq i$.\\
+
+\label{lemma:existence_of_walk_2}
+\hypertarget{lemma:existence_of_walk_2}{}
 \begin{tcolorbox}
 \textbf{Lemma}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
 \begin{center}
-$0 \leq i \leq j < n - 1$
+$0 \leq i \leq j < n$
 \end{center}
-then
+
+\noindent then
 \begin{center}
 $\omega(p_j, (n - j) + i) = p_i$
 \end{center}
 \end{tcolorbox}
+
 \noindent
 \textit{Proof}\\
-We shall prove this directly. Using the previous lemma, we know that:
+We shall prove this directly. Using the \hyperref[lemma:existence_of_walk_1]{previous lemma}, we know that:
 \begin{center}
 $\omega(p_j, (n - 1) - j) = p_{n-1}$ since $j \leq (n - 1)$
 \end{center}
 Furthermore, we know that:
-\begin{center}
-$\omega(p_{n-1}, 1) = p_0$ by structure of $G_n$\\
-$\omega(p_0, i) = \omega(p_0, i - 0) = p_i$ since $0 \leq i$
-\end{center}
-As such, we can create a composite of these three walks to form a walk from $p_j$ to $p_i$ having length:
+\begin{itemize}
+\item $\omega(p_{n-1}, 1) = p_0$ by structure of $G_n$
+\item $\omega(p_0, i) = \omega(p_0, i - 0) = p_i$ by the \hyperref[lemma:existence_of_walk_1]{previous lemma} since $0 \leq i$
+\end{itemize}
+
+\noindent As such, we can create a composite of these three walks to form a walk from $p_j$ to $p_i$ having length:
+
 \begin{center}
 $((n - 1) - j) + 1 + i = (n - j) + i$
 \end{center}
-which completes our proof.
+
+\noindent which completes our proof.
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+
+\label{corollary:Omega_result_2}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any point $p_i$, for any non-negative integer $j \leq n$ such that $i + j \geq n$, then
+
 \begin{center}
 $\Omega(p_i, j) = j - (n - i) = (i + j) - n$
 \end{center}
 \end{tcolorbox}
+
 \noindent
 \textit{Proof}\\
-If we can show that $0 \leq j - (n - i) \leq i$, then the previous lemma tells us that:
+If we can show that $0 \leq j - (n - i) \leq i$, then the \hyperlink{lemma:existence_of_walk_2}{previous lemma} tells us that:
 \begin{center}
 $\Omega(p_i, (n - i) + (j - (n - i))) = j - (n - i)$
 \end{center}
-Simplifying our expression yields:
+
+\noindent Simplifying our expression yields:
 \begin{center}
 $(n - i) + (j - (n - i)) = (n - i) - (n - i) + j = j$
 \end{center}
-Thus, if we can show $0 \leq j - (n - i) \leq i$, then we will have:
+
+\noindent Thus, if we can show $0 \leq j - (n - i) \leq i$, then we will have:
 \begin{center}
 $\Omega(p_i, (n - i) + (j - (n - i))) = \Omega(p_i, j) = j - (n - i)$
 \end{center}
-\noindent
-\\
-We can subtract $i$ from our inequality, $i + j \geq n$, to get $j \geq n - i$.
-As such, it is the case that
+
+\noindent We can subtract $i$ from our inequality, $i + j \geq n$, to get $j \geq n - i$. As such, it is the case that
 \begin{center}
 $j - (n - i) \geq (n - i) - (n - i) \geq 0$
 \end{center}
-Now we just need to show that $j - (n - i) \leq i$ to complete our proof. The truth of this follows from the fact that $j \leq n$:
+
+\noindent Now we just need to show that $j - (n - i) \leq i$ to complete our proof. The truth of this follows from the fact that $j \leq n$:
 \begin{center}
 $j - (n - i) = (j + i) - n \leq (n + i) - n = i$
 \end{center}
@@ -458,6 +479,8 @@ $j - (n - i) = (j + i) - n \leq (n + i) - n = i$
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+
+\label{corollary:shortest_walk_2}
 \begin{tcolorbox}
 \textbf{Corollary}\\
 For any cycle graph $G_n$, for any integers $i, j$ such that
