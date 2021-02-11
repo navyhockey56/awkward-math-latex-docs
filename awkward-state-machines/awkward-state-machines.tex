@@ -792,7 +792,51 @@ $\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i) = (t - qn) - (n - i) = (i + t) -
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+\section{Cycle Graph State Function}
 
+\label{definition:state_position_function}
+\hypertarget{definition:state_position_function}{}
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any cycle graph $G_n$ with points $P = \{ p_i | i \in [n] \}$, we define the state position function $\psi : (G_n, \mathbb{N}, \mathbb{N}) \rightarrow P$ as:
+
+\begin{itemize}
+\item $\psi(G_n, 0, k) = \omega(p_0, k)$ for any $k \in N$.
+\item $\psi(G_n, j, k) = \psi(G_n, j - 1, k + 1)$ for any $j \in \mathbb{N^+}$ and any $k \in \mathbb{N}$.
+\end{itemize}
+
+\noindent The first integer argument to $\psi$ is called the \textit{step}; and the second integer argument is referred to as the \textit{count}.\\
+
+\noindent If $\psi(G_n, j, k) = p_i$, we say $p_i$ is the \textit{position} of $G_n$ after $k$ transitions from step $j$.\\
+
+\noindent For simplicity, we will often specify we are working with some specific cycle graph $G_n$ and exclude it as an argument to $\psi$.
+\end{tcolorbox}
+
+
+\noindent
+\\
+The state position function is much simpler than it might first appear. Whenever the step is $0$, $\psi$ delegates to the walk function which we already know quite a bit about. Whenever the step is a positive number, we will be able to repeatedly apply the rule $\psi(G_n, j, k) = \psi(G_n, j - 1, k + 1)$ until we've reduced the step to $0$, once again leaving us with the walk function to deal with. Within our study, we will find that the step argument is simply acting as a memory.\\
+
+\noindent Before we begin studying the state position function in detail, let us quickly define one more function, $\Psi$.\\
+
+
+\label{definition:state_function}
+\hypertarget{definition:state_function}{}
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any cycle graph $G_n$, for any $j, k \in \mathbb{N}$, we define the \textit{state function}
+\begin{center}
+$\Psi : (G_n, \mathbb{N}, \mathbb{N}) \rightarrow [n]$
+\end{center}
+as
+\begin{center}
+$\Psi(G_n, j, k) = \Omega(\psi(G_n, j, k))$ 
+\end{center}
+
+\noindent If $\Psi(G_n, j, k) = t$, we say $G_n$ is on \textit{state} $t$ after $k$ transitions from step $j$.
+
+\end{tcolorbox}
+\noindent
 
 
 \section{Activation Cycle Machines}
