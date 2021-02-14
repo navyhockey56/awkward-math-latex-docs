@@ -792,7 +792,407 @@ $\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i) = (t - qn) - (n - i) = (i + t) -
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 
+
+
+
+
+
+
+\section{Cycle Machines}
+\label{section:cycle_machines}
+\hypertarget{section:cycle_machines}{}
+
+\noindent In this section, we will begin working with the \textit{cycle machine}, a state-based machine which can be represented using a cycle graph.\\
+
+
+
+
+\label{definition:cycle_machine}
+\hypertarget{definition:cycle_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any integer $n \geq 2$, we define the \textit{cycle machine}, $C_n$, to be a state machine with $n$ states $S = \{$ $s_i$ $|$ $i \in [n]$ $\}$ such that:
+
+\begin{itemize}
+\item The initial state of the machine is always $s_0$.
+
+\item For any $i < n - 1$, if the current state of the cycle machine is $s_i$, then the subsequent state is defined to be $s_{i+1}$
+
+\item If the current state of the cycle machine is $s_{n - 1}$, then the subsequent state is defined to be $s_0$.
+\end{itemize}
+
+\noindent When we move from one state to the next, we say that we've completed one \textit{transition} of the state machine.\\
+
+\noindent If a cycle machine is on some state $s_i$ after completing $k \in \mathbb{N}$ subsequent transitions from the initial state, then we say that the cycle machine has position $i$ on step $k$.\\
+\end{tcolorbox}
+
+
+
+\noindent \\
+We will be interested in determining the state of any cycle machine on any step. As such, let us define the \textit{step function} to allow us to more easily refer to this value within our study.\\
+
+
+
+
+
+
+
+
+
+\label{definition:cycle_step_function}
+\hypertarget{definition:cycle_step_function}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any cycle machine $C_n$, for any $k \in \mathbb{N}$, the \textit{step function}, $\phi(C_n, k)$, is defined to be state of $C_n$ on step $k$.
+\end{tcolorbox}
+
+
+
+\noindent \\
+If we wish to use the step function, we will need to show that it is well defined. In other words, we need to show that any cycle graph can be undergo an arbitrary number of transitions from the initial state, and when doing so, the machine will always end on some unique state $s_i$.\\
+
+\noindent To start, let us first show that $\phi(C_n, 0)$ is well defined for any cycle machine.\\
+
+
+
+
+
+
+
+\label{lemma:phi_of_0}
+\hypertarget{lemma:phi_of_0}{}
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle machine $C_n$, $\phi(C_n, 0) = s_0$.
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent By \hyperlink{definition:cycle_machine}{definition}, the initial state of any cycle machine $C_n$ is state $s_0$.\\
+
+\noindent Furthermore, $\phi(C_n, 0)$ is defined to be the state of $C_n$ after completing $0$ subsequent transitions from the initial state.\\
+
+\noindent If we were to take $0$ transitions from our initial state, then we would not have transitioned states at all. As such, we would still be at our initial state, $s_0$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+
+
+\label{lemma:phi_well_defined}
+\hypertarget{lemma:phi_well_defined}{}
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle machine $C_n$, for any $k \in \mathbb{N}$, $\phi(C_n, k)$ is well defined.
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent We shall complete this proof by induction on the number of transitions, $k$.\\
+
+
+\noindent
+\textbf{Base Case} $k = 0$
+
+\noindent By \hyperlink{lemma:phi_of_0}{the previous lemma}, $\phi(C_n, 0) = s_0$ for any cycle machine $C_n$.\\
+
+
+\noindent
+\textbf{Induction Hypothesis}
+
+\noindent Assume for all $0 \leq j < k$, that $\phi(C_n, j)$ is well defined.\\
+
+
+\noindent
+\textbf{Inductive Step}
+
+\noindent By definition of $\phi$, $\phi(C_n, k - 1)$ is defined to be the state of $C_n$ after $k - 1$ subsequent transitions from the initial state $s_0$.\\
+
+\noindent By the inductive hypothesis, $\phi(C_n, k - 1)$ is well defined.\\
+
+\noindent As such, $\phi(C_n, k - 1)$ exists and maps to a single state.\\
+
+\noindent Let $s_i$ be the state such that $s_i = \phi(C_n, k - 1)$.\\
+
+\noindent If we can show that for any $s_i$, that there exists a single subsequent state $s_j$, then $s_j$ will have to be the state of $C_n$ after completing $(k - 1) + 1 = k$ subsequent transitions from the initial state. As such, $s_j = \phi(C_n, k)$, and we will have completed our proof.\\ 
+
+
+\noindent
+\textbf{Case:} $i = n - 1$
+
+\noindent By definition of a cycle machine, $s_{n-1}$ has a single subsequent state defined to be $s_0$.\\
+
+
+\noindent
+\textbf{Case:} $i < n - 1$
+
+\noindent By definition of a cycle machine, $s_{i+1}$ is the only subsequent state of state $s_i$ when $i < n - 1$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+\noindent \\
+As we've seen in our proofs this section, we will often be interested in referring to the state of some cycle machine $C_n$ after completing one or more transitions from some step. As such, let us define the \textit{state function} so that we can more easily reference the resulting state.\\
+
+
+
+
+
+
+\label{definition:state_function}
+\hypertarget{definition:state_function}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any cycle machine $C_n$, for any state $s_i$, for any $j, k \in \mathbb{N}$, we define the \textit{state function}, $\psi(C_n, j, k)$, to be the state of cycle machine $C_n$ after completing $k$ transitions from step $j$.\\
+
+\noindent Furthermore, we define the \textit{state position function}, $\Psi(C_n, j, k)$ to be index of the state $\psi(C_n, j, k)$.
+\end{tcolorbox}
+
+
+
+
+\noindent \\ To show that $\psi$ is also well defined, we will show that it is merely an alias for the step function.\\
+
+
+
+
+
+\label{lemma:psi_well_defined}
+\hypertarget{lemma:psi_well_defined}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+\noindent For any cycle machine $C_n$, for any state $s_i$, for any $j, k \in \mathbb{N}$:
+
+\begin{center}
+$\psi(C_n, j, k) = \phi(C_n, j + k)$
+\end{center}
+
+\end{tcolorbox}
+
+
+\noindent
+\textit{Proof}
+
+\noindent By definition, $\phi(C_n, j)$ is the state of $C_n$ on step $j$.\\
+
+\noindent If we were to complete $k$ more transitions from $\phi(C_n, j)$, we will have completed a total of $k + j$ from the initial state of $C_n$. Thus, we'd be on state $\phi(C_n, j + k)$ by definition of the step function.\\
+
+\noindent Furthermore, since we arrived at $\phi(C_n, j + k)$ by taking $k$ transitions from step $j$, then $\psi(C_n, j, k) = \phi(C_n, j + k)$ by definition of the state function.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+\noindent Now that we have the step and state functions to simplify working with cycle machines, let us now tie cycle machines to our cycle graphs from the previous section. To start, we will define the \textit{bridge function} which will map the points of the cycle graph $G_n$ to the states of the cycle machines $C_n$.\\
+
+
+
+
+\label{definition:bridge_function}
+\hypertarget{definition:bridge_function}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any cycle machine $C_n$, with states $S$, we define the \textit{bridge function}, $\beta$, from the points of the cycle graph $G_n$ to the states of cycle machine $C_n$ as $\beta(p_i) = s_i$.
+
+\end{tcolorbox}
+
+
+
+
+
+
+
+\label{lemma:bridge_is_well_defined}
+\hypertarget{lemma:bridge_is_well_defined}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+\noindent For any point in cycle graph $G_n$, the bridge function is well defined.
+
+\end{tcolorbox}
+
+
+\noindent
+\textsl{Proof}
+
+\noindent Let $p_i$ be any point within the cycle graph $G_n$.\\
+
+\noindent The bridge function is well defined for point $p_i$ if state $s_i$ exists within the cycle machine $C_n$.\\
+
+\noindent By definition of a cycle graph, $i \in [n]$.\\
+
+\noindent By definition, the cycle machine $C_n$ has states $S =$ $\{$ $s_j$ $|$ $j \in [n]$ $\}$.\\
+
+\noindent Thus, $s_i \in S$ since $i \in [n]$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+\noindent Now that we have a bridge from cycle graphs to cycle machines, we will show that transitioning states within the cycle machine $C_n$ can instead be accomplished by taking a walk of the cycle graph $G_n$ and then using the bridge function to return to the states of $C_n$.\\
+
+
+
+
+
+
+\label{theorem:bridge_theorem}
+\hypertarget{theorem:bridge_theorem}{}
+\begin{tcolorbox}
+\textbf{Bridge Theorem}\\
+For any cycle machine $C_n$, for any $k \in \mathbb{N}$, $\phi(C_n, k) = \beta(\omega(p_0, k))$
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent We will complete this proof by induction on the step, $k$.\\
+
+
+\noindent
+\textbf{Base Case} $k = 0$
+
+\noindent We need to show $\phi(C_n, 0) = \beta(\omega(p_0, 0))$.\\
+
+\noindent By \hyperlink{definition:walk_functions}{definition of $\omega$}, $\omega(p_0, 0) = p_0$.\\
+
+\noindent By \hyperlink{definition:bridge_function}{definition of $\beta$}, $\beta(p_0) = s_0 = \beta(\omega(p_0, 0))$.\\
+
+\noindent By \hyperlink{lemma:phi_of_0}{previous lemma}, $\phi(C_n, 0) = s_0 = \beta(\omega(p_0, 0))$.\\
+
+
+\noindent
+\textbf{Inductive Hypothesis}
+
+\noindent Assume for all $0 \leq j < k$, that $\phi(C_n, j) = \beta(\omega(p_0, j))$.\\
+
+
+\noindent
+\textbf{Inductive Step}
+
+\noindent By definition of $\phi$, $\phi(C_n, k)$ is defined to be the state of $C_n$ after $k$ transitions from the initial state.\\
+
+\noindent Furthermore, $\phi(C_n, k - 1)$ is defined to be the state of $C_n$ after $k - 1$ transitions from the initial state.\\
+
+\noindent Thus, if we first complete $k - 1$ transitions from the initial state to be on state $\phi(C_n, k - 1)$, and then advance one more transition, we will have completed $k$ transitions from the initial state. Thus, the resulting state would be equal to $\phi(C_n, k)$.\\
+
+\noindent $\phi(C_n, k - 1) = \beta(\omega(p_0, k - 1))$ by inductive hypothesis.\\
+
+\noindent Let $i \in [n]$, be the integer such that $\omega(p_0, k - 1) = p_i$.\\
+
+\noindent Then $\phi(C_n, k - 1) = \beta(p_i) = s_i$ by definition of $\beta$.\\
+
+
+\noindent
+\textbf{Case:} $i < n - 1$
+
+\noindent The subsequent state of $s_i$ is $s_{i+1}$ by definition of a cycle machine.\\
+
+\noindent Thus, $\phi(C_n, k) = s_{i+1}$.\\
+
+\noindent By previous lemma, $\omega(p_0, k) = \omega(\omega(p_0, k - 1), 1) = \omega(p_i, 1) = p_{i+1}$.\\
+
+\noindent As such, $\beta(\omega(p_0, k)) = \beta(p_{i+1}) = s_{i + 1} = \phi(C_n, k)$.\\
+
+
+\noindent
+\textbf{Case:} $i = n - 1$
+
+\noindent The subsequent state of $s_{n-1}$ is $s_0$ by definition of a cycle machine.\\
+
+\noindent Thus, $\phi(C_n, k) = s_0$.\\
+
+\noindent By previous lemma, $\omega(p_0, k) = \omega(\omega(p_0, k - 1), 1) = \omega(p_{n-1}, 1) = p_0$.\\
+
+\noindent As such, $\beta(\omega(p_0, k)) = \beta(p_0) = s_0 = \phi(C_n, k)$.\\
+
+
+\noindent 
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+\label{corollary:bridged_state_function}
+\hypertarget{corollary:bridged_state_function}{}
+\begin{tcolorbox}
+\textbf{Corollary}\\
+For any cycle machine $C_n$, for any $j, k \in \mathbb{N}$, $\psi(C_n, j, k) = \beta(\omega(p_0, j + k))$
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent By \hyperlink{lemma:psi_well_defined}{previous lemma}, $\psi(C_n, j, k)$ = $\phi(C_n, j + k)$.\\
+
+\noindent By the \hyperlink{theorem:bridge_theorem}{previous theorem}, $\phi(C_n, j + k) = \beta(\omega(p_0, j + k))$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+\label{theorem:cycle_machine_remainder_theorem}
+\hypertarget{theorem:cycle_machine_remainder_theorem}{}
+\begin{tcolorbox}
+\textbf{Cycle Machine Remainder Theorem}\\
+For any cycle machine $C_n$, for any $j, k \in \mathbb{N}$, $\Psi(C_n, j, k) = \rho(n, j + k)$
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent
+ 
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
 \section{Cycle Graph State Function}
+
+
 
 \label{definition:state_position_function}
 \hypertarget{definition:state_position_function}{}
@@ -800,10 +1200,9 @@ $\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i) = (t - qn) - (n - i) = (i + t) -
 \textbf{Definition}\\
 For any cycle graph $G_n$ with points $P = \{ p_i | i \in [n] \}$, we define the state position function $\psi : (G_n, \mathbb{N}, \mathbb{N}) \rightarrow P$ as:
 
-\begin{itemize}
-\item $\psi(G_n, 0, k) = \omega(p_0, k)$ for any $k \in N$.
-\item $\psi(G_n, j, k) = \psi(G_n, j - 1, k + 1)$ for any $j \in \mathbb{N^+}$ and any $k \in \mathbb{N}$.
-\end{itemize}
+\begin{center}
+$\psi(G_n, j, k) = \omega(p_0, j + k)$ for any $j, k \in \mathbb{N}$.
+\end{center}
 
 \noindent The first integer argument to $\psi$ is called the \textit{step}; and the second integer argument is referred to as the \textit{count}.\\
 
@@ -813,31 +1212,278 @@ For any cycle graph $G_n$ with points $P = \{ p_i | i \in [n] \}$, we define the
 \end{tcolorbox}
 
 
+
+
 \noindent
 \\
-The state position function is much simpler than it might first appear. Whenever the step is $0$, $\psi$ delegates to the walk function which we already know quite a bit about. Whenever the step is a positive number, we will be able to repeatedly apply the rule $\psi(G_n, j, k) = \psi(G_n, j - 1, k + 1)$ until we've reduced the step to $0$, once again leaving us with the walk function to deal with. Within our study, we will find that the step argument is simply acting as a memory.\\
+The state position function is fairly: it simply reduces down to an $\omega$ function with the fixed point $p_0$. As such, since we know $\omega$ is well defined, we immediately know that $\psi$ is also well defined.\\
 
 \noindent Before we begin studying the state position function in detail, let us quickly define one more function, $\Psi$.\\
+
+
 
 
 \label{definition:state_function}
 \hypertarget{definition:state_function}{}
 \begin{tcolorbox}
 \textbf{Definition}\\
-For any cycle graph $G_n$, for any $j, k \in \mathbb{N}$, we define the \textit{state function}
-\begin{center}
-$\Psi : (G_n, \mathbb{N}, \mathbb{N}) \rightarrow [n]$
-\end{center}
-as
-\begin{center}
-$\Psi(G_n, j, k) = \Omega(\psi(G_n, j, k))$ 
-\end{center}
+For any cycle graph $G_n$, for any $j, k \in \mathbb{N}$, we define the \textit{state function} $\Psi : (G_n, \mathbb{N}, \mathbb{N}) \rightarrow [n]$
+to be the index of the point $\psi(G_n, j, k)$.\\
 
-\noindent If $\Psi(G_n, j, k) = t$, we say $G_n$ is on \textit{state} $t$ after $k$ transitions from step $j$.
+\noindent If $\Psi(G_n, j, k) = t$, we say $G_n$ is on state $t$ after $k$ transitions from step $j$.\\
 
+\noindent For simplicity, we will often specify we are working with some specific cycle graph $G_n$ and exclude it as an argument to $\Psi$.
 \end{tcolorbox}
 \noindent
 
+
+
+\label{definition:state_function}
+\hypertarget{definition:state_function}{}
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle graph $G_n$, for any integers $j,k \in \mathbb{N}$:
+
+\begin{center}
+$\Psi(G_n, j, k) = \rho(n, j + k)$
+\end{center}
+
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent This proof follows directly from the our definitions of $\Psi$, $\psi$, and $\Omega$ as well as the \hyperlink{theorem:omega_walk_theorem}{Omega Walk Theorem} from last section.\\
+
+\noindent Let $G_n$ be any cycle graph and let $j, k$ be any integers in $\mathbb{N}$.\\
+
+\noindent By definition of $\Psi$, we know $\Psi(G_n, j, k)$ will be equal to the index of  $\psi(G_n, j, k)$.\\
+
+\noindent By definition of $\psi$, we know $\psi(G_n, j, k) = \omega(p_0, j + k)$.\\
+
+\noindent By definition of $\Omega$, the index of point $\omega(p_0, j + k)$ is given by $\Omega(p_0, j + k)$.\\
+
+\noindent As such, we have that $\Psi(G_n, j, k) = \Omega(p_0, j + k)$.\\
+
+\noindent We can now apply the \hyperlink{theorem:omega_walk_theorem}{Omega Walk Theorem} to complete our proof:
+\begin{center}
+$\Psi(G_n, j, k) = \Omega(p_0, j + k) = \rho(n, j + k + 0) = \rho(n, j + k)$.
+\end{center}
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{tcolorbox}
+\textbf{Lemma}\\
+The bridge functions $\alpha$ and $\beta$ are inverses.
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent We need to show that for any $p_i$ that $\alpha(\beta(p_i)) = p_i$, and that for any $s_i$ that $\beta(\alpha(s_i)) = s_i$.\\
+
+\noindent Let $p_i \in P$ be any point of cycle graph $G_n$.\\ 
+
+\noindent By definition of $\beta$, $\beta(p_i) = s_i$.\\
+
+\noindent By definition of $\alpha$, $\alpha(s_i) = p_i$.\\
+
+\noindent Thus, $\alpha(\beta(p_i)) = \alpha(s_i) = p_i$.\\
+
+\noindent Let $s_i \in S$ be any of state of cycle machine $C_n$.\\
+
+\noindent Then, $\beta(\alpha(s_i)) = \beta(p_i) = s_i$
+
+\noindent 
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle machine $C_n$, for any integer $k \in \mathbb{N^+}$,
+
+\begin{center}
+$\phi(C_n, k) = 
+\alpha(\omega(\beta(\phi(C_n, k - 1)), 1))$
+\end{center}
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent This will be a proof by induction on $k$.\\
+
+
+\noindent
+\textit{Base Case}
+
+\noindent Let $k = 1$. We need to show $\phi(C_n, 1) = \alpha(\omega(\beta(\phi(C_n, 0)), 1))$.\\
+
+\noindent $\phi(C_n, 1)$ is defined to be the state after transitioning once from the initial state.\\
+
+\noindent By definition of a cycle machine the initial state, $s_0$, transitions to state $s_1$.\\
+
+\noindent As such, $\phi(C_n, 1) = s_1$.\\
+
+\noindent Now let us turn our attention to the left side of our equation.\\
+
+\noindent $\phi(C_n, 0) = s_0$ by previous lemma.\\
+
+\noindent $\beta(s_0) = p_0$ by definition of $\beta$.\\
+
+\noindent $\omega(p_0, 1) = p_1$ by previous lemma.\\
+
+\noindent $\alpha(p_1) = s_1$ by definition of $\alpha$.\\
+
+\noindent As such, $\phi(C_n, 1) = s_1 = \alpha(\omega(\beta(\phi(C_n, 0)), 1))$.\\
+
+
+\noindent
+\textit{Inductive Hypothesis}
+
+\noindent Assume for all $j < k$, that $\phi(C_n, j) = \alpha(\omega(\beta(\phi(C_n, j - 1)), 1))$.\\
+
+
+\noindent
+\textit{Inductive Step}
+
+\noindent We need to show that $\phi(C_n, k) = \alpha(\omega(\beta(\phi(C_n, k - 1)), 1))$.\\
+
+\noindent $\phi(C_n, k - 1) = \alpha(\omega(\beta(\phi(C_n, k - 2)), 1))$
+
+
+
+\noindent 
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+\noindent We are going to be interested in studying the result of carrying out multiple transitions of cycle machines. As such, let us now define two functions - the state function, and the state index function - to allow us to more succinctly talk about transitions of an arbitrary cycle machine.\\
+
+
+
+\label{definition:state_function}
+\hypertarget{definition:state_function}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any cycle machine $C_n$ with states $S$, for any state $s_i \in S$, for any $j, k \in \mathbb{N}$, we define the \textit{state function}, $\psi(C_n, j, k)$, to be the state of cycle machine $C_n$ after completing $k$ subsequent transitions from step $j$.\\
+
+\noindent Furthermore, we define the \textit{state position function}, $\Psi(C_n, j, k)$ to be index of the state $\psi(C_n, j, k)$.
+\end{tcolorbox}
+\noindent
+
+
+\label{definition:state_function}
+\hypertarget{definition:state_function}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any cycle machine $C_n$ with states $S$, for any state $s_i \in S$, for any $j, k \in \mathbb{N}$, we define the \textit{state function}, $\psi(C_n, j, k)$, to be the state of cycle machine $C_n$ after completing $k$ subsequent transitions from step $j$.\\
+
+\noindent Furthermore, we define the \textit{state position function}, $\Psi(C_n, j, k)$ to be index of the state $\psi(C_n, j, k)$.
+\end{tcolorbox}
+\noindent
+
+
+
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle machine $C_n$, $\psi(C_n, 0, 0) = s_0$.
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent $\psi(C_n, 0, 0)$ is defined to be the state of cycle machine $C_n$ after $0$ transitions from step $0$.\\
+
+\noindent Step $0$ is defined to be the state of cycle machine $C_n$ after taking $0$ subsequent transitions from the initial state. As such, the machine is still at it's initial state on step $0$ since it does not transition states at all.\\
+
+\noindent As such, $\psi(C_n, 0, 0)$ is defined to be the state of the cycle machine after taking $0$ transitions from the initial state, as such, the machine is still at it's initial state.\\
+
+\noindent The initial state of a cycle machine is defined to be $s_0$. 
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any cycle machine $C_n$ with states $S$, let $f: S \rightarrow P$ be defined as $f(s_i) = p_i$, where $P$ is the set of points of the cycle graph $G_n$.\\
+
+\noindent Furthermore, $f$ is clearly invertible with $f^{-1}(p_i) = s_i$.\\
+
+\noindent Then for any state $s_i$, the subsequent state is given by $f^{-1}(\omega(f(s_i), 1))$, where $f^{-1}$ is the inverse of the function $f$.\\
+\end{tcolorbox}
+
+\noindent
+\textit{Proof}
+
+\noindent Let $s_i$ be any state such that $i < n - 1$.\\
+
+\noindent By definition of a cycle machine, we know the subsequent state of $s_i$ is defined to be $s_{i+1}$.\\
+
+\noindent By definition of $f$, we have that $f(s_i) = p_i$.\\
+
+\noindent As such $\omega(f(s_i), 1) = \omega(p_i, 1)$.\\
+
+\noindent By \hyperlink{lemma:walk_1}{previous lemma}, we know $\omega(p_i, 1) = p_{i+1}$ since $i < n - 1$.\\
+
+\noindent Thus, by substitution $f^{-1}(\omega(f(s_i), 1)) = f^{-1}(p_{i+1}) = s_{i+1}$.\\
+
+\noindent Now we are left with showing that the transition from $s_{n-1}$ is given by $f^{-1}(\omega(f(s_{n-1}), 1))$.\\
+
+\noindent By definition of a cycle machine, we know that the subsequent state of $s_{n-1}$ is defined to be $s_0$.\\
+
+\noindent By definition of $f$, we have that $f(s_{n-1}) = p_{n-1}$.\\
+
+\noindent By \hyperlink{lemma:walk_1}{previous lemma}, we know $\omega(p_{n-1}, 1) = p_0$.\\
+
+\noindent Thus, by substitution $f^{-1}(\omega(f(s_{n-1}), 1)) = f^{-1}(p_0) = s_0$.\\
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
 
 \section{Activation Cycle Machines}
 With a few, minor modifications to cycle graphs, we can create \textit{activation cycle machines}; and in doing so, bring ourselves one step closer to understanding awkward state machines. So what exactly is an activation cycle machine? Let us answer that question by first looking at the formal definition; and then taking some time to examine its meaning afterward.\\
