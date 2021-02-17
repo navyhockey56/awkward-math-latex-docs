@@ -36,6 +36,7 @@ The study of awkward state machines requires that we make use of preexisting the
 \label{notation:sets}
 
 
+
 \subsection{The Remainder Theorem}
 We will need to borrow the concept of the \textit{remainder} from basic number theory. We will not bother proving the associated theorem ourselves, as it is well known, see \url{https://en.wikipedia.org/wiki/Remainder} for a basic overview.\\
 
@@ -52,9 +53,85 @@ We call $r$ the \textit{remainder} of $t$ when divided by $n$.
 It should be noted that there is a wealth more knowledge known about the remainder; however, we will take the time to prove any other results we might need throughout the rest of this paper.
 
 
+
+
 \subsection{Graphs}
 \url{https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)}\\
 \url{https://en.wikipedia.org/wiki/Directed_graph}
+
+
+
+
+
+\section{State Machines}
+\label{section:state_machines}
+
+
+\label{definition:state_machine}
+\hypertarget{definition:state_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent A \textit{state machine} is an object equipped with $n \in \mathbb{N^+}$ objects called \textit{properties}.\\
+
+\noindent For each property, it is required that we specify some set that contains all the possible values that property can take on. We refer to these as the \textit{property sets} of the machine.\\
+
+\noindent We define the \textit{product property set}, $P = \prod^{n-1}_0{(P_i)}$, where $P_i$ are the property sets of the state machine.\\
+
+\noindent For each property, $p_i$, we define a mapping called a \textit{property transition function}, $T_i: P \rightarrow P_i$, where $P_i$ is the property set of $p_i$.\\
+
+\noindent We define the \textit{transition function} of a state machine, $T: P \rightarrow P$ as a combination of the individual property transition functions such that:
+\begin{center}
+$T(p) = (T_0(p),$ $T_1(p),$ $...,$ $T_{n-1}(p))$
+\end{center}
+
+\noindent The final component to a state machine is an element within it's product property set, we call this element the machine's \textit{initial state}.\\
+
+\noindent A state machine is used to produce a sequence, $S = [s_i \in P]$, called the machine's \textit{state sequence}, over the elements of the machine's product property set, such that:
+\begin{itemize}
+\item The first element of the sequence, $s_0$, is the initial state of the machine.
+
+\item All subsequent elements are derived by applying the transition function, $T$, to the previous element in the sequence: 
+\begin{center}
+$s_{i + 1} = T(s_i)$.
+\end{center}
+
+\end{itemize}
+
+\noindent We refer to the elements of the state sequence as the \textit{states} of the machine. We say that $s_i$ is the \textit{state} of the machine on \textit{step} $i$. Furthermore, we use the phrase \textit{transition} to refer to the act of deriving the next state, $s_{i+1}$, of the machine from the current state, $s_i$.
+
+\end{tcolorbox}
+
+
+
+\label{definition:state_machine}
+\hypertarget{definition:state_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any state machine, $O$, for any integer $n \in \mathbb{N}$, we define the \textit{step function}, $\phi(O, n)$ to be the state of $O$ on step $n$.
+
+\end{tcolorbox}
+
+
+\label{definition:state_machine}
+\hypertarget{definition:state_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any state machine, $O$, for any integers $n, m \in \mathbb{N}$, we define the \textit{state function}, $\psi(O, n, m)$ to be the state of $O$ after completing $m$ transitions from step $n$.
+
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+
+
 
 \section{Cycle Graphs}
 \label{sec:cycle_graphs}
@@ -798,14 +875,91 @@ $\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i) = (t - qn) - (n - i) = (i + t) -
 
 
 
-\section{Cycle Machines}
-\label{section:cycle_machines}
+\section{Cycle Machines As State Machines}
+\label{section:cycle_machines_as_state_machines}
 \hypertarget{section:cycle_machines}{}
 
-\noindent In this section, we will begin working with the \textit{cycle machine}, a state-based machine which can be represented using a cycle graph.\\
+\noindent In this section, we will begin working with the \textit{cycle machine}, a state machine based on taking walks around a cycle graph.\\
+
+
+\label{definition:cycle_machine}
+\hypertarget{definition:cycle_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any integers $a, n \in \mathbb{N^+}$ such that $a < n$, we define the \textit{activation cycle machine}, $C_{a, n}$, to be a state machine with two properties:
+
+\begin{itemize}
+\item A \textit{position} which belongs to the set of points, $P$, for the cycle graph $G_n$.
+
+\item \textit{active} which belongs to the boolean set $B = \{true, false\}$.
+\end{itemize}
+
+The transition function, $T: P \times B \rightarrow P \times B$, of a an activation cycle machine is defined by property:
+\begin{itemize}
+\item $T_0(p, b) = \omega(G_n, p, 1)$ for position
+\item $T_1(p, b) = \Omega(G_n, p, 1) < a$ for active
+\end{itemize}
+
+The initial state is defined to be $(p_0,$ $true)$.\\
+
+\noindent Whenever an activation cycle machine's active property is $true$, we say that the machine is \textit{active}, otherwise, we say the machine is \textit{inactive}.
+
+\end{tcolorbox}
 
 
 
+
+
+
+\label{definition:cycle_machine}
+\hypertarget{definition:cycle_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}\\
+The \textit{activation cycle power set}, $C^{\infty}$, is defined to be the power set of the set containing every state of every activation cycle machine.
+\end{tcolorbox}
+
+
+
+\label{definition:cycle_machine}
+\hypertarget{definition:cycle_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any integers $a, n \in \mathbb{N^+}$, we define the \textit{awkward state machine}, $C_n$, to be a state machine with two properties:
+
+\begin{itemize}
+\item An \textit{index}, which belongs set of natural numbers, $\mathbb{N}$;
+
+\item A \textit{cycle set}, which belongs to the activation power set, $ C^{\infty}$
+
+\end{itemize}
+
+The transition function, $T: \mathbb{N} \times C^{\infty} \rightarrow \mathbb{N} \times C^{\infty}$, is defined by property:
+
+\begin{itemize}
+
+\item index: $T_0(i, C) = i + 1$
+
+\item cycle set: $T_1(i, C) = A \cup B$
+\begin{itemize}
+\item $A = \{$ $\phi(O, j + 1)$ $|$ $\phi(O, j) \in C$ $\}$
+
+\item $B = \{ \phi(C_{a, b}, 0) \}$ with $b = i + a + n + 1$ if the state of every machine in $A$ is inactive. Otherwise, $B = \emptyset$, the empty set.
+\end{itemize}
+\end{itemize}
+
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+
+
+\section{Cycle Machines}
+\label{section:cycle_machines}
 
 \label{definition:cycle_machine}
 \hypertarget{definition:cycle_machine}{}
@@ -1066,7 +1220,12 @@ $\psi(C_n, j, k) = \phi(C_n, j + k)$
 \hypertarget{theorem:bridge_theorem}{}
 \begin{tcolorbox}
 \textbf{Bridge Theorem}\\
-For any cycle machine $C_n$, for any $k \in \mathbb{N}$, $\phi(C_n, k) = \beta(\omega(p_0, k))$
+For any cycle machine $C_n$, for any $k \in \mathbb{N}$,
+
+\begin{center}
+$\phi(C_n, k) = \beta(\omega(p_0, k))$
+\end{center}
+
 \end{tcolorbox}
 
 \noindent
@@ -1170,17 +1329,32 @@ For any cycle machine $C_n$, for any $j, k \in \mathbb{N}$, $\psi(C_n, j, k) = \
 
 
 
+
+
 \label{theorem:cycle_machine_remainder_theorem}
 \hypertarget{theorem:cycle_machine_remainder_theorem}{}
 \begin{tcolorbox}
 \textbf{Cycle Machine Remainder Theorem}\\
-For any cycle machine $C_n$, for any $j, k \in \mathbb{N}$, $\Psi(C_n, j, k) = \rho(n, j + k)$
+For any cycle machine $C_n$, for any $j, k \in \mathbb{N}$,
+
+\begin{center}
+$\Psi(C_n, j, k) = \rho(n, j + k)$
+\end{center}
+
+\noindent In other words, the position of the cycle machine $C_n$ after taking $k$ transitions from step $j$ is simply the remainder of $(j + k)$ when divided by $n$.
+
 \end{tcolorbox}
 
 \noindent
 \textit{Proof}
 
-\noindent
+\noindent $\Psi(C_n, j, k)$ is defined as the index of the point $\psi(C_n, j, k)$.\\
+
+\noindent By \hyperlink{corollary:bridged_state_function}{previous corollary}, $\psi(C_n, j, k) = \beta(\omega(p_0, j + k))$.\\
+
+\noindent By the \hyperlink{theorem:omega_walk_theorem}{omega walk theorem}, $\omega(p_0, j + k) = p_i$, where $i = \rho(n, j + k)$.\\
+
+\noindent As such, $\psi(C_n, j, k) = \beta(p_i) = s_i$. Thus, $\Psi(C_n, j, k) = i = \rho(n, j + k)$.
  
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
@@ -1190,85 +1364,53 @@ For any cycle machine $C_n$, for any $j, k \in \mathbb{N}$, $\Psi(C_n, j, k) = \
 
 
 
-\section{Cycle Graph State Function}
+\section{Activation Cycle Machines}
+\label{section:activation_cycle_machines}
+\hypertarget{section:activation_cycle_machines}{}
+
 
 
 
 \label{definition:state_position_function}
 \hypertarget{definition:state_position_function}{}
 \begin{tcolorbox}
-\textbf{Definition}\\
-For any cycle graph $G_n$ with points $P = \{ p_i | i \in [n] \}$, we define the state position function $\psi : (G_n, \mathbb{N}, \mathbb{N}) \rightarrow P$ as:
+\textbf{Definition}
 
-\begin{center}
-$\psi(G_n, j, k) = \omega(p_0, j + k)$ for any $j, k \in \mathbb{N}$.
-\end{center}
+\noindent For any $a, n \in \mathbb{N}$ such that $a < n$, the \textit{activation cycle machine}, $C_{a, n}$ is the the cycle machine $C_n$, with the additional property that the first $a$ states, $\{$ $s_i$ $|$ $0 \leq i < a$ $\}$, of the machine are called \textit{activators}, and the remaining $(n - a)$ states, $\{$ $s_i$ $|$ $a \leq i < n$ $\}$, are called \textit{non-activators}.\\
 
-\noindent The first integer argument to $\psi$ is called the \textit{step}; and the second integer argument is referred to as the \textit{count}.\\
+\noindent The activation cycle machine, $C_{a, n}$, is \textit{active} if the state of the current step is one of the activators; and it is called \textit{inactive} if the current state is one of the non-activators.
 
-\noindent If $\psi(G_n, j, k) = p_i$, we say $p_i$ is the \textit{position} of $G_n$ after $k$ transitions from step $j$.\\
-
-\noindent For simplicity, we will often specify we are working with some specific cycle graph $G_n$ and exclude it as an argument to $\psi$.
 \end{tcolorbox}
 
 
 
 
-\noindent
-\\
-The state position function is fairly: it simply reduces down to an $\omega$ function with the fixed point $p_0$. As such, since we know $\omega$ is well defined, we immediately know that $\psi$ is also well defined.\\
-
-\noindent Before we begin studying the state position function in detail, let us quickly define one more function, $\Psi$.\\
 
 
 
 
-\label{definition:state_function}
-\hypertarget{definition:state_function}{}
+\label{theorem:activation_remainder_theorem}
+\hypertarget{theorem:activation_remainder_theorem}{}
 \begin{tcolorbox}
-\textbf{Definition}\\
-For any cycle graph $G_n$, for any $j, k \in \mathbb{N}$, we define the \textit{state function} $\Psi : (G_n, \mathbb{N}, \mathbb{N}) \rightarrow [n]$
-to be the index of the point $\psi(G_n, j, k)$.\\
+\textbf{Activation Remainder Theorem}
 
-\noindent If $\Psi(G_n, j, k) = t$, we say $G_n$ is on state $t$ after $k$ transitions from step $j$.\\
-
-\noindent For simplicity, we will often specify we are working with some specific cycle graph $G_n$ and exclude it as an argument to $\Psi$.
-\end{tcolorbox}
-\noindent
-
-
-
-\label{definition:state_function}
-\hypertarget{definition:state_function}{}
-\begin{tcolorbox}
-\textbf{Lemma}\\
-For any cycle graph $G_n$, for any integers $j,k \in \mathbb{N}$:
-
-\begin{center}
-$\Psi(G_n, j, k) = \rho(n, j + k)$
-\end{center}
+\noindent For any activation cycle machine $C_{a, n}$, for any $k \in \mathbb{N}$,  $C_{a, n}$ is active on step $k$ if and only if $\rho(n, k) < a$.
 
 \end{tcolorbox}
 
 \noindent
 \textit{Proof}
 
-\noindent This proof follows directly from the our definitions of $\Psi$, $\psi$, and $\Omega$ as well as the \hyperlink{theorem:omega_walk_theorem}{Omega Walk Theorem} from last section.\\
+\noindent Let $C_{a, n}$ be any activation cycle machine. Let $k \in \mathbb{N}$.\\
 
-\noindent Let $G_n$ be any cycle graph and let $j, k$ be any integers in $\mathbb{N}$.\\
+\noindent By definition, the position of $C_{n,a}$ on step $k$ is the position of the cycle machine $C_n$ on step $k$.\\
 
-\noindent By definition of $\Psi$, we know $\Psi(G_n, j, k)$ will be equal to the index of  $\psi(G_n, j, k)$.\\
+\noindent The cycle machine remainder theorem tells us that $\psi(C_n, k) = s_i$ where $i = \rho(n, k)$.\\
 
-\noindent By definition of $\psi$, we know $\psi(G_n, j, k) = \omega(p_0, j + k)$.\\
+\noindent By definition, $C_{a, n}$ is active only if $s_i \in \{$ $s_j$ $|$ $0 \leq j < a$ $\}$.\\
 
-\noindent By definition of $\Omega$, the index of point $\omega(p_0, j + k)$ is given by $\Omega(p_0, j + k)$.\\
+\noindent As such, $C_{a, n}$ is active on step $k$ if and only if $\rho(n, k) < a$.
 
-\noindent As such, we have that $\Psi(G_n, j, k) = \Omega(p_0, j + k)$.\\
-
-\noindent We can now apply the \hyperlink{theorem:omega_walk_theorem}{Omega Walk Theorem} to complete our proof:
-\begin{center}
-$\Psi(G_n, j, k) = \Omega(p_0, j + k) = \rho(n, j + k + 0) = \rho(n, j + k)$.
-\end{center}
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
@@ -1278,214 +1420,69 @@ $\Psi(G_n, j, k) = \Omega(p_0, j + k) = \rho(n, j + k + 0) = \rho(n, j + k)$.
 
 
 
+\section{Awkward State Machines}
+\label{section:awkward_state_machines}
+\hypertarget{section:awkward_state_machines}{}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{tcolorbox}
-\textbf{Lemma}\\
-The bridge functions $\alpha$ and $\beta$ are inverses.
-\end{tcolorbox}
-
-\noindent
-\textit{Proof}
-
-\noindent We need to show that for any $p_i$ that $\alpha(\beta(p_i)) = p_i$, and that for any $s_i$ that $\beta(\alpha(s_i)) = s_i$.\\
-
-\noindent Let $p_i \in P$ be any point of cycle graph $G_n$.\\ 
-
-\noindent By definition of $\beta$, $\beta(p_i) = s_i$.\\
-
-\noindent By definition of $\alpha$, $\alpha(s_i) = p_i$.\\
-
-\noindent Thus, $\alpha(\beta(p_i)) = \alpha(s_i) = p_i$.\\
-
-\noindent Let $s_i \in S$ be any of state of cycle machine $C_n$.\\
-
-\noindent Then, $\beta(\alpha(s_i)) = \beta(p_i) = s_i$
-
-\noindent 
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
-
-
-
-
-
-\begin{tcolorbox}
-\textbf{Lemma}\\
-For any cycle machine $C_n$, for any integer $k \in \mathbb{N^+}$,
-
-\begin{center}
-$\phi(C_n, k) = 
-\alpha(\omega(\beta(\phi(C_n, k - 1)), 1))$
-\end{center}
-\end{tcolorbox}
-
-\noindent
-\textit{Proof}
-
-\noindent This will be a proof by induction on $k$.\\
-
-
-\noindent
-\textit{Base Case}
-
-\noindent Let $k = 1$. We need to show $\phi(C_n, 1) = \alpha(\omega(\beta(\phi(C_n, 0)), 1))$.\\
-
-\noindent $\phi(C_n, 1)$ is defined to be the state after transitioning once from the initial state.\\
-
-\noindent By definition of a cycle machine the initial state, $s_0$, transitions to state $s_1$.\\
-
-\noindent As such, $\phi(C_n, 1) = s_1$.\\
-
-\noindent Now let us turn our attention to the left side of our equation.\\
-
-\noindent $\phi(C_n, 0) = s_0$ by previous lemma.\\
-
-\noindent $\beta(s_0) = p_0$ by definition of $\beta$.\\
-
-\noindent $\omega(p_0, 1) = p_1$ by previous lemma.\\
-
-\noindent $\alpha(p_1) = s_1$ by definition of $\alpha$.\\
-
-\noindent As such, $\phi(C_n, 1) = s_1 = \alpha(\omega(\beta(\phi(C_n, 0)), 1))$.\\
-
-
-\noindent
-\textit{Inductive Hypothesis}
-
-\noindent Assume for all $j < k$, that $\phi(C_n, j) = \alpha(\omega(\beta(\phi(C_n, j - 1)), 1))$.\\
-
-
-\noindent
-\textit{Inductive Step}
-
-\noindent We need to show that $\phi(C_n, k) = \alpha(\omega(\beta(\phi(C_n, k - 1)), 1))$.\\
-
-\noindent $\phi(C_n, k - 1) = \alpha(\omega(\beta(\phi(C_n, k - 2)), 1))$
-
-
-
-\noindent 
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
-
-
-
-
-
-\noindent We are going to be interested in studying the result of carrying out multiple transitions of cycle machines. As such, let us now define two functions - the state function, and the state index function - to allow us to more succinctly talk about transitions of an arbitrary cycle machine.\\
-
-
-
-\label{definition:state_function}
-\hypertarget{definition:state_function}{}
+\label{definition:awkward_state_machine}
+\hypertarget{definition:awkward_state_machine}{}
 \begin{tcolorbox}
 \textbf{Definition}
 
-\noindent For any cycle machine $C_n$ with states $S$, for any state $s_i \in S$, for any $j, k \in \mathbb{N}$, we define the \textit{state function}, $\psi(C_n, j, k)$, to be the state of cycle machine $C_n$ after completing $k$ subsequent transitions from step $j$.\\
+\noindent For any $a, n \in \mathbb{N^+}$ such that $a < n$, the \textit{awkward state machine}, $W_{a, n}$ is a state machine equipped with the state-based set consisting of elements of the form $(C_{i,j}, k)$, where $C_{i, j}$ is an activation cycle machine, and $k$ is the position of $C_{i, j}$.\\
 
-\noindent Furthermore, we define the \textit{state position function}, $\Psi(C_n, j, k)$ to be index of the state $\psi(C_n, j, k)$.
-\end{tcolorbox}
-\noindent
+\noindent We denote the set of activation cycle machines and their positions associated with the awkward state machine on step $t$ as $A_t$.
 
+\begin{itemize}
 
-\label{definition:state_function}
-\hypertarget{definition:state_function}{}
-\begin{tcolorbox}
-\textbf{Definition}
+\item On the initial state of any awkward state machine, $W_{a, n}$, the set of activation cycle machines and their positions, $A_0$, consists only of the point $(0, C_{a, a + n})$.
 
-\noindent For any cycle machine $C_n$ with states $S$, for any state $s_i \in S$, for any $j, k \in \mathbb{N}$, we define the \textit{state function}, $\psi(C_n, j, k)$, to be the state of cycle machine $C_n$ after completing $k$ subsequent transitions from step $j$.\\
+\item $A_{t + 1} = \{$ $(\Psi(C_{i + j}, v + 1), C_{i, j})$ $|$ $(v, C_{i, j}) \in A_t$ $\}$.
 
-\noindent Furthermore, we define the \textit{state position function}, $\Psi(C_n, j, k)$ to be index of the state $\psi(C_n, j, k)$.
-\end{tcolorbox}
-\noindent
+\item For any step $t$, if $(C_{i,j}, k) \in A_t$, then $(C_{i, j}, v) \in A_{t+1}$, where $v$ is the subsequent position to position $k$ of activation cycle machine $C_{i, j}$. In other words, all existing activation cycle machines undergo a transition whenever the awkward state machine does.
 
+\item For any step $t$, if for every activation cycle machine $C_{i,j}$, such that $(C_{i,j}, k) \in A_t$, is inactive on the next transition, then the point $(C_{a, t + n}, 0)$ is added to the set of running activation cycle machines on the next transition of the awkward state machine.
 
-
-\begin{tcolorbox}
-\textbf{Lemma}\\
-For any cycle machine $C_n$, $\psi(C_n, 0, 0) = s_0$.
+\end{itemize}
 \end{tcolorbox}
 
-\noindent
-\textit{Proof}
-
-\noindent $\psi(C_n, 0, 0)$ is defined to be the state of cycle machine $C_n$ after $0$ transitions from step $0$.\\
-
-\noindent Step $0$ is defined to be the state of cycle machine $C_n$ after taking $0$ subsequent transitions from the initial state. As such, the machine is still at it's initial state on step $0$ since it does not transition states at all.\\
-
-\noindent As such, $\psi(C_n, 0, 0)$ is defined to be the state of the cycle machine after taking $0$ transitions from the initial state, as such, the machine is still at it's initial state.\\
-
-\noindent The initial state of a cycle machine is defined to be $s_0$. 
-
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
 
 
 
-\begin{tcolorbox}
-\textbf{Lemma}\\
-For any cycle machine $C_n$ with states $S$, let $f: S \rightarrow P$ be defined as $f(s_i) = p_i$, where $P$ is the set of points of the cycle graph $G_n$.\\
 
-\noindent Furthermore, $f$ is clearly invertible with $f^{-1}(p_i) = s_i$.\\
 
-\noindent Then for any state $s_i$, the subsequent state is given by $f^{-1}(\omega(f(s_i), 1))$, where $f^{-1}$ is the inverse of the function $f$.\\
-\end{tcolorbox}
 
-\noindent
-\textit{Proof}
 
-\noindent Let $s_i$ be any state such that $i < n - 1$.\\
 
-\noindent By definition of a cycle machine, we know the subsequent state of $s_i$ is defined to be $s_{i+1}$.\\
 
-\noindent By definition of $f$, we have that $f(s_i) = p_i$.\\
 
-\noindent As such $\omega(f(s_i), 1) = \omega(p_i, 1)$.\\
 
-\noindent By \hyperlink{lemma:walk_1}{previous lemma}, we know $\omega(p_i, 1) = p_{i+1}$ since $i < n - 1$.\\
 
-\noindent Thus, by substitution $f^{-1}(\omega(f(s_i), 1)) = f^{-1}(p_{i+1}) = s_{i+1}$.\\
 
-\noindent Now we are left with showing that the transition from $s_{n-1}$ is given by $f^{-1}(\omega(f(s_{n-1}), 1))$.\\
 
-\noindent By definition of a cycle machine, we know that the subsequent state of $s_{n-1}$ is defined to be $s_0$.\\
 
-\noindent By definition of $f$, we have that $f(s_{n-1}) = p_{n-1}$.\\
 
-\noindent By \hyperlink{lemma:walk_1}{previous lemma}, we know $\omega(p_{n-1}, 1) = p_0$.\\
 
-\noindent Thus, by substitution $f^{-1}(\omega(f(s_{n-1}), 1)) = f^{-1}(p_0) = s_0$.\\
 
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
 
-\section{Activation Cycle Machines}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Activation Cycle Machines Old}
 With a few, minor modifications to cycle graphs, we can create \textit{activation cycle machines}; and in doing so, bring ourselves one step closer to understanding awkward state machines. So what exactly is an activation cycle machine? Let us answer that question by first looking at the formal definition; and then taking some time to examine its meaning afterward.\\
 \\
 \begin{tcolorbox}

@@ -3,16 +3,19 @@
 \BOOKMARK [2][-]{subsection.2.1}{Notations}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{The Remainder Theorem}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Graphs}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Cycle Graphs}{}% 6
-\BOOKMARK [2][-]{subsection.3.1}{Basic Definitions}{section.3}% 7
-\BOOKMARK [3][-]{subsubsection.3.1.1}{The Walk Functions}{subsection.3.1}% 8
-\BOOKMARK [2][-]{subsection.3.2}{Validity of the Walk Function}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.3}{Composition of Walks}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.4}{Shortest Walks}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.5}{Repetition of Walks}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.6}{Remainders}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.7}{Omega Walk Theorem}{section.3}% 14
-\BOOKMARK [1][-]{section.4}{Cycle Machines}{}% 15
-\BOOKMARK [1][-]{section.5}{Cycle Graph State Function}{}% 16
-\BOOKMARK [1][-]{section.6}{Activation Cycle Machines}{}% 17
-\BOOKMARK [1][-]{section.7}{Awkward State Machines}{}% 18
+\BOOKMARK [1][-]{section.3}{State Machines}{}% 6
+\BOOKMARK [1][-]{section.4}{Cycle Graphs}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Basic Definitions}{section.4}% 8
+\BOOKMARK [3][-]{subsubsection.4.1.1}{The Walk Functions}{subsection.4.1}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Validity of the Walk Function}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Composition of Walks}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.4}{Shortest Walks}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.5}{Repetition of Walks}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.6}{Remainders}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.7}{Omega Walk Theorem}{section.4}% 15
+\BOOKMARK [1][-]{section.5}{Cycle Machines As State Machines}{}% 16
+\BOOKMARK [1][-]{section.6}{Cycle Machines}{}% 17
+\BOOKMARK [1][-]{section.7}{Activation Cycle Machines}{}% 18
+\BOOKMARK [1][-]{section.8}{Awkward State Machines}{}% 19
+\BOOKMARK [1][-]{section.9}{Activation Cycle Machines Old}{}% 20
+\BOOKMARK [1][-]{section.10}{Awkward State Machines}{}% 21
