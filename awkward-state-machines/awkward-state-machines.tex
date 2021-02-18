@@ -875,15 +875,17 @@ $\Omega(p_i, \rho(n, t)) = \rho(n, t) - (n - i) = (t - qn) - (n - i) = (i + t) -
 
 
 
-\section{Cycle Machines As State Machines}
-\label{section:cycle_machines_as_state_machines}
-\hypertarget{section:cycle_machines}{}
+\section{Activation Cycle Machines}
+\label{section:activation_cycle_machines}
+\hypertarget{section:activation_cycle_machines}{}
 
-\noindent In this section, we will begin working with the \textit{cycle machine}, a state machine based on taking walks around a cycle graph.\\
+\noindent In this section, we will begin working with \textit{activation cycle machines}, state machines based on taking walks around a cycle graph.\\
 
 
-\label{definition:cycle_machine}
-\hypertarget{definition:cycle_machine}{}
+
+
+\label{definition:activation_cycle_machine}
+\hypertarget{definition:activation_cycle_machine}{}
 \begin{tcolorbox}
 \textbf{Definition}\\
 For any integers $a, n \in \mathbb{N^+}$ such that $a < n$, we define the \textit{activation cycle machine}, $C_{a, n}$, to be a state machine with two properties:
@@ -915,10 +917,105 @@ The initial state is defined to be $(p_0,$ $true)$.\\
 
 
 
+\noindent \\The activation cycle machine is a great machine to begin our study of state machines with since it is rather simple. With each transition, the next position is just the adjacent point in the underlying cycle graph $G_n$. While the active property is simply checking if the index of the adjacent point is less than the number of activators.\\
+
+\noindent Since we've already dedicated an entire section of this paper to the study of walks on cycle graphs, we will easily be able to apply all our accumulated knowledge to activation cycle machines.
 
 
-\label{definition:cycle_machine}
-\hypertarget{definition:cycle_machine}{}
+
+
+
+
+
+\label{lemma:acm_position}
+\hypertarget{lemma:acm_position}{}
+\begin{tcolorbox}
+\textbf{Lemma}\\
+For any activation cycle machine, $C_{a, n}$, for any integer $i \in \mathbb{N}$, the state of the machine on step $i$ is given by:
+\begin{center}
+$\phi(C_{a, n}, i) = (p_b, b < a)$ where $b = \rho(n, i)$.
+\end{center}
+\end{tcolorbox}
+
+
+\noindent
+\textit{Proof}
+
+\noindent We shall complete this proof by induction on the step, $i$.\\
+
+
+\noindent
+\textbf{Base Case} $i = 0$
+
+\noindent The initial state of any activation cycle machine, $C_{a,n}$, is defined to be $\phi(C_{a,n}, 0) = (p_0, true)$.\\
+
+\noindent Furthermore, $\rho(n, 0) = 0 < a$.\\
+
+
+\noindent
+\textbf{Inductive Hypothesis}
+
+\noindent Assume for all $j < i$, that $\phi(C_{a, n}, j) = (p_b, b < a)$ where $b = \rho(n, j)$.\\
+
+
+\noindent
+\textbf{Inductive Step}
+
+\noindent By definition, $\phi(C_{a, n}, i) = T(\phi(C_{a,n}, i - 1))$ where $T$ is the transition function of $C_{a, n}$.\\
+
+\noindent By hypothesis, $\phi(C_{a,n}, i - 1) = (p_b, b < a)$ where $b = \rho(n, i - 1)$.\\
+
+\noindent Applying the position transition function, $T_0$, to $(p_b, b < a)$ yields:
+\begin{center}
+$T_0(p_b, b < a) = \omega(G_n, p_b, 1)$
+\end{center}
+
+\noindent By previous lemma, $\omega(G_n, p_b, 1) = p_k$, where $k = 0$ whenever $b = n - 1$, otherwise, $k = b + 1$.\\
+
+\noindent As such, if we can show that $\rho(n, i) = 0$ whenever $b = n - 1$, and $\rho(n, i) = b + 1$ whenever $b < n - 1$, then we will have completed our proof.\\
+
+
+\noindent
+\textbf{Case:} $b = n - 1$
+
+\noindent There exists some integer $j \in \mathbb{N}$ such that $(i - 1) - nj = \rho(n, i - 1) = n - 1$ by definition.\\
+
+\noindent Subtracting $n - 1$ from both sides yields:
+\begin{center}
+$0 = ((i - 1) - nj) - (n - 1) = (i - 1 + 1) - nj - n = i - n(j + 1)$
+\end{center}
+
+\noindent Thus, by previous lemma, $\rho(n, i) = 0$\\
+
+
+\noindent
+\textbf{Case:} $b < n - 1$
+
+\noindent There exists some integer $j \in \mathbb{N}$ such that $(i - 1) - nj = \rho(n, i - 1) = b$ by definition.\\
+
+\noindent Adding $1$ to both sides yields:
+\begin{center}
+$b + 1 = ((i - 1) - nj) + 1 = i - nj$
+\end{center}
+
+\noindent Since $b < n - 1$, then $b + 1 \leq n - 1$, thus $b + 1 \in [n]$.\\
+
+\noindent As such, by previous lemma, $b + 1 = \rho(n, i)$
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+
+\label{definition:activation_cycle_power_set}
+\hypertarget{definition:activation_cycle_power_set}{}
 \begin{tcolorbox}
 \textbf{Definition}\\
 The \textit{activation cycle power set}, $C^{\infty}$, is defined to be the power set of the set containing every state of every activation cycle machine.
@@ -926,8 +1023,18 @@ The \textit{activation cycle power set}, $C^{\infty}$, is defined to be the powe
 
 
 
-\label{definition:cycle_machine}
-\hypertarget{definition:cycle_machine}{}
+
+
+
+
+
+\section{Awkward State Machines}
+\label{section:awkward_state_machines}
+\hypertarget{section:awkward_state_machines}{}
+
+
+\label{definition:awkward_state_machine}
+\hypertarget{definition:awkward_state_machine}{}
 \begin{tcolorbox}
 \textbf{Definition}\\
 For any integers $a, n \in \mathbb{N^+}$, we define the \textit{awkward state machine}, $O_{a,n}$, to be a state machine with two properties:
@@ -962,7 +1069,34 @@ We say that the awkward state machine $O_{a,n}$ has $a$ \textit{activators} and 
 
 
 
-\noindent \\ The definition of an awkward state machine may first appear complex, but it is actually quite simple. The index property is simply incremented by 1 with each transition, keeping it in sync with the step. With each transition, all the states within the current cycle set are transitioned to their next state, in the event that every resulting state is inactive, then we also add a new state of an activation cycle machine to the cycle set. Furthermore, the new state added is active. As such, the cycle set of an awkward state machine always contains at least one active activation cycle machine.
+\noindent \\ The definition of an awkward state machine may first appear complex, but it is actually quite simple. The index property is simply incremented by 1 with each transition, keeping it in sync with the step. With each transition, all the states within the current cycle set are transitioned to their next state, in the event that every resulting state is inactive, then we also add a new state of an activation cycle machine to the cycle set. Furthermore, the new state added is active. As such, the cycle set of an awkward state machine always contains at least one active activation cycle machine.\\
+
+\noindent Since an awkward state machine has the capacity to grow it's cycle set, there are many interesting questions we can ask: does every awkward state machine's cycle set grow in size? If so, does the cycle set grow infinitely large, or will the machine's cycle set eventually reach some fixed size and never add another cycle machine? What do we know about the lengths of the cycle machines contained within the cycle set? Do any two awkward state machines produce the same cycle set? Can we find a mapping from one awkward state machine's cycle set to another machines?\\
+
+
+\noindent Within this section we will answer all of these questions. We will find that every awkward state machine's cycle set will grow infinitely in size if we keep applying transitions; that no two awkward state machines produce the same cycle set; and that there are in fact simple maps between the cycle sets of certain awkward state machines.\\
+
+
+
+\label{definition:awkward_number_set}
+\hypertarget{definition:awkward_number_set}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent The \textit{awkward number set}, $S_{a, n}$, is defined to be the set of the lengths of the activation cycle machines contained the cycle set of any state of the awkward state machine $O_{a, n}$.
+\end{tcolorbox}
+
+\noindent \\ Since the cycle set of an awkward state machine only adds more activation cycle machines, but never drops one or changes the length of one of it's members, the \textit{awkward number set} is a valid definition. We will find the elements within awkward number sets to be rather interesting, in particular, we will prove that the awkward number set $S_{1, 1}$ is in fact the set of prime numbers. Furthermore, we will find that every awkward number set has very similar divisibility properties to the primes.
+
+
+
+
+
+
+
+
+
+
 
 
 
