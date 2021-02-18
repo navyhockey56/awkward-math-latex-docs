@@ -894,15 +894,21 @@ For any integers $a, n \in \mathbb{N^+}$ such that $a < n$, we define the \texti
 \item \textit{active} which belongs to the boolean set $B = \{true, false\}$.
 \end{itemize}
 
-The transition function, $T: P \times B \rightarrow P \times B$, of a an activation cycle machine is defined by property:
-\begin{itemize}
-\item $T_0(p, b) = \omega(G_n, p, 1)$ for position
-\item $T_1(p, b) = \Omega(G_n, p, 1) < a$ for active
-\end{itemize}
+The position transition function is defined to be:
+\begin{center}
+$T_0(p, b) = \omega(G_n, p, 1)$
+\end{center}
+
+The active transition function is defined to be:
+\begin{center}
+$T_1(p, b) = \Omega(G_n, p, 1) < a$ 
+\end{center}
 
 The initial state is defined to be $(p_0,$ $true)$.\\
 
-\noindent Whenever an activation cycle machine's active property is $true$, we say that the machine is \textit{active}, otherwise, we say the machine is \textit{inactive}.
+\noindent Whenever an activation cycle machine's active property is $true$, we say that the machine is \textit{active}, otherwise, we say the machine is \textit{inactive}.\\
+
+\noindent We say that the activation cycle machine $C_{a, n}$ has $a$ \textit{activators} and a \textit{length} of $n$.
 
 \end{tcolorbox}
 
@@ -924,7 +930,7 @@ The \textit{activation cycle power set}, $C^{\infty}$, is defined to be the powe
 \hypertarget{definition:cycle_machine}{}
 \begin{tcolorbox}
 \textbf{Definition}\\
-For any integers $a, n \in \mathbb{N^+}$, we define the \textit{awkward state machine}, $C_n$, to be a state machine with two properties:
+For any integers $a, n \in \mathbb{N^+}$, we define the \textit{awkward state machine}, $O_{a,n}$, to be a state machine with two properties:
 
 \begin{itemize}
 \item An \textit{index}, which belongs set of natural numbers, $\mathbb{N}$;
@@ -933,24 +939,30 @@ For any integers $a, n \in \mathbb{N^+}$, we define the \textit{awkward state ma
 
 \end{itemize}
 
-The transition function, $T: \mathbb{N} \times C^{\infty} \rightarrow \mathbb{N} \times C^{\infty}$, is defined by property:
+The index transition function, $T_0: \mathbb{N} \times C^{\infty} \rightarrow \mathbb{N} \times C^{\infty}$, is defined as:
+\begin{center}
+$T_0(i, C) = i + 1$
+\end{center}
 
-\begin{itemize}
-
-\item index: $T_0(i, C) = i + 1$
-
-\item cycle set: $T_1(i, C) = A \cup B$
+The cycle set transition function, $T_1: \mathbb{N} \times C^{\infty} \rightarrow C^{\infty}$, is defined as:
+\begin{center}
+$T_1(i, C) = A \cup B$
+\end{center}
+where
 \begin{itemize}
 \item $A = \{$ $\phi(O, j + 1)$ $|$ $\phi(O, j) \in C$ $\}$
 
-\item $B = \{ \phi(C_{a, b}, 0) \}$ with $b = i + a + n + 1$ if the state of every machine in $A$ is inactive. Otherwise, $B = \emptyset$, the empty set.
-\end{itemize}
+\item $B = \{ \phi(C_{a, b}, 0) \}$ with $b = i + a + n + 1$, if the state of every machine in $A$ is inactive. Otherwise, $B = \emptyset$, the empty set.
 \end{itemize}
 
+The initial state of any awkward state machine, $O_{a,n}$ has an index of $0$ and a cycle set equal to $\{$ $\phi(C_{a, a + n}, 0)$ $\}$.\\
+
+We say that the awkward state machine $O_{a,n}$ has $a$ \textit{activators} and $n$ \textit{initial non-activators}.
 \end{tcolorbox}
 
 
 
+\noindent \\ The definition of an awkward state machine may first appear complex, but it is actually quite simple. The index property is simply incremented by 1 with each transition, keeping it in sync with the step. With each transition, all the states within the current cycle set are transitioned to their next state, in the event that every resulting state is inactive, then we also add a new state of an activation cycle machine to the cycle set. Furthermore, the new state added is active. As such, the cycle set of an awkward state machine always contains at least one active activation cycle machine.
 
 
 
