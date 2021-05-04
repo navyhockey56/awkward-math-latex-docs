@@ -1064,7 +1064,9 @@ where
 
 The initial state of any awkward state machine, $O_{a,n}$ has an index of $0$ and a cycle set equal to $\{$ $\phi(C_{a, a + n}, 0)$ $\}$.\\
 
-We say that the awkward state machine $O_{a,n}$ has $a$ \textit{activators} and $n$ \textit{initial non-activators}.
+We say that the awkward state machine $O_{a,n}$ has $a$ \textit{activators} and $n$ \textit{initial non-activators}.\\
+
+If the set $B = \{ \phi(C_{a, b}, 0) \}$ from our cycle set transition function, then we say that activation cycle machine $C_{a, b}$ is \textit{discovered} on step $i + 1$
 \end{tcolorbox}
 
 
@@ -1086,7 +1088,60 @@ We say that the awkward state machine $O_{a,n}$ has $a$ \textit{activators} and 
 \noindent The \textit{awkward number set}, $S_{a, n}$, is defined to be the set of the lengths of the activation cycle machines contained the cycle set of any state of the awkward state machine $O_{a, n}$.
 \end{tcolorbox}
 
-\noindent \\ Since the cycle set of an awkward state machine only adds more activation cycle machines, but never drops one or changes the length of one of it's members, the \textit{awkward number set} is a valid definition. We will find the elements within awkward number sets to be rather interesting, in particular, we will prove that the awkward number set $S_{1, 1}$ is in fact the set of prime numbers. Furthermore, we will find that every awkward number set has very similar divisibility properties to the primes.
+
+
+
+
+\noindent \\ Since the cycle set of an awkward state machine only adds more activation cycle machines, but never drops one or changes the length of one of it's members, the \textit{awkward number set} is a valid definition. We will find the elements within awkward number sets to be rather interesting, in particular, we will prove that the awkward number set $S_{1, 1}$ is in fact the set of prime numbers. Furthermore, we will find that every awkward number set has very similar divisibility properties to the primes.\\
+
+
+\noindent Without further ado, let dive into the study of awkward state machines.\\
+
+
+
+
+
+
+\label{lemma:index_is_step}
+\hypertarget{lemma:index_is_step}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any awkward state machine, $O_{a, n}$, the index of the state on step $i$ is equal to $i$ for any step.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent We shall complete this proof by induction on the step, $i$.\\
+
+\noindent
+\textbf{Base Case} $i = 0$
+
+\noindent By definition, the index of the initial state is $0 = i$.\\
+
+
+\noindent
+\textbf{Induction Hypothesis}
+
+\noindent Assume for all integers $j < i$, that the index of the state of step $j$ is $j$.\\
+
+
+\noindent
+\textbf{Inductive Step}
+
+\noindent Since $\phi(O_{a, n}, i) = T(\phi(O_{a, n}, i - 1))$, then the index on step $i$ is given by $T_0(k, C)$ where $k$ is the index of the state of the awkward state machine on step $i - 1$.\\
+
+\noindent By inductive hypothesis the index $k$ is equal to the step $i - 1 = k$.\\
+
+\noindent As such, the index on step $i$ is:
+\begin{center}
+$T_0(k, C) = T_0(i - 1, C) = (i - 1) + 1 = i$
+\end{center}
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
 
 
 
@@ -1100,9 +1155,187 @@ We say that the awkward state machine $O_{a,n}$ has $a$ \textit{activators} and 
 
 
 
+\label{lemma:2nd_cycle}
+\hypertarget{lemma:2nd_cycle}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+\noindent For any awkward state machine, $O_{a, n}$, for any $i \in [a]$, the cycle set of step $i$ has only a single element. Furthermore, on step $a$, the awkward state machine discovers the activation cycle machine $C_{a, b}$, where $b = 2a + n$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent In order to complete this proof, we will first show that if we are on any step $i \in [a]$, that a new cycle cannot be discovered because the initial cycle will be active. Afterwards, we will show that the initial cycle is inactive on step $a$, and thus a new cycle must be discovered.\\
+
+\noindent
+\textbf{Case} $i \in [a]$
+
+\noindent By previous lemma, $\phi(C_{a, a + n}, i) = (p_b, b < a)$ where $b = \rho(a + n, i)$.\\
+
+\noindent As such, $C_{a, n}$ is active on step $i$ whenever $b < a$.\\
+
+\noindent By stipulation, $i < a < a + n$, thus $\rho(a + n, i) = i = b$ by previous lemma.\\
+
+\noindent Thus, $C_{a, n}$ is active on any step $i \in [a]$. As such, the cycle set of $O_{a, n}$ is equal to $\{$ $\phi(C_{a, a + n}, i)$ $\}$.\\
+
+\noindent
+\textbf{Case} $i = a$
+
+\noindent Now let us consider the cycle set on step $a$.\\
+
+\noindent By definition, the cycle set on step $a$ is equal to $A \cup B$, such that
+\begin{itemize}
+\item $A = \{$ $\phi(C_{a, a + n}, (a - 1) + 1)$ $\} = \{$ $\phi(C_{a, a + n}, a)$ $\}$
+\item $B = \{$ $\phi(C_{a, a + n + a}, 0$ $\}$ if every element of $A$ is inactive; otherwise, $B = \emptyset$.
+\end{itemize}
+
+\noindent By previous lemma, $\phi(C_{a, a + n}, a) = (p_b, b < a)$ where $b = \rho(a + n, a)$.\\
+
+\noindent Furthermore, $a < a + n$, as such, by previous lemma $\rho(a + n, a) = a$.\\
+
+\noindent Thus, $\phi(C_{a, a + n}, a)$ is inactive. Furthermore, $\phi(C_{a, a + n}, a)$ is the only element of $A$; as such,
+\begin{center}
+$B = \{$ $\phi(C_{a, a + n + a}, 0$ $\} = \{$ $\phi(C_{a, 2a + n}, 0$ $\}$
+\end{center}
+
+\noindent Thus, the cycle set on step $a$ is equal to 
+\begin{center}
+$A \cup B = \{$ $\phi(C_{a, a + n}, a), \phi(C_{a, 2a + n}, 0)$ $\}$
+\end{center}
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
 
 
 
+
+
+
+
+
+\label{lemma:min_cycle_length}
+\hypertarget{lemma:min_cycle_length}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any awkward number set $S_{a,n} = \{s_j\}$, for any $i \in \mathbb{N^+}$:
+\begin{center}
+$s_i \geq s_{i-1} + a$
+\end{center}
+
+In terms of an awkward state machine: whenever a new cycle is discovered, then the new cycle's length with be at least $a$ greater than the next longest cycle within the cycle set.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a,n}$ be any awkward number set. By definition of an awkward state machine, the first element of the awkward number set, $s_0$, is equal to $a + n$.\\
+
+\noindent Furthermore, the previous lemma has a second element, $s_1 = 2a + n$, which is discovered on step $a$.\\
+
+\noindent As such, $s_1 = 2a + n = a + (a + n) = a + s_0$, thus the lemma holds for $s_1$.\\
+
+\noindent Let us assume that there exists some elements $s_j$, $j > 1$, such that $s_j < a + s_{j-1}$. We will show that this assumption leads to a contradiction.\\
+
+\noindent By definition, $s_j = k + a + n + 1$, where $k + 1$ is the index of the awkward state machine when it discovered $s_j$.\\
+
+\noindent Furthermore, $s_{j-1} = t + a + n + 1$, where $t + 1$ is the index the awkward state machine discovered $s_{j-1}$.\\
+
+\noindent By assumption, $s_j - s_{j-1} < a$. Substituting yields:
+\begin{center}
+$s_j - s_{j-1} = (k + a + n + 1) - (t + a + n + 1) = k - t < a$
+\end{center}
+
+\noindent As such, we know that $s_j$ is discovered $k - t$ transitions after $s_{j-1}$ is discovered.\\
+
+\noindent By definition, the awkward state machine corresponding to $s_j$ can only be discovered on step $k + 1$ if all the preexisting awkward cycle machines within the cycle set on step $k + 1$ were inactive. As such, the awkward cycle machine corresponding to $s_{j-1}$ must be inactive on step $k + 1$.\\
+
+\noindent In order for the state of the cycle machine corresponding to $s_{j-1}$ to be inactive on step $k + 1$, then it's position must be greater than $a$ on step $k + 1$.\\
+
+\noindent By definition, the position of the machine corresponding to $s_{j-1}$ is $0$ on step $t + 1$.\\
+
+\noindent Since $s_j$ is discovered $k - t$ transitions from step $t + $, then position of the machine corresponding to $s_{j-1}$ on step $k + 1$ is equal to $0 + (k - t) = k - t$ by previous lemma since $k - t < s_{j-1}$. TODO prove this lemma.\\
+
+\noindent As such, $k - t \geq a$ on step $k + 1$ since the cycle machine corresponding to $s_{j-1}$ is inactive on step $k + 1$. However, we already know that $k - t < a$ by our assumption, thus we have reached our contradiction.
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+\label{lemma:min_cycle_length}
+\hypertarget{theorem:infinite_cycles}{}
+\begin{tcolorbox}
+\textbf{Theorem}
+
+For any awkward state machine $O_{a,n}$, the awkward number set $S_{a,n}$ has an infinite number of elements.\\
+
+In other words, for any awkward state machine $O_{a,n}$, for any given step $j$, there exists some step $k > j$ that $O_{a,n}$ discovers a new cycle.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent This proof will be based off the proof for their being an infinite number of prime numbers. As such, we are going to assume there exists some step $j$ such that the last cycle is discovered, and then show this leads to a contradiction by constructing a step $k > j$ using the lengths of the cycles within the cycle set of the awkward state machine.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\label{lemma:min_cycle_length}
+\hypertarget{theorem:similar_awkward_series}{}
+\begin{tcolorbox}
+\textbf{Theorem}
+
+For any awkward number set $S_{a,n}$ such that $gcd(a, n) = g > 1$, for any element $s_i \in S_{a,n}$, $s_i = gcd(a,n)*s^*_i$, where $s^*_i \in S_{b, m}$, with $b = \frac{a}{gcd(a,n)}$ and $m = \frac{n}{gcd(a,n)}$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\label{lemma:min_cycle_length}
+\hypertarget{theorem:modularity_of_awkward_numbers}{}
+\begin{tcolorbox}
+\textbf{Theorem}
+
+For any awkward number set $S_{a,n}$, for any $i > 0$, the element $s_i$ is the least greatest integer such that $s_i > s_{i-1}$ and $mod(s_i, s_k) \geq a$ for all $k < i$. 
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+\label{lemma:min_cycle_length}
+\hypertarget{theorem:uniqueness_of_awkward_numbers}{}
+\begin{tcolorbox}
+\textbf{Theorem}
+
+Every awkward number set is unique.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
 
 \section{Cycle Machines}
 \label{section:cycle_machines}

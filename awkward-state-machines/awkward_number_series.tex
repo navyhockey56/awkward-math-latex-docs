@@ -1,0 +1,427 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue
+}
+
+\begin{document}
+
+\title{Awkward Number Series}
+\author{Will Dengler}
+\maketitle
+
+\section{Notation and Assumed Knowledge}
+\label{section:notation_and_assumed_knowledge}
+
+
+\label{definition:remainder_function}
+\hypertarget{definition:remainder_function}{}
+\begin{tcolorbox}
+\textbf{Notation}
+
+\begin{itemize}
+
+\item $\mathbb{Z}$ is defined to be the set of integers.
+
+\item $\mathbb{N} \subset \mathbb{Z}$ is defined to be the set of natural numbers, including $0$.
+
+\item $\mathbb{N}^+ \subset \mathbb{N}$ is defined to be the set of positive integers.
+
+\item For any $x \in \mathbb{N}^+$, $[x] = \{$ $j \in \mathbb{N}$ $|$ $j < x$ $\}$.
+
+\item $\mathbb{Q}$ is defined to be the set of rational numbers.
+
+\item For any $q \in \mathbb{Q}$, the \textit{ceiling function} $\ceil{q} = z$, where $z$ is the integer such that $z - 1 < q \leq z$.
+
+\item For any $x, y \in \mathbb{N}$, the function $gcd(x, y)$ is defined to be the greatest common divisor of $x$ and $y$.
+\end{itemize}
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+
+\label{definition:remainder_function}
+\hypertarget{definition:remainder_function}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any natural number $x$, for any positive integer $y$,  the remainder function $\rho : (\mathbb{N} \times \mathbb{N}^+) \rightarrow \mathbb{N}$, $\rho(x, y)$ is defined to be the remainder of $x$ when divided by $y$.
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+\label{assumed_knowledge:divisibility_uniqueness}
+\hypertarget{assumed_knowledge:divisibility_uniqueness}{}
+\begin{tcolorbox}
+\textbf{Assumed Knowledge}
+
+\noindent For any natural number $x$, for any positive integer $y$, there exists a unique integer $z \in \mathbb{N}$ such that $x = zy + \rho(x, y)$. 
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+\label{definition:divisibility}
+\hypertarget{definition:divisibility}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any natural number $x$, for any positive integer $y$, if $\rho(x,y) = 0$, then we say that $x$ is \textit{divisible} by $y$.
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+\label{assumed_knowledge:recursive_prime_definition}
+\hypertarget{assumed_knowledge:recursive_prime_definition}{}
+\begin{tcolorbox}
+\textbf{Assumed Knowledge}
+
+\noindent The prime numbers can be recursively defined as the series:
+
+\begin{itemize}
+
+\item $p_0 = 2$ is the first element in the series.
+
+\item For all $k \in \mathbb{N}^+$, $p_k$ is the least greatest integer such that $p_k > p_{k-1}$, and for all $j < k$, $p_k$ is not divisible by $p_j$.
+
+\end{itemize}
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+\section{Awkward Number Series}
+\label{section:awkward_number_series}
+
+
+\label{definition:awkward_number_series}
+\hypertarget{definition:awkward_number_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any positive integers $a, n$, the \textit{awkward number series}, $S_{a, n}$ is defined as:
+
+\begin{itemize}
+\item An initial element $s_0 = a + n$
+\item For any $i > 0$, $s_i$ is defined to be the least greatest integer such that $s_i > s_{i - 1}$ and $\rho(s_i, s_k) \geq a$ so all $k < i$.
+\end{itemize}
+
+
+\noindent We say that the awkward number series $S_{a,n}$ has $a$ \textit{activators}, and $n$ \textit{initial non-activators}.
+
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+\label{lemma:prime_asn}
+\hypertarget{lemma:prime_asn}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+The awkward number series $S_{1, 1}$ is equal to the set of prime numbers.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+\label{theorem:infinite_asn}
+\hypertarget{theorem:infinite_asn}{}
+\begin{tcolorbox}
+\textbf{Awkward Infinity Theorem}
+
+Every awkward number series contains an infinite number of elements.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a,n}$ be any awkward number series.\\
+
+\noindent Assume that $S_{a,n}$ contains a finite number of elements.\\
+
+\noindent Let $s_i$ be the greatest element within $S_{a, n}$.\\
+
+\noindent Let $m$ be any positive common multiple of the elements of $S_{a, n}$.\\
+
+\noindent Notice that $m > s_i$ since $m$ is a multiple of $s_i$, but $s_i$ is not a multiple of any $s_j$ such that $j < i$.\\
+
+\noindent Consider the value $m + a$.\\
+
+\noindent Since $S_{a, n}$ is finite, there must exist some element, $s_j \in S_{a,n}$ such that $\rho(m + a, s_j) < a$. Otherwise, there is some element smaller than $m + a$ that has not been accounted for, or $m + a$ would be an element of $S_{a, n}$ that has not been accounted for.\\
+
+\noindent Let $\rho(m + a, s_j) = b$.\\
+
+\noindent There exists some integer $x$ such that $m + a = xs_j + b$.\\
+
+\noindent Since $m$ is a common multiple of all the elements of $S_{a,n}$, then $\frac{m}{s_j} \in \mathbb{N}$.\\
+
+\noindent Let $y = \frac{m}{s_j}$. Then $m = ys_j$.\\
+
+\noindent Consider the equation $a = (m + a) - m$.\\
+
+\noindent Substituting $xs_j + b$ for $m + a$ yields $a = xs_j + b - m$.\\
+
+\noindent Substituting $ys_j$ for $m$ yields $a = xs_j + b - ys_j$.\\
+
+\noindent Applying the distributive property yields $a = (x - y)s_j + b$.\\
+
+\noindent If $x < y$, then $(x - y)s_j \leq -s_j$.\\
+
+\noindent Since $0 \leq b < a < s_j$, then $(x - y)s_j + b < 0$ if $x < y$.\\
+
+\noindent However, $a > 0$, as such, $x < y$ cannot be the case.\\
+
+\noindent If $x > y$, then $(x - y)s_j \geq s_j$.\\
+
+\noindent Since $0 \leq b$ and $a < s_j$, then $(x - y)s_j + b \geq s_j$ if $x > y$.\\
+
+\noindent However, $a < s_j$, as such, $x > y$ cannot be the case.\\
+
+\noindent As such, $x = y$ must be the case.\\
+
+\noindent Substituting $x$ for $y$ yields $a = (x - x)s_j + b = b$.\\
+
+\noindent By assumption, $b < a$, as such we have reached a contradiction.\\
+
+\noindent Therefore, it must be the case that either $m + a$ is an element of $S_{a,n}$, or there exists some other element in $S_{a,n}$ less than $m + a$ that was not accounted for. In either case, $S_{a,n}$ cannot be finite.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+\label{corollary:infinite_primes}
+\hypertarget{corollary:infinite_primes}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+There are an infinite number of prime numbers.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent The prime numbers are an awkward number series and every awkward number series contains an infinite number of elements.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+\label{lemma:initial_staples}
+\hypertarget{lemma:initial_staples}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any awkward number series $S_{a,n}$, the first $\ceil{\frac{n}{a}} + 1$ elements are given by $s_i = a(i + 1) + n$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a,n}$ be any awkward number series. We shall complete this proof via induction on the index of the first $\ceil{\frac{n}{a}} + 1$ elements.\\
+
+
+\noindent
+\textit{Base Case}
+
+\noindent By definition, the initial element is $s_0 = a + n = a(0 + 1) + n$.\\
+
+
+\noindent
+\textit{Inductive Hypothesis}
+
+\noindent Assume for the first $0 \leq j < \ceil{\frac{n}{a}}$, that $s_j = a(j + 1) + n$.\\
+
+
+\noindent
+\textit{Inductive Step}
+
+\noindent For all $x \in [a]$, $\rho(s_j + x, s_j) = x < a$. As such, $s_{j+1} \geq s_j + a$.\\
+
+\noindent If we can show that $\rho(s_j + a, s_k) \geq a$ for all $k < j$, then $s_{j+1} = s_j + a$.\\
+
+\noindent Furthermore, $s_j + a = a(j + 1) + n + a = a(j + 2) + n$, thus we will completed our proof.\\
+
+\noindent Let $0 \leq k < j$. Then $s_j + a = s_k + a(j - k + 1)$ according to the inductive hypothesis.\\
+
+\noindent As such, $\rho(s_j + a, s_k) = a(j - k + 1)$ as long as $a(j - k + 1) < s_k$.\\
+
+\noindent Since $j < \ceil{\frac{n}{a}}$ and $j \in \mathbb{N}$, then $j \leq \ceil{\frac{n}{a}} - 1$.\\
+
+\noindent As such, $a(j - k + 1) \leq a(\ceil{\frac{n}{a}} - 1 - k + 1) = a(\ceil{\frac{n}{a}} - k) = a\ceil{\frac{n}{a}} - ak$.\\
+
+\noindent First, let us consider the case where $a$ $|$ $n$.\\
+
+\noindent We will then have $a \ceil{\frac{n}{a}} = n$.\\
+
+\noindent As such, $a(j - k + 1) \leq n - ak < s_k$.\\
+
+\noindent Now let us consider the case where $\rho(n, a) \geq 1$.\\\
+
+\noindent Then $a \ceil{\frac{n}{a}} = a \frac{n + a - \rho(n, a)}{a} = n + a - \rho(n, a) = s_0 - \rho(n, a) < s_0 \leq s_k$.\\
+
+\noindent As such, $a(j - k + 1) < s_k - ak \leq s_k$.\\
+
+\noindent Therefore, $\rho(s_j + a, s_k) = a(j - k + 1)$ does in fact hold.\\
+
+\noindent As such, we now need to show that $a(j - k + 1) \geq a$.\\
+
+\noindent We chose $k < j$, as such, $a(j - k + 1) \geq a(j - j + 1) = a$.\\
+
+\noindent We have shown that $s_j + a = a(j + 2) + n$ is the least greatest integer greater than $s_j$ such that $\rho(s_j + a, s_k) \geq a$ for all $k \leq j$. Therefore, $s_{j+1} = a(j + 2) + n$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+\label{definition:awkward_number_series}
+\hypertarget{definition:awkward_number_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+For any awkward number series $S_{a,n}$, the value $\ceil{\frac{n}{a}} + 1$ is called the \textit{dimension} of the series.
+
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+\label{theorem:awkward_uniqueness}
+\hypertarget{theorem:awkward_uniqueness}{}
+\begin{tcolorbox}
+\textbf{Awkward Uniqueness Theorem}
+
+\noindent For any two awkward number series $S_{a,b}$ and $S_{c,d}$, $S_{a,b} = S_{c,d}$ if and only if $a = c$ and $b = d$.\\
+
+\noindent In other words, no two awkward series contain the same set of elements.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+
+\label{definition:simple_and_redundant_series}
+\hypertarget{definition:simple_and_redundant_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+An awkward number series, $S_{a,n}$ is called \textit{simple} if the $gcd(a,n) = 1$. Otherwise the awkward number series is said to be \textit{redundant}.
+
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+\label{definition:similar_series}
+\hypertarget{definition:similar_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar} whenever $\frac{a}{gcd(a,b)} = \frac{c}{gcd(c,d)}$ and $\frac{b}{gcd(a,b)} = \frac{d}{gcd(c,d)}$. Otherwise the series are said to be \textit{dissimilar}.
+
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+\label{theorem:similar_theorem}
+\hypertarget{theorem:similar_theorem}{}
+\begin{tcolorbox}
+\textbf{Awkward Similarity Theorem}
+
+\noindent For any simple awkward number series $S_{a, n}$, for any positive integer $x$, the elements of the awkward number series $S_{xa, xn} = \{$ $xs_i$ $|$ $s_i \in S_{a,n}$ $\}$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+\end{document}
+
+
+
+
+
+

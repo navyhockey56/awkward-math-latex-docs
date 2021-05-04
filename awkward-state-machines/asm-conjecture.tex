@@ -1,0 +1,133 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue
+}
+
+\begin{document}
+
+\label{definition:twin_awkward_numbers}
+\hypertarget{definition:twin_awkward_numbers}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+For any awkward number series $S_{a,n}$, consecutive elements are called \textit{twins} if their difference is $a + 1$.
+\end{tcolorbox}
+
+
+
+
+
+\label{conjecture:infinite_twins}
+\hypertarget{conjecture:infinite_twins}{}
+\begin{tcolorbox}
+\textbf{Awkward Twins Conjecture}
+
+For any awkward number series $S_{a,n}$, there are an infinite number of twin elements.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Note}
+The twin prime conjecture which states there are an infinite number of twin primes has never been proven so I doubt you'll prove it as a corollary.
+
+
+
+
+\label{definition:staple_awkward_number}
+\hypertarget{definition:staple_awkward_number}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+An element, $s_i$, of any awkward number series is called a \textit{staple} if it is $a$ less than the next element: $s_{i+1} - s_i = a$.
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+\label{lemma:initial_staples}
+\hypertarget{lemma:initial_staples}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any awkward number series $S_{a,n}$, the first $ceil(\frac{n}{a}) + 1$ elements are given by $s_i = a(i + 1) + n$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent The initial element is given by $s_i = a(0 + 1) + n$.\\
+
+\noindent Until the initial element completes its first cycle, the machine will be forced to create a new element every $a$ steps.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+\label{lemma:beyond_initial_staple}
+\hypertarget{lemma:beyond_initial_staple}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+The $ceil(\frac{n}{a}) + 2 = i$ element is equal to $s_i = ai + 2n$ if $n > a$ or $s_i = a(i + 1) + 2n$ otherwise. 
+\end{tcolorbox}
+
+\noindent \\
+\textit{Note}
+
+\noindent If this is true, then this probably has something to do with the awkward twins conjecture.
+
+
+
+
+\label{conjecture:staple_conjecture}
+\hypertarget{conjecture:staple_conjecture}{}
+\begin{tcolorbox}
+\textbf{Staple Conjecture}
+
+For any awkward number series $S_{a,n}$, the first $ceil(\frac{n}{a}) + 1$ elements are the only staples.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Note}
+
+\noindent If this is true, then this probably has something to do with the awkward twins conjecture.
+
+
+
+
+
+
+
+
+
+\label{conjecture:linear_combo_conjecture}
+\hypertarget{conjecture:linear_combo_conjecture}{}
+\begin{tcolorbox}
+\textbf{Linear Combination Conjecture}
+
+For any awkward number series $S_{a,n}$, every element can be expressed in the form $s_i = xa + yn$ for some integers $x, y \geq 0$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Note}
+
+\noindent I haven't the slightest clue why this is true... but all the examples I've run have held
+
+
+\end{document}
+
+
+
+
+
+

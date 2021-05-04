@@ -1,0 +1,366 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue
+}
+
+\begin{document}
+
+\title{Awkward State Machines}
+\author{Will Dengler}
+\maketitle
+
+\section{State Machines}
+\label{section:state_machines}
+
+
+\label{definition:state_machine}
+\hypertarget{definition:state_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent A \textit{state machine} is an object equipped with $n \in \mathbb{N^+}$ objects called \textit{properties}.\\
+
+\noindent For each property, it is required that we specify some set that contains all the possible values that property can take on. We refer to these as the \textit{property sets} of the machine.\\
+
+\noindent We define the \textit{product property set}, $P = \prod^{n-1}_0{(P_i)}$, where $P_i$ are the property sets of the state machine.\\
+
+\noindent For each property, $p_i$, we define a mapping called a \textit{property transition function}, $T_i: P \rightarrow P_i$, where $P_i$ is the property set of $p_i$.\\
+
+\noindent We define the \textit{transition function} of a state machine, $T: P \rightarrow P$ as a combination of the individual property transition functions such that:
+\begin{center}
+$T(p) = (T_0(p),$ $T_1(p),$ $...,$ $T_{n-1}(p))$
+\end{center}
+
+\noindent The final component to a state machine is an element within it's product property set, we call this element the machine's \textit{initial state}.\\
+
+\noindent A state machine is used to produce a sequence, $S = [s_i \in P]$, called the machine's \textit{state sequence}, over the elements of the machine's product property set, such that:
+\begin{itemize}
+\item The first element of the sequence, $s_0$, is the initial state of the machine.
+
+\item All subsequent elements are derived by applying the transition function, $T$, to the previous element in the sequence: 
+\begin{center}
+$s_{i + 1} = T(s_i)$.
+\end{center}
+
+\end{itemize}
+
+\noindent We refer to the elements of the state sequence as the \textit{states} of the machine. We say that $s_i$ is the \textit{state} of the machine on \textit{step} $i$. Furthermore, we use the phrase \textit{transition} to refer to the act of deriving the next state, $s_{i+1}$, of the machine from the current state, $s_i$.
+
+\end{tcolorbox}
+
+\section{Activation Cycle Machines}
+\label{section:activation_cycle_machines}
+
+\label{definition:activation_cycle_machine}
+\hypertarget{definition:activation_cycle_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any integers $a, n \in \mathbb{N^+}$ such that $a < n$, we define the \textit{activation cycle machine}, $C_{a, n}$, to be a state machine with two properties:
+
+\begin{itemize}
+\item A \textit{position} which belongs to the set of points, $P$, for the cycle graph $G_n$.
+
+\item \textit{active} which belongs to the boolean set $B = \{true, false\}$.
+\end{itemize}
+
+The position transition function is defined to be:
+\begin{center}
+$T_0(p, b) = \omega(G_n, p, 1)$
+\end{center}
+
+The active transition function is defined to be:
+\begin{center}
+$T_1(p, b) = \Omega(G_n, p, 1) < a$ 
+\end{center}
+
+The initial state is defined to be $(p_0,$ $true)$.\\
+
+\noindent Whenever an activation cycle machine's active property is $true$, we say that the machine is \textit{active}, otherwise, we say the machine is \textit{inactive}.\\
+
+\noindent We say that the activation cycle machine $C_{a, n}$ has $a$ \textit{activators} and a \textit{length} of $n$.
+
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Awkward State Machines}
+\label{section:awkward_state_machines}
+\hypertarget{section:awkward_state_machines}{}
+
+
+
+
+
+\label{definition:awkward_state_machine}
+\hypertarget{definition:awkward_state_machine}{}
+\begin{tcolorbox}
+\textbf{Definition}\\
+For any integers $a, n \in \mathbb{N^+}$, we define the \textit{awkward state machine}, $O_{a,n}$, to be a state machine with two properties:
+
+\begin{itemize}
+\item An \textit{index}, which belongs set of natural numbers, $\mathbb{N}$;
+
+\item A \textit{cycle set}, which belongs to the activation power set, $ C^{\infty}$
+
+\end{itemize}
+
+The index transition function, $T_0: \mathbb{N} \times C^{\infty} \rightarrow \mathbb{N} \times C^{\infty}$, is defined as:
+\begin{center}
+$T_0(i, C) = i + 1$
+\end{center}
+
+The cycle set transition function, $T_1: \mathbb{N} \times C^{\infty} \rightarrow C^{\infty}$, is defined as:
+\begin{center}
+$T_1(i, C) = A \cup B$
+\end{center}
+where
+\begin{itemize}
+\item $A = \{$ $\phi(O, j + 1)$ $|$ $\phi(O, j) \in C$ $\}$
+
+\item $B = \{ \phi(C_{a, b}, 0) \}$ with $b = i + a + n + 1$, if the state of every machine in $A$ is inactive. Otherwise, $B = \emptyset$, the empty set.
+\end{itemize}
+
+The initial state of any awkward state machine, $O_{a,n}$ has an index of $0$ and a cycle set equal to $\{$ $\phi(C_{a, a + n}, 0)$ $\}$.\\
+
+We say that the awkward state machine $O_{a,n}$ has $a$ \textit{activators} and $n$ \textit{initial non-activators}.\\
+
+If the set $B = \{ \phi(C_{a, b}, 0) \}$ from our cycle set transition function, then we say that activation cycle machine $C_{a, b}$ is \textit{discovered} on step $i + 1$
+\end{tcolorbox}
+
+
+
+
+
+
+
+\label{definition:awkward_number_series}
+\hypertarget{definition:awkward_number_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent The \textit{awkward number series}, $S_{a, n}$, is defined to be the set of the lengths of the activation cycle machines contained the cycle set of any state of the awkward state machine $O_{a, n}$.
+\end{tcolorbox}
+
+
+
+
+
+
+\label{lemma:second_element_of_asm}
+\hypertarget{lemma:second_element_of_asm}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+The second element of any awkward number series $S_{a,n}$ is given by $s_1 = 2a + n$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+\label{theorem:uniquness_of_awkward_numbers}
+\hypertarget{theorem:uniqueness_of_awkward_numbers}{}
+\begin{tcolorbox}
+\textbf{Awkward Uniqueness Theorem}
+
+No two awkward number series are equal.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+\label{theorem:modularity_of_awkward_numbers}
+\hypertarget{theorem:modularity_of_awkward_numbers}{}
+\begin{tcolorbox}
+\textbf{Awkward Remainder Theorem}
+
+For any awkward number series $S_{a,n}$, for any positive integer $i$, the element $s_i$ is the least greatest integer such that $s_i > s_{i-1}$ and $\phi(s_i, s_k) \geq a$ for all $k < i$. 
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+\label{corollay:prime_asm}
+\hypertarget{corollay:prime_asm}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+The awkward number series $S_{1, 1}$ is equal to the set of prime numbers.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+\label{theorem:infinite_cycles}
+\hypertarget{theorem:infinite_cycles}{}
+\begin{tcolorbox}
+\textbf{Infinitely Awkward Theorem}
+
+For any valid $a, n$, the awkward number series $S_{a,n}$ has an infinite number of elements.\\
+
+Equivalently, the awkward state machine $O_{a,n}$ discovers an infinite number of cycles.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Prelude}
+
+\noindent This proof will be based off Euclid's proof for their being an infinite number of prime numbers. As such, we are going to assume that an arbitrary awkward number series is finite, and then use a common multiple of the elements of the series to construct a value that must either be a member of the awkward number series itself or that there must exist some value smaller than the constructed value that must belong to the awkward number series.
+
+\noindent \\
+\textit{Proof}
+
+\noindent Assume the awkward number series $S_{a,n}$ is finite.\\
+
+\noindent Let $p$ be any positive common multiple of all of the elements of $S_{a,n}$.\\
+
+\noindent Notice that $p$ must be greater than the greatest element of $S_{a,n}$, since the greatest element of $S_{a, n}$ is not a multiple of any of the previous elements.\\
+
+\noindent Consider the value $p + a$.\\
+
+\noindent By assumption, there must exist some $s_k \in S_{a,n}$ such that $b = \phi(p + a, s_k) < a$; otherwise $p + a$ would be a new element of $S_{a,n}$.\\
+
+\noindent As such, $p + a = ts_k + b$ for some integer $t \in \mathbb{N}$.\\
+
+\noindent Let $c = \frac{p}{s_k}$.\\
+
+\noindent Since $p$ is a common multiple of all the elements of $S_{a,n}$, then $c \in \mathbb{Z}$.\\
+
+\noindent Consider $(p + a) - p = a$.\\
+
+\noindent Substituting yields $a = ts_k + b - cs_k = (t- c)s_k + b$.\\
+
+\noindent Since $0 \leq b < a < s_k$, then $(t - c)s_k$ must be $0$; otherwise the right side of our equation would be greater than the left.\\
+
+\noindent Then $b = a$ must be true; however, by assumption, $b < a$ which is a contradiction.\\
+
+\noindent As such, it must be the case the $p + a$ is an awkward number within $S_{a,n}$, or there exists some other awkward number in $S_{a,n}$ that was not accounted for.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+
+
+\label{definition:simple_awkward_number_series}
+\label{definition:similar_awkward_number_series}
+\label{definition:dissimilar_awkward_number_series}
+\hypertarget{definition:simple_awkward_number_series}{}
+\hypertarget{definition:similar_awkward_number_series}{}
+\hypertarget{definition:dissimilar_awkward_number_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent The awkward number series, $S_{a, n}$, is called \textit{simple} whenever $gcd(a,n) = 1$.\\
+
+\noindent The awkward number series $S_{c, d}$ and $S_{e, f}$ are said to be \textit{similar} whenever
+
+\begin{center}
+$\frac{c}{gcd(c, d)} = \frac{e}{gcd(e, f)}$ and $\frac{d}{gcd(c,d)} = \frac{f}{gcd(e, f)}$.
+\end{center}
+
+\noindent If two awkward number series are not similar, then they are said to be \textit{dissimilar}.
+
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+\label{theorem:similar_awkward_series}
+\hypertarget{theorem:similar_awkward_series}{}
+\begin{tcolorbox}
+\textbf{Awkward Similarity Theorem}
+
+For any simple awkward number series $S_{a,n}$, for any positive integer $j$, the elements of the awkward number series $S_{ja, jn}$ are given by
+
+\begin{center}
+$S_{ja, jn} = $ $\{$ $js_i$ $|$ $s_i \in S_{a,n}$ $\}$
+\end{center} 
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+
+\end{document}
