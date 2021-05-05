@@ -21,8 +21,8 @@
 \label{section:notation_and_assumed_knowledge}
 
 
-\label{definition:remainder_function}
-\hypertarget{definition:remainder_function}{}
+\label{notation}
+\hypertarget{notation}{}
 \begin{tcolorbox}
 \textbf{Notation}
 
@@ -37,15 +37,26 @@
 \item For any $x \in \mathbb{N}^+$, $[x] = \{$ $j \in \mathbb{N}$ $|$ $j < x$ $\}$.
 
 \item $\mathbb{Q}$ is defined to be the set of rational numbers.
-
-\item For any $q \in \mathbb{Q}$, the \textit{ceiling function} $\ceil{q} = z$, where $z$ is the integer such that $z - 1 < q \leq z$.
-
-\item For any $x, y \in \mathbb{N}$, the function $gcd(x, y)$ is defined to be the greatest common divisor of $x$ and $y$.
 \end{itemize}
 \end{tcolorbox}
 \noindent \\
 
 
+
+
+
+
+
+
+
+\label{assumed_knowledge:divisibility_uniqueness}
+\hypertarget{assumed_knowledge:divisibility_uniqueness}{}
+\begin{tcolorbox}
+\textbf{Assumed Knowledge}
+
+\noindent For any natural number $x$, for any positive integer $y$, there exists a unique integers $z \in \mathbb{N}$ and $r \in [y]$ such that $x = zy + r$. We call $r$ the \textit{remainder} of $x$ when divided by $z$.
+\end{tcolorbox}
+\noindent \\
 
 
 
@@ -66,13 +77,12 @@
 
 
 
-
-\label{assumed_knowledge:divisibility_uniqueness}
-\hypertarget{assumed_knowledge:divisibility_uniqueness}{}
+\label{definition:divisibility}
+\hypertarget{definition:divisibility}{}
 \begin{tcolorbox}
-\textbf{Assumed Knowledge}
+\textbf{Definition}
 
-\noindent For any natural number $x$, for any positive integer $y$, there exists a unique integer $z \in \mathbb{N}$ such that $x = zy + \rho(x, y)$. 
+\noindent For any natural number $x$, for any positive integer $y$, if $\rho(x,y) = 0$, then we say that $x$ is \textit{divisible} by $y$.
 \end{tcolorbox}
 \noindent \\
 
@@ -81,13 +91,70 @@
 
 
 
+\label{assumed_knowledge:remainder_function}
+\hypertarget{definition:remainder_function}{}
+\begin{tcolorbox}
+\textbf{Remainder Function Properties}
 
-\label{definition:divisibility}
-\hypertarget{definition:divisibility}{}
+\noindent The remainder function has the following properties:
+
+\begin{itemize}
+
+\item For any $i \in \mathbb{N}$, for any $j \in [i]$, $\rho(j, i) = j$.
+
+\item For any $i, j, k \in \mathbb{N}$, $\rho(kj, ki) = k \rho(j, i)$.
+
+\item For any $i, j, k \in \mathbb{N}$, $\rho(j + k, i) = \rho(\rho(j, i) + \rho(k, i), i)$. 
+
+\end{itemize}
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+\label{definition:ceiling_function}
+\hypertarget{definition:ceiling_function}{}
 \begin{tcolorbox}
 \textbf{Definition}
 
-\noindent For any natural number $x$, for any positive integer $y$, if $\rho(x,y) = 0$, then we say that $x$ is \textit{divisible} by $y$.
+\noindent For any $q \in \mathbb{Q}$, the \textit{ceiling function} $\ceil{q} = z$, where $z$ is the integer such that $z - 1 < q \leq z$.
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+\label{lemma:ceiling_function}
+\hypertarget{lemma:ceiling_function}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+\noindent For any $q = \frac{a}{b} \in \mathbb{Q}$:
+
+\begin{itemize}
+\item $\ceil{q} = q$ whenever $\rho(a, b) = 0$.
+
+\item  $\ceil{q} = \frac{c}{b}$, where $c = a + b - \rho(a, b)$ whenever $\rho(a, b) > 0$.
+\end{itemize}
+
+
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+\label{definition:gcd}
+\hypertarget{definition:gcd}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any $x, y \in \mathbb{N}$, the function $gcd(x, y)$ is defined to be the greatest common divisor of $x$ and $y$.
 \end{tcolorbox}
 \noindent \\
 
@@ -113,6 +180,9 @@
 \end{itemize}
 \end{tcolorbox}
 \noindent \\
+
+
+
 
 
 
@@ -257,6 +327,9 @@ There are an infinite number of prime numbers.
 
 
 
+
+
+
 \label{lemma:initial_staples}
 \hypertarget{lemma:initial_staples}{}
 \begin{tcolorbox}
@@ -328,6 +401,9 @@ For any awkward number series $S_{a,n}$, the first $\ceil{\frac{n}{a}} + 1$ elem
 
 
 
+
+
+
 \label{definition:awkward_number_series}
 \hypertarget{definition:awkward_number_series}{}
 \begin{tcolorbox}
@@ -336,6 +412,166 @@ For any awkward number series $S_{a,n}$, the first $\ceil{\frac{n}{a}} + 1$ elem
 For any awkward number series $S_{a,n}$, the value $\ceil{\frac{n}{a}} + 1$ is called the \textit{dimension} of the series.
 
 \end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+
+\label{lemma:relation_to_other}
+\hypertarget{lemma:relation_to_other}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any awkward number series $S_{a,n}$, for any $i > 0$, there exists $s_j < s_i$ such that $\rho(s_i, s_j) = a$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
+
+
+
+
+\label{theorem:awkward_linearity}
+\hypertarget{theorem:awkward_linearity}{}
+\begin{tcolorbox}
+\textbf{Awkward Linearity Theorem}
+
+For any awkward number series $S_{a,n}$, for any $s_i \in S_{a,n}$, there exists integers $x, y \in \mathbb{N}^+$ such that $s_i = xa + yn$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent This shall be a proof by induction. Let $S_{a,n}$ be any awkward number series.
+
+
+\noindent \\
+\textit{Base Case}
+
+\noindent By definition, $s_0 = a + n = 1a + 1n$.
+
+
+\noindent \\
+\textit{Inductive Hypothesis}
+
+\noindent Assume for some $0 \leq k$, that $s_i = xa + yn$ for some $x, y \in \mathbb{N}^+$ whenever $i \leq k$.
+
+
+\noindent \\
+\textit{Inductive Step}
+
+\noindent By previous lemma, there exists some $s_i < s_{k+1}$ and some $t \in \mathbb{N}^+$ such that $s_{k+1} = ts_i + a$.\\
+
+\noindent By the inductive hypothesis, $s_i = xa + yn$ for some integers $x, y \in \mathbb{N}^+$.\\
+
+\noindent Substituting for $s_i$ yields, $s_{k+1} = t(xa + yn) + a = txa + a + yn = (tx + 1)a + yn$.\\
+
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
+\label{corollary:relation_to_initial}
+\hypertarget{corollary:relation_to_initial}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+For any awkward number series $S_{a,n}$, for any $s_0 < s_i \in S_{a,n}$, there exists integers $t, r \in \mathbb{N}^+$ such that $s_i = ts_0 + ra$.
+
+\end{tcolorbox}
+
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a, n}$ be any awkward number series. We shall complete this proof by induction.
+
+
+\noindent \\
+\textit{Base Case}
+
+\noindent By previous lemma $s_1 = 2a + n = (a + n) + a = s_0 + a$.
+
+
+\noindent \\
+\textit{Inductive Hypothesis}
+
+\noindent Assume for some $1 \leq k$, that $s_i = ts_0 + ra$ for some integers $t, r \in \mathbb{N}^+$ whenever $i \leq k$.
+
+
+\noindent  \\
+\textit{Inductive Step}
+
+\noindent By previous lemma, there exists some $s_i < s_{k+1}$ and some $t \in \mathbb{N}^+$ such that $s_{k+1} = ts_i + a$.\\
+
+
+\noindent If $s_i = s_0$, then we would have $s_{k+1} = ts_0 + a$. As such, we would have nothing left to show.\\
+
+\noindent Let us assume $s_i > s_0$.\\
+
+\noindent By inductive hypothesis, $s_i = us_0 + va$ for some integers $u, v \in \mathbb{N}^+$.\\
+
+\noindent Substituting for $s_i$ yields, $s_{k + 1} = t(us_0 + va) + a = tus_0 + a(tv + 1)$
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
+
+\label{corollary:relation_to_initial_p2}
+\hypertarget{corollary:relation_to_initial_p2}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+For any awkward number series $S_{a,n}$, for any $s_0 < s_i \in S_{a,n}$, there exists integers $t, r \in \mathbb{N}^+$ such that $s_i = (t + r)a + tn$.
+
+\end{tcolorbox}
+
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a,n}$ be any awkward number series. Let $s_0 < s_i \in S_{a, n}$.\\
+
+\noindent By previous corollary, $s_i = ts_0 + ra$ for some integers $t, r \in \mathbb{N}^+$.\\
+
+\noindent Substituting for $a + n$ for $s_0$ yields, $s_i = t(a + n) + ra$.\\
+
+\noindent Distributing $t$ over $a + n$ yields, $s_i = ta + ra + tn = (t + r)a + tn$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
 \noindent \\
 
 
@@ -357,11 +593,40 @@ For any awkward number series $S_{a,n}$, the value $\ceil{\frac{n}{a}} + 1$ is c
 \noindent \\
 \textit{Proof}
 
-\noindent TODO
+\noindent Let $S_{a,n}$ be any awkward number series. Assume $S_{c, d} = S_{a, n}$ for some awkward number series $S_{c,d}$.\\
+
+
+\noindent Let us refer to the elements of $S_{a,n}$ as $s_0, s_1, ...$, and the elements of $S_{c,d}$ by $s^*_0, s^*_1, ...$.\\
+
+\noindent By definition, $s_0 = a + n$, and $s^*_0 = c + d$.\\
+
+\noindent By assumption, $s_0 = s^*_0$. As such, $a + n = c + d$.\\
+
+\noindent Solving for $c$ yields, $c = a + n - d$.\\
+
+\noindent By previous lemma, $s_1 = 2a + n$, and $s^*_1 = 2c + d$.\\
+
+\noindent By assumption, $s_1 = s^*_1$. As such, $2a + n = 2c + d$.\\
+
+\noindent Substituting $c = a + n - d$ yields, $2a + n = 2(a + n - d) + d$.\\
+
+\noindent Distributing the $2$ yields, $2a + n = 2a + 2n - 2d + d = 2a + 2n - d$.\\
+
+\noindent Subtracting the $d$ from both sides yields, $2a + n + d = 2a + 2n$.\\
+
+\noindent Subtracting the $2a$ from both sides yields $n + d = 2n$.\\
+
+\noindent Subtracting $n$ from both sides yields $d = n$.\\
+
+\noindent Substituting $n$ for $d$ into $a + n = c + d$ yields $a + n = c + n$.\\
+
+\noindent Subtracting $n$ from both sides yields $a = c$.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
+
+
 
 
 
@@ -386,6 +651,8 @@ An awkward number series, $S_{a,n}$ is called \textit{simple} if the $gcd(a,n) =
 
 
 
+
+
 \label{definition:similar_series}
 \hypertarget{definition:similar_series}{}
 \begin{tcolorbox}
@@ -400,6 +667,8 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 
 
 
+
+
 \label{theorem:similar_theorem}
 \hypertarget{theorem:similar_theorem}{}
 \begin{tcolorbox}
@@ -409,9 +678,113 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 \end{tcolorbox}
 
 \noindent \\
+\textit{Outline}
+
+\noindent This will be a proof by induction on the index of the elements.
+
+\noindent \\
 \textit{Proof}
 
-\noindent TODO
+\noindent Let $S_{a,n}$ be any simple awkward number series. Let $j$ be any positive integer.\\
+
+\noindent We shall denote the elements of $S_{a,n}$ as $s_0, s_1, ...$. We will denote the elements of $S_{ja, jn}$ as $s^*_0, s^*_1, ...$.
+
+\noindent \\
+\textit{Base Case}
+
+\noindent By definition, the first element of $S_{ja, jn}$ is $s^*_0 = ja + jn = j(a + n)$.\\
+
+\noindent By definition, the first element of $S_{a,n}$ is $s_0 = a + n$.\\
+
+\noindent As such, $s^*_0 = j(a + n) = js_0$.
+
+
+
+\noindent \\
+\textit{Inductive Hypothesis}
+
+\noindent Assume for all $0 \leq i$ that $s^*_i = js_i$.
+
+
+\noindent \\
+\textit{Inductive Step}
+
+\noindent We shall start by showing that $\rho(js_{i+1}, s^*_k) \geq ja$ for all $k \leq i$. Afterwards, we will then show that $js_{i+1}$ is the least greatest integer that is both greater than $s^*_i$ with this property. As such, $s^*{i+1} = js^{i+1}$ by definition.
+
+\noindent By the inductive hypothesis, $s^*_k = js_k$ for all $k \leq i$.\\
+
+\noindent As such, $\rho(js_{i+1}, s^*_k) = \rho(js_{i+1}, js_k)$.\\
+
+\noindent By previous lemma (TODO), $\rho(js_{i+1}, js_k) = j \rho(s_{i+1}, s_k)$.\\
+
+\noindent By definition, $\rho(s_{i+1}, s_k) \geq a$ for all $k \leq i$.\\
+
+\noindent As such, $\rho(js_{i+1}, s^*_k) = j \rho(s_{i+1}, s_k) \geq ja$.\\
+
+\noindent Thus, we have shown that $js^{i+1}$ is a viable element of $S_{ja, jn}$. We now must show that that $js^{i+1}$ is the least greatest integer greater than $s^*_i$ with the divisibility property.\\
+
+\noindent Assume there exists some integer $s^*_i < x < js^{i+1}$ such that $\rho(x, s^*_k) \geq ja$ for all $k \leq i$.\\
+
+\noindent We know that $x = tj + \rho(x, j)$, for some $x \in \mathbb{N}$.
+
+\noindent Let $r = \rho(x, j)$. Then $x = tj + r$.\\
+
+\noindent Let $k \in [i + 1]$. Then $\rho(x, s^*_k) = \rho(tj + r, s^*_k)$.\\
+
+\noindent By the inductive hypothesis, $s^*_k = js_k$.\\
+
+\noindent As such, $\rho(tj + r, s^*_k) = \rho(tj + r, js_k)$\\
+
+\noindent By remainder property (TODO), $\rho(tj + r, js_k) = \rho(\rho(tj, js_k) + \rho(r, js_k), js_k)$.\\
+
+\noindent By remainder property (TODO), $\rho(tj, js_k) = j \rho(t, s_k)$.\\
+
+\noindent Since $r < j < js_k$, then $\rho(r, js_k) = r$.\\
+
+\noindent As such, $\rho(\rho(tj, js_k) + \rho(r, js_k), js_k) = \rho(j \rho(t, s_k) + r, js_k)$.\\
+
+\noindent By definition, $0 \leq \rho(t, s_k) < s_k$. Furthermore, $\rho(t, s_k) \in \mathbb{N}$. As such, $\rho(t, s_k) \leq s_k - 1$.\\
+
+\noindent As such, $j \rho(t, s_k) \leq j(s_k - 1)$.\\
+
+\noindent Thus, $j \rho(t, s_k) + r \leq j(s_k - 1) + r$.\\
+
+\noindent We also know that $r < j$.\\
+
+\noindent As such, $j(s_k - 1) + r < j(s_k - 1) + j = j(s_k - 1 + 1) = js_k$.\\
+
+\noindent As such, $j \rho(t, s_k) + r < js_k$, thus $\rho(x, s^*_k) = \rho(j \rho(t, s_k) + r, js_k) = j \rho(t, s_k) + r$.\\
+
+\noindent By assumption, $\rho(x, s^*_k) \geq ja$.\\
+
+\noindent As such, $j \rho(t, s_k) + j) > j \rho(t, s_k) + r \geq ja$.\\
+
+\noindent As such, $j(\rho(t, s_k) + 1) > ja$.\\
+
+\noindent As such, $\rho(t, s_k) + 1 > a$.\\
+
+\noindent Thus, $\rho(t, s_k) \geq a$.\\
+
+\noindent Now if we can show that $s_i < t < s_{i+1}$, then $t$ would have to be element $s_{i + 1} \in S_{a, n}$ which would be a contradiction.\\
+
+\noindent By assumption, $s^*_i < x = jt + r$.\\
+
+\noindent $s^*_i = js_i$ by the inductive hypothesis.\\
+
+\noindent As such, $js_i < jt + r < jt + j = j(t + 1)$\\
+
+\noindent Thus $s_i < t + 1$. Since $s_i \in \mathbb{N}$, then $s_i \leq t$.\\
+
+\noindent However, we've shown that $\rho(t, s_i) \geq a > 0$. As such, $t \neq s_i$. Thus, $s_i < t$ must be the case.\\
+
+\noindent Now we just need to show that $t < js_{i + 1}$.\\
+
+\noindent We know that $x = tj + r < js_{i+1}$.\\
+
+\noindent As such, $tj \leq tj + r < js_{i+1}$. Thus, $t < s_{i + 1}$.\\
+
+\noindent But this would mean that $t$ must be the $(i + 2)^{th}$ element of $S_{a, n}$, which is a contradiction.
+
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
