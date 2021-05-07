@@ -21,6 +21,9 @@
 \label{section:notation_and_assumed_knowledge}
 
 
+\subsection{Notation}
+\label{subsection:notation}
+
 \label{notation}
 \hypertarget{notation}{}
 \begin{tcolorbox}
@@ -39,15 +42,17 @@
 \item $\mathbb{Q}$ is defined to be the set of rational numbers.
 \end{itemize}
 \end{tcolorbox}
-\noindent \\
 
 
 
 
 
+\subsection{Assumed Knowledge}
+\label{subsection:assumed_knowledge}
 
 
-
+\subsubsection{Remainders \& Divisibility}
+\label{subsubsection:remainders_and_divisibility}
 
 \label{theorem:remainder_theorem}
 \hypertarget{theorem:remainder_theorem}{}
@@ -75,61 +80,6 @@
 \noindent \\
 
 
-
-
-
-
-
-
-\label{definition:divisibility}
-\hypertarget{definition:divisibility}{}
-\begin{tcolorbox}
-\textbf{Definition}
-
-\noindent For any natural number $x$, for any positive integer $y$, if $\rho(x,y) = 0$, then we say that $x$ is \textit{divisible} by $y$ or that $x$ is a \textit{multiple} of $y$.
-\end{tcolorbox}
-\noindent \\
-
-
-
-
-
-
-
-
-\label{definition:common_multiple}
-\hypertarget{definition:common_multiple}{}
-\begin{tcolorbox}
-\textbf{Definition}
-
-\noindent For any set of integers $X \subset \mathbb{N}^+$, an integer $z$ is called a \textit{common multiple} of the elements of $X$ whenever $z$ is a multiple of every element of $X$.
-\end{tcolorbox}
-\noindent \\
-
-
-
-
-
-\label{lemma:positive_common_multiple_greater_than}
-\hypertarget{lemma:positive_common_multiple_greater_than}{}
-\begin{tcolorbox}
-\textbf{Lemma}
-
-\noindent For any set of integers $X \subset \mathbb{N}^+$, if $z \in \mathbb{N}^+$ is a common multiple of the elements of $X$, then for all $x \in X$, $z \geq x$. 
-\end{tcolorbox}
-\noindent \\
-
-
-
-
-\label{lemma:positive_common_multiple}
-\hypertarget{lemma:positive_common_multiple}{}
-\begin{tcolorbox}
-\textbf{Lemma}
-
-\noindent For any set of integers $X \subset \mathbb{N}^+$, such that $y$ is the greatest element of $X$. If there exists $x \in X$ such that $y$ is not a multiple of $x$, then for every positive common multiple $z \in \mathbb{N}^+$ of the elements of $X$, $z > y$.
-\end{tcolorbox}
-\noindent \\
 
 
 
@@ -161,6 +111,45 @@
 
 
 
+
+\label{definition:divisibility}
+\hypertarget{definition:divisibility}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any natural number $x$, for any positive integer $y$, if $\rho(x,y) = 0$, then we say that $x$ is \textit{divisible} by $y$, that $x$ is a \textit{multiple} of $y$, and that $y$ is a \textit{divisor} of $x$.
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+
+\label{definition:common_multiple}
+\hypertarget{definition:common_multiple}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+\noindent For any set of integers $X \subset \mathbb{N}^+$, an integer $z$ is called a \textit{common multiple} of the elements of $X$ whenever $z$ is a multiple of every element of $X$.
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+
+\subsubsection{Miscellaneous}
+\label{subsubsection:miscellaneous}
+
+
+
+
 \label{definition:ceiling_function}
 \hypertarget{definition:ceiling_function}{}
 \begin{tcolorbox}
@@ -173,12 +162,16 @@
 
 
 
+
+
+
+
 \label{lemma:ceiling_function}
 \hypertarget{lemma:ceiling_function}{}
 \begin{tcolorbox}
 \textbf{Lemma}
 
-\noindent For any $q = \frac{a}{b} \in \mathbb{Q}$:
+\noindent For any $q = \frac{a}{b} \in \mathbb{Q}$, $a, b \in \mathbb{Z}$
 
 \begin{itemize}
 \item $\ceil{q} = q$ whenever $\rho(a, b) = 0$.
@@ -189,6 +182,8 @@
 
 \end{tcolorbox}
 \noindent \\
+
+
 
 
 
@@ -210,22 +205,18 @@
 
 
 
-\label{assumed_knowledge:recursive_prime_definition}
-\hypertarget{assumed_knowledge:recursive_prime_definition}{}
+
+\label{assumed_knowledge:prime_definition}
+\hypertarget{assumed_knowledge:prime_definition}{}
 \begin{tcolorbox}
 \textbf{Assumed Knowledge}
 
-\noindent The prime numbers can be recursively defined as the series:
+\noindent Any integer $p > 1$ is called \textit{prime} if its only divisors are one and itself.
 
-\begin{itemize}
-
-\item $p_0 = 2$ is the first element in the series.
-
-\item For all $k \in \mathbb{N}^+$, $p_k$ is the least greatest integer such that $p_k > p_{k-1}$, and for all $j < k$, $p_k$ is not divisible by $p_j$.
-
-\end{itemize}
 \end{tcolorbox}
 \noindent \\
+
+
 
 
 
@@ -236,6 +227,8 @@
 \section{Awkward Number Series}
 \label{section:awkward_number_series}
 
+
+\subsection{Definition \& Basic Properties}
 
 \label{definition:awkward_number_series}
 \hypertarget{definition:awkward_number_series}{}
@@ -256,26 +249,6 @@
 \noindent \\
 
 
-
-
-
-\label{lemma:prime_asn}
-\hypertarget{lemma:prime_asn}{}
-\begin{tcolorbox}
-\textbf{Lemma}
-
-The awkward number series $S_{1, 1}$ is equal to the set of prime numbers.
-\end{tcolorbox}
-
-\noindent \\
-\textit{Proof}
-
-\noindent TODO
-
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
-\noindent \\
 
 
 
@@ -315,6 +288,10 @@ For any awkward number series $S_{a, n}$, for any $x \in \mathbb{N}$ such that $
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 \noindent \\
+
+
+
+
 
 
 
@@ -360,6 +337,48 @@ For any awkward number series $S_{a, n}$, for any $s_i, s_j \in S_{a, n}$, $\rho
 
 
 
+
+
+
+\label{lemma:non_divisibility_of_elements}
+\hypertarget{lemma:non_divisibility_of_elements}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+For any awkward number series $S_{a, n}$, for any $s_i \in S_{a, n}$, it is the case that $s_{i + 1} \geq s_i + a$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a, n}$ be any awkward number series.\\
+
+\noindent Let $s_i \in S_{a, n}$ be any element within the series.\\
+
+\noindent Assume $s_{i + 1} < s_i + a$.\\
+
+\noindent Subtracting $s_i$ from both sides yields, $s_{i + 1} - s_i < a$.\\
+
+\noindent \hyperlink{definition:awkward_number_series}{By definition}, $s_i < s_{i + 1}$. As such, $s_{i + 1} - s_i > 0$.\\
+
+\noindent Let $r = s_{i + 1} - s_i$. Then $0 < r < a < s_i$.\\
+
+\noindent Furthermore, $s_{i + 1} = s_i + (s_{i - 1} - s_i) = s_i + r$.\\
+
+\noindent \hyperlink{theorem:remainder_theorem}{By definition}, $r$ must be the remainder of $s_{i + 1}$ when divided by $s_i$.\\
+
+\noindent As such, $\rho(s_{i + 1}, s_i) = r < a$. However, this contradicts \hyperlink{lemma:non_divisibility_of_elements}{the previous lemma}.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
 \label{theorem:infinite_asn}
 \hypertarget{theorem:infinite_asn}{}
 \begin{tcolorbox}
@@ -375,19 +394,13 @@ Every awkward number series contains an infinite number of elements.
 
 \noindent Assume that $S_{a,n}$ contains a finite number of elements.\\
 
-\noindent Let $s_i$ be the greatest element within $S_{a, n}$.\\
+\noindent Let $s_{max}$ be the greatest element within $S_{a, n}$.\\
 
-\noindent Let $m$ be any positive common multiple of the elements of $S_{a, n}$.\\
-
-\noindent \hyperlink{lemma:non_divisibility_of_elements}{By previous lemma}, $\rho(s_i, s_j) \geq a$ for all $s_j < s_i$.\\
-
-\noindent As such, $s_i$ is not a multiple of any of the preceding elements.\\
-
-\noindent As such, $m > s_i$ \hyperlink{lemma:positive_common_multiple}{by lemma}.\\
+\noindent Let $m$ be any common multiple of the elements of $S_{a, n}$ such that $m > s_{max}$.\\
 
 \noindent Consider the value $m + a$.\\
 
-\noindent By assumption $S_{a, n}$ is finite, as such, for any integer $x > s_i$, there exists some $s_j \in S_{a,n}$ such that $\rho(m + a, s_j) < a$ \hyperlink{lemma:exists_element_less_than_x}{by previous lemma}.\\
+\noindent By assumption $S_{a, n}$ is finite, as such, for any integer $x > s_{max}$, there exists some $s_j \in S_{a,n}$ such that $\rho(m + a, s_j) < a$ \hyperlink{lemma:exists_element_less_than_x}{by previous lemma}.\\
 
 \noindent Let $\rho(m + a, s_j) = b < a$.\\
 
@@ -413,12 +426,37 @@ Every awkward number series contains an infinite number of elements.
 
 \noindent Therefore, it must be the case that either $m + a$ is an element of $S_{a,n}$, or there exists some other element in $S_{a,n}$ less than $m + a$ that was not accounted for. In either case, $S_{a,n}$ cannot be finite.
 
+
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
+\noindent \\
 
 
 
+
+
+
+\subsection{Prime Numbers}
+
+
+\label{lemma:prime_asn}
+\hypertarget{lemma:prime_asn}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+The awkward number series $S_{1, 1}$ is equal to the set of prime numbers.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent TODO
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
 
 
 
@@ -445,13 +483,46 @@ There are an infinite number of prime numbers.
 
 
 
+\subsection{Dimension, Staples, and Basis}
+
+
+
+
+
+
+\label{definition:awkward_number_series}
+\hypertarget{definition:awkward_number_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+For any awkward number series $S_{a,n}$, the value $\ceil{\frac{n}{a}} + 1$ is called the \textit{dimension} of the series, denoted $dim(S_{a, n})$.
+
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+\label{definition:basis}
+\hypertarget{definition:basis}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+For any awkward number series $S_{a,n}$, for $i \in [dim(S_{a,n})]$, $s_i$ is called a \textit{basis} of the awkward number series.
+
+\end{tcolorbox}
+\noindent \\
+
+
+
 
 \label{lemma:basis_lengths}
 \hypertarget{lemma:basis_lengths}{}
 \begin{tcolorbox}
 \textbf{Lemma}
 
-For any awkward number series $S_{a,n}$, the first $\ceil{\frac{n}{a}} + 1$ elements are given by $s_i = a(i + 1) + n$.
+For any awkward number series $S_{a,n}$, for any basis $s_i$ of the series, it is the case that $s_i = a(i + 1) + n$.
 \end{tcolorbox}
 
 \noindent \\
@@ -516,23 +587,6 @@ For any awkward number series $S_{a,n}$, the first $\ceil{\frac{n}{a}} + 1$ elem
 
 
 
-
-
-\label{definition:awkward_number_series}
-\hypertarget{definition:awkward_number_series}{}
-\begin{tcolorbox}
-\textbf{Definition}
-
-For any awkward number series $S_{a,n}$, the value $\ceil{\frac{n}{a}} + 1$ is called the \textit{dimension} of the series, denoted $dim(S_{a, n})$.
-
-\end{tcolorbox}
-\noindent \\
-
-
-
-
-
-
 \label{definition:staple}
 \hypertarget{definition:staple}{}
 \begin{tcolorbox}
@@ -545,12 +599,15 @@ For any awkward number series $S_{a,n}$, $s_i \in S_{a, n}$ is called a \textit{
 
 
 
+
+
+
 \label{lemma:initial_staples}
 \hypertarget{lemma:initial_staples}{}
 \begin{tcolorbox}
 \textbf{Lemma}
 
-For any awkward number series $S_{a,n}$, for any integer $0 < i \leq dim(S_{a,n})$, the element $s_i \in S_{a,n}$ is a staple.
+For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$, the element $s_i \in S_{a,n}$ is a staple.
 
 \end{tcolorbox}
 
@@ -590,19 +647,136 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i \leq dim(S_{a,n}
 
 
 
-\label{definition:awkward_number_series}
-\hypertarget{definition:awkward_number_series}{}
-\begin{tcolorbox}
-\textbf{Definition}
 
-For any awkward number series $S_{a,n}$, for $i \in [dim(S_{a,n})]$, $s_i$ is called a \textit{basis} of the awkward number series.
+
+
+
+
+\label{lemma:only_staple}
+\hypertarget{lemma:only_staple}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+\noindent For any awkward number series $S_{a,n}$ such that $a \geq n$, the series only contains a single staple which is $s_1$.
 
 \end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a, n}$ be an awkward number series such that $a \geq n$.\\
+
+\noindent By previous lemma, for all $i \in [dim(S_{a, n})]$, $s_i = (i + 1) + n$.\\
+
+\noindent By definition, $dim(S_{a,n}) = \ceil{\frac{n}{a}} + 1$.\\
+
+\noindent Since $n \leq a$, then $\ceil{\frac{n}{a}} = 1$. As such, $dim(S_{a, n}) = 2$.\\
+
+\noindent Thus, $s_1 = 2a + n = a + s_0$ is in fact a staple.\\
+
+\noindent NOTE: prove that the basis (except $s_0$) are all staples before this and then use that instead.\\
+
+\noindent Now we must show that there can be no element $s_1 < s_i \in S_{a, n}$ that is also a staple.\\
+
+\noindent Assume there exists some staple $s_i > s_1$.\\
+
+\noindent By definition, $s_i = s_{i - 1} + a$.\\
+
+\noindent By definition, $\rho(s_{i - 1}, s_0) \geq a$.\\
+
+\noindent Furthermore, there exists some integer $t \in \mathbb{N}$ such that $s_{i - 1} = ts_0 + \rho(s_{i - 1}, s_0)$.\\
+
+\noindent Adding $a$ to both sides yields $s_{i - 1} + a = ts_0 + \rho(s_{i - 1}, s_0) + a$.\\
+
+\noindent Substituting in $s_i = s_{i - 1} + a$ yields $s_i = s_{i - 1} + a = ts_0 + \rho(s_{i - 1}, s_0) + a$.\\
+
+\noindent Consider $\rho(s_i, s_0) = \rho(ts_0 + \rho(s_{i - 1}, s_0) + a, s_0)$.\\
+
+\noindent By the property of $\rho$, $\rho(ts_0 + \rho(s_{i - 1}, s_0) + a, s_0) = \rho(\rho(s_{i - 1}, s_0) + a, s_0)$.\\
+
+\noindent Since $\rho(s_{i - 1}, s_0) \geq a \geq n$, then $\rho(s_{i - 1}, s_0) + a \geq a + n$.\\
+
+\noindent Since $\rho(s_{i - 1}, s_0) < s_0$, then $\rho(s_{i - 1}) + a < s_0 + a = 2a + n < 2a + 2n = 2s_0$.\\
+
+\noindent As such, $s_0 \leq \rho(s_{i - 1}, s_0) + a < 2s_0$.\\
+
+\noindent By property of $\rho$, $\rho(\rho(s_{i - 1}, s_0) + a, s_0) = \rho(s_{i - 1}, s_0) + a - s_0$.\\
+
+\noindent Substituting for $s_0$, $\rho(s_i, s_0) = \rho(s_{i - 1}, s_0) + a - a - n = \rho(s_{i - 1}, s_0) - n$.\\
+
+\noindent By definition, $\rho(s_{i - 1}, s_0) < s_0$, as such, $\rho(s_{i - 1}, s_0) - n < s_0 - n$.\\
+
+\noindent Substituting for $s_0$, $\rho(s_{i - 1}, s_0) - n < s_0 - n = a$.\\
+
+\noindent As such, $\rho(s_i, s_0) = \rho(s_{i - 1}, s_0) - n < a$. However, since $s_i > s_1$, then $\rho(s_i, s_0) \geq a$ by definition. As such, we have reached a contradiction.
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
 \noindent \\
 
 
 
 
+
+
+
+\label{lemma:min_length_one_staple}
+\hypertarget{lemma:min_length_one_staple}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+\noindent For any awkward number series $S_{a,n}$ such that $a \geq n$, for any $s_i, s_j \in S_{a, n}$ such that $s_1 \leq s_i < s_j$, it is the case that $s_j \geq (j - i)(a + 1) + s_i$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent We shall complete this proof by induction on the difference of $i$ and $j$.
+
+\noindent Let $S_{a, n}$ be any awkward number series such that $a \geq n$.
+
+\noindent \\
+\textit{Base Case}
+
+\noindent Let $i \geq 1$ and $j = i + 1$.\\
+
+\noindent By previous lemma, $s_j$ cannot be a staple.\\
+
+\noindent As such, $s_j \geq s_i + a + 1 = s_i + (1)(a + 1) = s_i + (j - i)(a + 1)$.
+
+
+\noindent \\
+\textit{Inductive Hypothesis}
+
+\noindent Assume for some $1 \leq k \in \mathbb{N}$ that $s_j \geq s_i + (j - i)(a + 1)$ whenever $s_j > s_i$ and $j - i \leq k$.
+
+
+\noindent \\
+\textit{Inductive Step}
+
+\noindent Let $s_i \in S_{a, n}$ such that $s_1 \leq s_i$.\\
+
+\noindent By the inductive hypothesis, the element $s_{i + k} \geq s_i + k(a + 1)$.\\
+
+\noindent By previous lemma, $s_{i + k + 1} \geq s_{i + k} + a + 1$.\\
+
+\noindent As such, $s_{i + k} + a \geq s_i + k(a + 1) + a + 1 = s_i + (k + 1)(a + 1)$.\\
+
+\noindent As such, we have shown that $s_{i + k + 1} \geq s_i + (k + 1)(a + 1)$.\\
+
+\noindent Furthermore, the difference $(i + k + 1) - i = k + 1$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+\subsection{Linearity Theorem}
 
 
 
@@ -722,6 +896,7 @@ For any awkward number series $S_{a,n}$, for any $s_i \in S_{a,n}$, there exists
 
 
 
+
 \label{corollary:relation_to_initial}
 \hypertarget{corollary:relation_to_initial}{}
 \begin{tcolorbox}
@@ -776,6 +951,7 @@ For any awkward number series $S_{a,n}$, for any $s_0 < s_i \in S_{a,n}$, there 
 
 
 
+
 \label{corollary:relation_to_initial_p2}
 \hypertarget{corollary:relation_to_initial_p2}{}
 \begin{tcolorbox}
@@ -805,6 +981,8 @@ For any awkward number series $S_{a,n}$, for any $s_0 < s_i \in S_{a,n}$, there 
 
 
 
+
+\subsection{Uniqueness, Simplicity, and Similarity}
 
 
 
@@ -1024,124 +1202,9 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 
 
 
+\subsection{Twins}
+\label{subsection:twins}
 
-\label{lemma:only_staple}
-\hypertarget{lemma:only_staple}{}
-\begin{tcolorbox}
-\textbf{Lemma}
-
-\noindent For any awkward number series $S_{a,n}$ such that $a \geq n$ only contains a single staple which is $s_1$.
-
-\end{tcolorbox}
-
-\noindent \\
-\textit{Proof}
-
-\noindent Let $S_{a, n}$ be an awkward number series such that $a \geq n$.\\
-
-\noindent By previous lemma, for all $i \in [dim(S_{a, n})]$, $s_i = (i + 1) + n$.\\
-
-\noindent By definition, $dim(S_{a,n}) = \ceil{\frac{n}{a}} + 1$.\\
-
-\noindent Since $n \leq a$, then $\ceil{\frac{n}{a}} = 1$. As such, $dim(S_{a, n}) = 2$.\\
-
-\noindent Thus, $s_1 = 2a + n = a + s_0$ is in fact a staple.\\
-
-\noindent NOTE: prove that the basis (except $s_0$) are all staples before this and then use that instead.\\
-
-\noindent Now we must show that there can be no element $s_1 < s_i \in S_{a, n}$ that is also a staple.\\
-
-\noindent Assume there exists some staple $s_i > s_1$.\\
-
-\noindent By definition, $s_i = s_{i - 1} + a$.\\
-
-\noindent By definition, $\rho(s_{i - 1}, s_0) \geq a$.\\
-
-\noindent Furthermore, there exists some integer $t \in \mathbb{N}$ such that $s_{i - 1} = ts_0 + \rho(s_{i - 1}, s_0)$.\\
-
-\noindent Adding $a$ to both sides yields $s_{i - 1} + a = ts_0 + \rho(s_{i - 1}, s_0) + a$.\\
-
-\noindent Substituting in $s_i = s_{i - 1} + a$ yields $s_i = s_{i - 1} + a = ts_0 + \rho(s_{i - 1}, s_0) + a$.\\
-
-\noindent Consider $\rho(s_i, s_0) = \rho(ts_0 + \rho(s_{i - 1}, s_0) + a, s_0)$.\\
-
-\noindent By the property of $\rho$, $\rho(ts_0 + \rho(s_{i - 1}, s_0) + a, s_0) = \rho(\rho(s_{i - 1}, s_0) + a, s_0)$.\\
-
-\noindent Since $\rho(s_{i - 1}, s_0) \geq a \geq n$, then $\rho(s_{i - 1}, s_0) + a \geq a + n$.\\
-
-\noindent Since $\rho(s_{i - 1}, s_0) < s_0$, then $\rho(s_{i - 1}) + a < s_0 + a = 2a + n < 2a + 2n = 2s_0$.\\
-
-\noindent As such, $s_0 \leq \rho(s_{i - 1}, s_0) + a < 2s_0$.\\
-
-\noindent By property of $\rho$, $\rho(\rho(s_{i - 1}, s_0) + a, s_0) = \rho(s_{i - 1}, s_0) + a - s_0$.\\
-
-\noindent Substituting for $s_0$, $\rho(s_i, s_0) = \rho(s_{i - 1}, s_0) + a - a - n = \rho(s_{i - 1}, s_0) - n$.\\
-
-\noindent By definition, $\rho(s_{i - 1}, s_0) < s_0$, as such, $\rho(s_{i - 1}, s_0) - n < s_0 - n$.\\
-
-\noindent Substituting for $s_0$, $\rho(s_{i - 1}, s_0) - n < s_0 - n = a$.\\
-
-\noindent As such, $\rho(s_i, s_0) = \rho(s_{i - 1}, s_0) - n < a$. However, since $s_i > s_1$, then $\rho(s_i, s_0) \geq a$ by definition. As such, we have reached a contradiction.
-
-
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
-\noindent \\
-
-
-
-\label{lemma:min_length_one_staple}
-\hypertarget{lemma:min_length_one_staple}{}
-\begin{tcolorbox}
-\textbf{Corollary}
-
-\noindent For any awkward number series $S_{a,n}$ such that $a \geq n$, for any $s_i, s_j \in S_{a, n}$ such that $s_1 \leq s_i < s_j$, it is the case that $s_j \geq (j - i)(a + 1) + s_i$.
-
-\end{tcolorbox}
-
-\noindent \\
-\textit{Proof}
-
-\noindent We shall complete this proof by induction on the difference of $i$ and $j$.
-
-\noindent Let $S_{a, n}$ be any awkward number series such that $a \geq n$.
-
-\noindent \\
-\textit{Base Case}
-
-\noindent Let $i \geq 1$ and $j = i + 1$.\\
-
-\noindent By previous lemma, $s_j$ cannot be a staple.\\
-
-\noindent As such, $s_j \geq s_i + a + 1 = s_i + (1)(a + 1) = s_i + (j - i)(a + 1)$.
-
-
-\noindent \\
-\textit{Inductive Hypothesis}
-
-\noindent Assume for some $1 \leq k \in \mathbb{N}$ that $s_j \geq s_i + (j - i)(a + 1)$ whenever $s_j > s_i$ and $j - i \leq k$.
-
-
-\noindent \\
-\textit{Inductive Step}
-
-\noindent Let $s_i \in S_{a, n}$ such that $s_1 \leq s_i$.\\
-
-\noindent By the inductive hypothesis, the element $s_{i + k} \geq s_i + k(a + 1)$.\\
-
-\noindent By previous lemma, $s_{i + k + 1} \geq s_{i + k} + a + 1$.\\
-
-\noindent As such, $s_{i + k} + a \geq s_i + k(a + 1) + a + 1 = s_i + (k + 1)(a + 1)$.\\
-
-\noindent As such, we have shown that $s_{i + k + 1} \geq s_i + (k + 1)(a + 1)$.\\
-
-\noindent Furthermore, the difference $(i + k + 1) - i = k + 1$.
-
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
-\noindent \\
 
 
 
