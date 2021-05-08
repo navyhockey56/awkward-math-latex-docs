@@ -206,10 +206,10 @@
 
 
 
-\label{assumed_knowledge:prime_definition}
-\hypertarget{assumed_knowledge:prime_definition}{}
+\label{definition:prime_numbers}
+\hypertarget{definition:prime_numbers}{}
 \begin{tcolorbox}
-\textbf{Assumed Knowledge}
+\textbf{Definition}
 
 \noindent Any integer $p > 1$ is called \textit{prime} if its only divisors are one and itself.
 
@@ -439,6 +439,82 @@ Every awkward number series contains an infinite number of elements.
 
 \subsection{Prime Numbers}
 
+\label{lemma:asn_subset_prime}
+\hypertarget{lemma:asn_subset_prime}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+Every element of $S_{1, 1}$ is prime. 
+\end{tcolorbox}
+
+\noindent \\
+\noindent NOTE: This proof doesn't work without knowing there are an infinite number of prime numbers (we can't assume there's a prime number greater than $s_{k - 1}$ without knowing their are an infinite number of primes (first line of inductive step).\\
+
+\noindent \\
+\textit{Proof}
+
+\noindent We shall prove that every element of $S_{1, 1}$ is a prime number by induction on the index.
+
+\noindent \\
+\textit{Base Case}
+
+\noindent The first prime number is $2$. By definition, the $s_0 = a + n = 1 + 1 = 2$.
+
+
+\noindent \\
+\textit{Inductive Hypothesis}
+
+\noindent Assume for some integer $k \geq 0$, that for all integers $i \in [k]$, that $s_i$ is a prime number.
+
+
+\noindent \\
+\textit{Inductive Step}
+
+\noindent Let $p$ be the least greatest prime number such that $p > s_{k - 1}$.\\
+
+\noindent \hyperlink{definition:prime_numbers}{By definition}, the only factors of $p$ are $1$ and $p$.\\
+
+\noindent As such, $\rho(p, s_i) > 0$ for all $s_i$ such that $i \in [k]$.\\
+
+\noindent Furthermore, $\rho(p, s_i)$ is an integer, as such, $\rho(p, s_i) \geq 1 = a$.\\
+
+\noindent As such, if $p$ is the least greatest integer greater than $s_{k - 1}$ such that $\rho(p, s_i) \geq 1$, then $p = s_k$ \hyperlink{definition:awkward_number_series}{by definition}.\\
+
+\noindent Assume there exists exists some integer $t$ such that $s_{k - 1} < t < p$ and $\rho(p, s_i) \geq 1$ for all $s_i \leq s_{k - 1}$.\\
+
+\noindent Since $p$ is the least greatest prime greater than $s_{k - 1}$ and $t < p$, then $t$ cannot be prime.\\
+
+\noindent Then there exists some integers $u, v$ such that $1 < u \leq v < t$, $t = uv$, and $u$ is the least greatest divisor of $t$ that is greater than $1$.\\
+
+\noindent By assumption, for all $s_i < s_k$, $s_i$ does not divide $t$. As such, neither $u$ nor $v$ can be multiple of any $s_i < s_k$. Otherwise, $t$ would also be a multiple of $s_i$.\\
+
+\noindent Assume $u < s_{k - 1}$. Then for all $s_i < u$, it is the case that $\rho(s_i, u) \geq 1$. As such, $u$ would be a an element of $S_{1,1}$.\\
+
+\noindent Furthermore, $\rho(t, u) = \rho(uv, u) = 0$. However, this contradicts the assumption that $\rho(t, s_i) > 0$ for all $s_i < s_k$. As such, $u > s_{k - 1}$ must be the case.\\
+
+\noindent Since $s_{k - 1} < u < p$ and $p$ is the least greatest prime greater than $s_{k - 1}$, then $u$ cannot be prime.\\
+
+\noindent As such, there exists some integers $x, y$ such that $1 < x \leq y < u$ and $u = xy$.\\
+
+\noindent As such, $t = uv = xyv$ by substitution. Therefor, $x$ is divisor of $t$.\\
+
+\noindent However, this contradicts the assumption that $u$ is the least greatest divisor of $t$ that is greater than $1$.\\
+
+\noindent As such, the integers $u, v$ cannot exist. Therefore, $t$ must be prime.\\
+
+\noindent However, $t$ cannot be prime because this contradicts the assumption that $p$ is the least greatest prime greater than $s_{k - 1}$. Therefore, $t$ cannot exist.\\
+
+\noindent As such, $s_k = p$ must be the case. 
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
 
 \label{lemma:prime_asn}
 \hypertarget{lemma:prime_asn}{}
@@ -451,13 +527,24 @@ The awkward number series $S_{1, 1}$ is equal to the set of prime numbers.
 \noindent \\
 \textit{Proof}
 
-\noindent TODO
+\noindent \hyperlink{lemma:asn_subset_prime}{By the previous lemma}, we know that the elements of $S_{1, 1}$ are a subset of the prime numbers. As such, we need to show that every prime is an element of $S_{1, 1}$.\\
+
+\noindent Assume there exists some prime number $p$ that is not an element of $S_{1, 1}$.\\
+
+\noindent Let $s_k \in S_{1, 1}$ such that $s_k < p < s_{k + 1}$.\\
+
+\noindent Since $p$ is prime, its only divisors are $1$ and itself \hyperlink{definition:prime_numbers}{by definition}.\\
+
+\noindent As such, for all $s_i \in S_{1, 1}$ such that $s_i < p$, it is the case that $\rho(p, s_i) > 0$.\\
+
+\noindent However, $s_{k + 1}$ is the least greatest integer greater than $s_k$ with the property that $\rho(p, s_i) > 0$ \hyperlink{definition:awkward_number_series}{by definition}.\\
+
+\noindent As such, $p$ cannot exist. Thus every prime number must be an element of $S_{1, 1}$.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 \noindent \\
-
 
 
 
@@ -472,7 +559,9 @@ There are an infinite number of prime numbers.
 \noindent \\
 \textit{Proof}
 
-\noindent The prime numbers are an awkward number series and every awkward number series contains an infinite number of elements.
+\noindent The set of prime numbers is equal to the elements of the awkward number series $S_{1, 1}$ \hyperlink{lemma:prime_asn}{by previous lemma}.\\
+
+\noindent Every awkward number series contains an infinite number of elements \hyperlink{theorem:infinite_asn}{by the awkward infinity theorem}.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
@@ -490,8 +579,8 @@ There are an infinite number of prime numbers.
 
 
 
-\label{definition:awkward_number_series}
-\hypertarget{definition:awkward_number_series}{}
+\label{definition:dimension}
+\hypertarget{definition:dimension}{}
 \begin{tcolorbox}
 \textbf{Definition}
 
