@@ -750,15 +750,12 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 
 
 
-
-
-
-\label{lemma:only_staple}
-\hypertarget{lemma:only_staple}{}
+\label{lemma:dimension_a_greater_equal_n}
+\hypertarget{lemma:dimension_a_greater_equal_n}{}
 \begin{tcolorbox}
 \textbf{Lemma}
 
-\noindent For any awkward number series $S_{a,n}$ such that $a \geq n$, the series only contains a single staple which is $s_1$.
+\noindent For any awkward number series $S_{a,n}$ such that $a \geq n$, it is the case that $dim(S_{a, n}) = 2$.
 
 \end{tcolorbox}
 
@@ -779,7 +776,36 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 
 \noindent Substituting in $dim(S_{a, n})$ yields $dim(S_{a,n}) = 2$.\\
 
-\noindent Since $1 \in [2]$, then $s_1$ is a staple \hyperlink{lemma:initial_staples}{by previous lemma},.\\
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
+
+
+
+\label{lemma:only_staple}
+\hypertarget{lemma:only_staple}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+\noindent For any awkward number series $S_{a,n}$ such that $a \geq n$, the series only contains a single staple which is $s_1$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a, n}$ be an awkward number series such that $a \geq n$.\\
+
+\noindent \hyperlink{lemma:dimension_a_greater_equal_n}{By previous lemma}, $dim(S_{a, n}) = 2$ since $a \geq n$.\\
+
+\noindent Since $1 \in [2] = [dim(S_{a, n})]$, then $s_1$ is a staple \hyperlink{lemma:initial_staples}{by previous lemma}.\\
 
 \noindent Now we must show that there can be no element $s_1 < s_i \in S_{a, n}$ that is also a staple.\\
 
@@ -787,7 +813,7 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 
 \noindent \hyperlink{definition:staple}{By definition of a staple}, $s_i = s_{i - 1} + a$.\\
 
-\noindent \hyperlink{definition:awkward_number_series}{By definition of an awkward number series}, $\rho(s_{i - 1}, s_0) \geq a$.\\
+\noindent Since $s_i > s_1$, then $s_{i - 1} \geq s_1 > s_0$. As such, \hyperlink{definition:awkward_number_series}{by definition of an awkward number series}, $\rho(s_{i - 1}, s_0) \geq a$.\\
 
 \noindent Furthermore, there exists some integer $t \in \mathbb{N}$ such that $s_{i - 1} = ts_0 + \rho(s_{i - 1}, s_0)$ \hyperlink{theorem:remainder_theorem}{by the remainder theorem}.\\
 
@@ -851,16 +877,22 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 \noindent \\
 \textit{Proof}
 
-\noindent We shall complete this proof by induction on the difference of $i$ and $j$.
+\noindent Let $S_{a, n}$ be any awkward number series such that $a \geq n$.\\
 
-\noindent Let $S_{a, n}$ be any awkward number series such that $a \geq n$.
+\noindent We shall complete this proof by induction on the difference of indexes $i$ and $j$ for elements $s_i, s_j \in S_{a, n}$.
 
 \noindent \\
 \textit{Base Case}
 
 \noindent Let $i \geq 1$ and $j = i + 1$.\\
 
-\noindent By previous lemma, $s_j$ cannot be a staple.\\
+\noindent As such, $j \geq 1 + 1 = 2$ by substitution.\\
+
+\noindent Therefor, $s_j$ cannot be a staple \hyperlink{lemma:only_staple}{by previous lemma} since $a \geq n$ and $j \geq 2$.\\
+
+\noindent As such, $s_j > s_i + a$. Since $s_j \in \mathbb{Z}$, then $s_j \geq s_i + a + 1$.\\
+
+\noindent Furthermore, $j - i = (i + 1) - i = 1$ by substitution.\\
 
 \noindent As such, $s_j \geq s_i + a + 1 = s_i + (1)(a + 1) = s_i + (j - i)(a + 1)$.
 
@@ -868,7 +900,7 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 \noindent \\
 \textit{Inductive Hypothesis}
 
-\noindent Assume for some $1 \leq k \in \mathbb{N}$ that $s_j \geq s_i + (j - i)(a + 1)$ whenever $s_j > s_i$ and $j - i \leq k$.
+\noindent Assume for some integer $k$ such that $1 \leq k$, that $s_j \geq s_i + (j - i)(a + 1)$ whenever $s_j > s_i$ and $j - i \leq k$.
 
 
 \noindent \\
@@ -876,15 +908,21 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 
 \noindent Let $s_i \in S_{a, n}$ such that $s_1 \leq s_i$.\\
 
-\noindent By the inductive hypothesis, the element $s_{i + k} \geq s_i + k(a + 1)$.\\
+\noindent Since $k = (k + i) - i$, then the element $s_{i + k} \geq s_i + k(a + 1)$ by the inductive hypothesis.\\
 
-\noindent By previous lemma, $s_{i + k + 1} \geq s_{i + k} + a + 1$.\\
+\noindent Since $i, k \geq 1$, then $i + k + 1 \geq 1 + 1 + 1 = 3$ by substitution.\\
 
-\noindent As such, $s_{i + k} + a \geq s_i + k(a + 1) + a + 1 = s_i + (k + 1)(a + 1)$.\\
+\noindent As such, $s_{i + k + 1} \geq s_3 > s_1$. Therefore, $s_{i + k + 1}$ cannot be a staple \hyperlink{lemma:only_staple}{by previous lemma}.\\
 
-\noindent As such, we have shown that $s_{i + k + 1} \geq s_i + (k + 1)(a + 1)$.\\
+\noindent As such, $s_{i + k + 1} > s_{i + k} + a$.\\
 
-\noindent Furthermore, the difference $(i + k + 1) - i = k + 1$.
+\noindent Since $s_{i + k + 1}, s_{i + k}, a \in \mathbb{Z}$, then $s_{i + k + 1} \geq s_{i + k} + a + 1$.\\
+
+\noindent Substituting out $s_{i + k}$ yields, $s_{i + k + 1} \geq k(a + 1) + s_i + (a + 1)$.\\
+
+\noindent Factoring the $(a + 1)$ yields $s_{i + k + 1} \geq (k + 1)(a + 1) + s_i$.\\
+
+\noindent Furthermore, $(i + k + 1) - i = k + 1$. As such, $s_{i + k + 1} \geq ((i + k + 1) - i)(a + 1) + s_i$ by substitution.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
