@@ -484,6 +484,45 @@ Every element of $S_{1, 1}$ is prime.
 
 
 
+\label{lemma:primes_in_asn}
+\hypertarget{lemma:primes_in_asn}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any $n \in \mathbb{N}^+$, for any prime $p \geq 1 + n$, it is the case that $p \in S_{1, n}$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $n$ be any positive integer. Let $p$ be any prime such that $p \geq 1 + n$.\\
+
+\noindent Note that $1 + n = s_0 \in S_{1, n}$ \hyperlink{definition:awkward_number_series}{by definition of an awkward number series}.\\
+
+\noindent Let $s_i \in S_{1, n}$ such that $s_i \leq p < s_{i + 1}$.\\
+
+\noindent Assume $p > s_i$.\\
+
+\noindent \hyperlink{definition:prime_numbers}{By definition of prime}, the only factors of $p$ are $1$ and $p$.\\
+
+\noindent As such, $\rho(p, s_j) \geq 1$ for all $s_j \in S_{1, n}$ such that $s_j < p$.\\
+
+\noindent By assumption, $s_i < p$, as such, $\rho(p, s_j) \geq 1$ for all $s_j \leq s_i$.\\
+
+\noindent \hyperlink{definition:awkward_number_series}{By definition of an awkward number series}, $s_{i + 1}$ is the least greatest integer greater than $s_i$ such that $\rho(p, s_j) \geq 1$ for all $s_j \leq s_i$.\\
+
+\noindent As such, $p = s_{i + 1}$ must be the case.\\
+
+\noindent However, $s_{i + 1}$ was chosen such that $p < s_{i + 1}$. As such, we have reached a contradiction. Therefor, it must be the case that $p = s_i$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
+
 \label{lemma:prime_asn}
 \hypertarget{lemma:prime_asn}{}
 \begin{tcolorbox}
@@ -497,22 +536,18 @@ The awkward number series $S_{1, 1}$ is equal to the set of prime numbers.
 
 \noindent \hyperlink{lemma:asn_subset_prime}{By the previous lemma}, we know that the elements of $S_{1, 1}$ are a subset of the prime numbers. As such, we need to show that every prime is an element of $S_{1, 1}$.\\
 
-\noindent Assume there exists some prime number $p$ that is not an element of $S_{1, 1}$.\\
+\noindent \hyperlink{lemma:primes_in_asn}{By previous lemma}, $S_{1, 1}$ contains every prime greater than or equal to $1 + 1 = 2$.\\
 
-\noindent Let $s_k \in S_{1, 1}$ such that $s_k < p < s_{k + 1}$.\\
+\noindent \hyperlink{definition:prime_numbers}{By definition of primes}, prime numbers are integers strictly greater than $1$. As such, every prime is greater than or equal to $2$.\\
 
-\noindent Since $p$ is prime, its only divisors are $1$ and itself \hyperlink{definition:prime_numbers}{by definition}.\\
-
-\noindent As such, for all $s_i \in S_{1, 1}$ such that $s_i < p$, it is the case that $\rho(p, s_i) > 0$.\\
-
-\noindent However, $s_{k + 1}$ is the least greatest integer greater than $s_k$ with the property that $\rho(p, s_i) > 0$ \hyperlink{definition:awkward_number_series}{by definition}.\\
-
-\noindent As such, $p$ cannot exist. Thus every prime number must be an element of $S_{1, 1}$.
+\noindent As such, $S_{1, 1}$ contains every prime number.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 \noindent \\
+
+
 
 
 
@@ -534,6 +569,9 @@ There are an infinite number of prime numbers.
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
 \end{center}
+\noindent \\
+
+
 
 
 
@@ -541,8 +579,6 @@ There are an infinite number of prime numbers.
 
 
 \subsection{Dimension, Staples, and Basis}
-
-
 
 
 
@@ -1387,6 +1423,47 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 \noindent \\
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Awkward Factorization}
+\label{subsection:awkward_factorization}
+
+
+
+\label{lemma:awkward_factorization}
+\hypertarget{lemma:awkward_factorization}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any positive integer $x$, it is the case that $x = c \displaystyle \prod_{i = 0}^{j} s_i ^ {p_i}$ where $1 \leq c < s_0$, $s_j \leq x < s_{j + 1}$ and $p_i \in \mathbb{N}$ for all $i$.\\
+
+\noindent We call $c \displaystyle \prod_{i = 0}^{j} s_i ^ {p_i}$ the \textit{awkward factorization} of $x$ in $S_{1, n}$.
+\end{tcolorbox}
+
+
+\noindent \\
+\textit{Proof}
+
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
 
 
 
