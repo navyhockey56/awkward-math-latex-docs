@@ -561,6 +561,8 @@ For any awkward number series $S_{a,n}$, the value $\ceil{\frac{n}{a}} + 1$ is c
 
 
 
+
+
 \label{definition:basis}
 \hypertarget{definition:basis}{}
 \begin{tcolorbox}
@@ -570,6 +572,43 @@ For any awkward number series $S_{a,n}$, for $i \in [dim(S_{a,n})]$, $s_i$ is ca
 
 \end{tcolorbox}
 \noindent \\
+
+
+
+
+
+
+\label{lemma:min_dimension}
+\hypertarget{lemma:min_dimension}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any awkward number series $S_{a, n}$, it is the case that $dim(S_{a, n}) \geq 2$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Assume there exists an awkward number series $S_{a, n}$ such that $dim(S_{a, n}) < 2$.\\
+
+\noindent \hyperlink{definition:dimension}{By definition}, $dim(S_{a, n}) = \ceil{\frac{n}{a}} + 1$.\\
+
+\noindent \hyperlink{definition:awkward_number_series}{By definition}, $a, n \in \mathbb{N}^+$. As such, $\ceil{\frac{n}{a}} > 0$.\\
+
+\noindent Adding $1$ to both sides yields $\ceil{\frac{n}{a}} + 1 = dim(S_{a, n}) > 1$.\\
+
+\noindent \hyperlink{definition:ceiling_function}{By definition}, $\ceil{\frac{n}{a}} \in \mathbb{Z}$. As such, $dim(S_{a, n}) \geq 2$. 
+
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+
+
+
+
 
 
 
@@ -640,7 +679,7 @@ For any awkward number series $S_{a,n}$, for any basis $s_i$ of the series, it i
 
 \noindent As such, $s_k + a$ is the least greatest integer greater than $s_k$ with the property that $\rho(s_k + a, s_j) \geq a$ for all $j \leq k$. Therefor, $s_{k + 1} = s_k + a$ \hyperlink{definition:awkward_number_series}{by definition}.\\
 
-\noindent Substituting for $s_k$ yields, $s_{k + 1} = a(k + 1) + n + a = a(k + 2) + n$.
+\noindent Substituting for $s_k$ yields, $s_{k + 1} = a(k + 1) + n + a = a(k + 2) + n$. As such, we have completed the inductive step.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
@@ -678,7 +717,7 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 
 \noindent Let $S_{a, n}$ be any awkward number series.\\
 
-\noindent Let $i$ be any integer such that $0 < i \leq dim(S_{a, n})$.\\
+\noindent Let $i$ be any integer such that $0 < i < dim(S_{a, n})$.\\
 
 \noindent \hyperlink{lemma:basis_lengths}{By previous lemma}, $s_i = a(i + 1) + n$ and $s_{i - 1} = ai + n$.\\
 
@@ -696,7 +735,7 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 
 \noindent As such, $s_i - s_{i - 1} = a$.\\
 
-\noindent Subtracting $s_{i - 1}$ from both sides yields $s_i = s_{i - 1} + a$.\\
+\noindent Adding $s_{i - 1}$ to both sides yields $s_i = s_{i - 1} + a$.\\
 
 \noindent Thus, $s_i$ is a staple \hyperlink{definition:staple}{by definition}.
 
@@ -728,49 +767,65 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 
 \noindent Let $S_{a, n}$ be an awkward number series such that $a \geq n$.\\
 
-\noindent By previous lemma, for all $i \in [dim(S_{a, n})]$, $s_i = (i + 1) + n$.\\
+\noindent \hyperlink{definition:dimension}{By definition of dimension}, $dim(S_{a,n}) = \ceil{\frac{n}{a}} + 1$.\\
 
-\noindent By definition, $dim(S_{a,n}) = \ceil{\frac{n}{a}} + 1$.\\
+\noindent Since $a, n \in \mathbb{N}^+$ \hyperlink{definition:awkward_number_series}{by definition of an awkward number series}, then $\frac{n}{a} > 0$.\\
 
-\noindent Since $n \leq a$, then $\ceil{\frac{n}{a}} = 1$. As such, $dim(S_{a, n}) = 2$.\\
+\noindent Since $n \leq a$, then $\frac{n}{a} \leq \frac{a}{a} = 1$.\\
 
-\noindent Thus, $s_1 = 2a + n = a + s_0$ is in fact a staple.\\
+\noindent As such, $0 < \frac{n}{a} \leq 1$, therefore, $\ceil{\frac{n}{a}} = 1$ \hyperlink{definition:ceiling_function}{by definition of the ceiling function}.\\
 
-\noindent NOTE: prove that the basis (except $s_0$) are all staples before this and then use that instead.\\
+\noindent Adding $1$ to both sides yields $\ceil{\frac{n}{a}} + 1 = 2$.\\
+
+\noindent Substituting in $dim(S_{a, n})$ yields $dim(S_{a,n}) = 2$.\\
+
+\noindent Since $1 \in [2]$, then $s_1$ is a staple \hyperlink{lemma:initial_staples}{by previous lemma},.\\
 
 \noindent Now we must show that there can be no element $s_1 < s_i \in S_{a, n}$ that is also a staple.\\
 
 \noindent Assume there exists some staple $s_i > s_1$.\\
 
-\noindent By definition, $s_i = s_{i - 1} + a$.\\
+\noindent \hyperlink{definition:staple}{By definition of a staple}, $s_i = s_{i - 1} + a$.\\
 
-\noindent By definition, $\rho(s_{i - 1}, s_0) \geq a$.\\
+\noindent \hyperlink{definition:awkward_number_series}{By definition of an awkward number series}, $\rho(s_{i - 1}, s_0) \geq a$.\\
 
-\noindent Furthermore, there exists some integer $t \in \mathbb{N}$ such that $s_{i - 1} = ts_0 + \rho(s_{i - 1}, s_0)$.\\
+\noindent Furthermore, there exists some integer $t \in \mathbb{N}$ such that $s_{i - 1} = ts_0 + \rho(s_{i - 1}, s_0)$ \hyperlink{theorem:remainder_theorem}{by the remainder theorem}.\\
 
 \noindent Adding $a$ to both sides yields $s_{i - 1} + a = ts_0 + \rho(s_{i - 1}, s_0) + a$.\\
 
-\noindent Substituting in $s_i = s_{i - 1} + a$ yields $s_i = s_{i - 1} + a = ts_0 + \rho(s_{i - 1}, s_0) + a$.\\
+\noindent Substituting in $s_i$ for $s_{i - 1} + a$ yields $s_i = ts_0 + \rho(s_{i - 1}, s_0) + a$.\\
 
-\noindent Consider $\rho(s_i, s_0) = \rho(ts_0 + \rho(s_{i - 1}, s_0) + a, s_0)$.\\
+\noindent Since $\rho(s_{i - 1}, s_0) \geq a$, then $\rho(s_{i - 1}, s_0) + a \geq a + a$.\\
 
-\noindent By the property of $\rho$, $\rho(ts_0 + \rho(s_{i - 1}, s_0) + a, s_0) = \rho(\rho(s_{i - 1}, s_0) + a, s_0)$.\\
+\noindent Furthermore, $n \leq a$, as such, $\rho(s_{i - 1}, s_0) + a \geq a + a \geq a + n = s_0$.\\
 
-\noindent Since $\rho(s_{i - 1}, s_0) \geq a \geq n$, then $\rho(s_{i - 1}, s_0) + a \geq a + n$.\\
+\noindent Let $r = \rho(s_{i - 1}, s_0) + a - s_0$.\\
 
-\noindent Since $\rho(s_{i - 1}, s_0) < s_0$, then $\rho(s_{i - 1}) + a < s_0 + a = 2a + n < 2a + 2n = 2s_0$.\\
+\noindent Since $\rho(s_{i - 1}, s_0) + a \geq s_0$, then $\rho(s_{i - 1}, s_0) + a - s_0 \geq 0$ by subtracting $s_0$ from both sides.\\
 
-\noindent As such, $s_0 \leq \rho(s_{i - 1}, s_0) + a < 2s_0$.\\
+\noindent Substituting in $r$ yields $r \geq 0$.\\
 
-\noindent By property of $\rho$, $\rho(\rho(s_{i - 1}, s_0) + a, s_0) = \rho(s_{i - 1}, s_0) + a - s_0$.\\
+\noindent Furthermore, both $\rho(s_{i - 1}, s_0) < s_0$ and $a < s_0$, as such,\\ $\rho(s_{i - 1}, s_0) + a < s_0 + s_0 = 2s_0$.\\
 
-\noindent Substituting for $s_0$, $\rho(s_i, s_0) = \rho(s_{i - 1}, s_0) + a - a - n = \rho(s_{i - 1}, s_0) - n$.\\
+\noindent Subtracting $s_0$ from both sides yields, $\rho(s_{i - 1}, s_0) + a - s_0 < s_0$.\\
 
-\noindent By definition, $\rho(s_{i - 1}, s_0) < s_0$, as such, $\rho(s_{i - 1}, s_0) - n < s_0 - n$.\\
+\noindent Substituting $r$ yields, $r < s_0$. As such, $0 \leq r < s_0$.\\
 
-\noindent Substituting for $s_0$, $\rho(s_{i - 1}, s_0) - n < s_0 - n = a$.\\
+\noindent We have that $s_i = ts_0 + \rho(s_{i - 1}, s_0) + a$.\\
 
-\noindent As such, $\rho(s_i, s_0) = \rho(s_{i - 1}, s_0) - n < a$. However, since $s_i > s_1$, then $\rho(s_i, s_0) \geq a$ by definition. As such, we have reached a contradiction.
+\noindent Since $s_0 - s_0 = 0$, then $s_i = ts_0 + \rho(s_{i - 1}, s_0) + a + (s_0 - s_0)$.\\
+
+\noindent Substituting in $r$ yields, $s_i = ts_0 + r + s_0$.\\
+
+\noindent Factoring $s_0$ yields, $s_i = (t + 1)s_0 + r$.\\
+
+\noindent Since $r \in [s_0]$, then $\rho(s_i, s_0) = r$ \hyperlink{theorem:remainder_theorem}{by definition of the remainder}.\\
+
+\noindent Since $\rho(s_{i - 1}, s_0) < s_0$, then $r = \rho(s_{i - 1}, s_0) + a - s_0 < s_0 + a - s_0 < a$ by substitution.\\
+
+\noindent As such, $\rho(s_i, s_0) = r < a$. However, $\rho(s_i, s_0) \geq a$ \hyperlink{definition:awkward_number_series}{by definition of an awkward number series}. As such, we have reached a contradiction.\\
+
+\noindent Therefor, our assumption that $s_i$ is a staple must be false. As such, there can be no staple greater than $s_1$.
 
 
 \begin{center}
