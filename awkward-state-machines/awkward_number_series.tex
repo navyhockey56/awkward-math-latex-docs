@@ -865,8 +865,8 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 
 
 
-\label{lemma:min_length_one_staple}
-\hypertarget{lemma:min_length_one_staple}{}
+\label{corollary:min_length_one_staple}
+\hypertarget{corollary:min_length_one_staple}{}
 \begin{tcolorbox}
 \textbf{Corollary}
 
@@ -929,6 +929,42 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 \end{center}
 \noindent \\
 
+
+
+
+
+
+\label{corollary:min_length_one_staple_pt2}
+\hypertarget{corollary:min_length_one_staple_pt2}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+\noindent For any awkward number series $S_{a,n}$ such that $a \geq n$, for any $s_i \in S_{a, n}$ such that $s_1 \leq s_i$, it is the case that $s_i \geq (i - 1)(a + 1) + 2a + n$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a, n}$ be any awkward number series such that $a \geq n$.\\
+
+\noindent Let $s_i$ be any element of $S_{a, n}$ such that $s_i \geq s_1$.\\
+
+\noindent \hyperlink{corollary:min_length_one_staple_pt2}{By the previous corollary}, $s_i \geq (i - 1)(a + 1) + s_1$ since $s_i \geq s_1$.\\
+
+\noindent \hyperlink{lemma:dimension_a_greater_equal_n}{By previous lemma}, $dim(S_{a, n}) = 2$ since $a \geq n$.\\
+
+\noindent As such, $s_1$ is a basis \hyperlink{definition:basis}{by definition}.\\
+
+\noindent As such, $s_1 = (1 + 1)a + n = 2a + n$ \hyperlink{lemma:basis_lengths}{by previous lemma} since $s_1$ is a basis.\\
+
+\noindent Substituting out $s_1$ yields, $s_i \geq (i - 1)(a + 1) + 2a + n$.
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
 
 
 \subsection{Linearity Theorem}
