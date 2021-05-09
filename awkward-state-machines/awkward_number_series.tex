@@ -340,8 +340,8 @@ For any awkward number series $S_{a, n}$, for any $s_i, s_j \in S_{a, n}$, $\rho
 
 
 
-\label{lemma:non_divisibility_of_elements}
-\hypertarget{lemma:non_divisibility_of_elements}{}
+\label{corollary:non_divisibility_of_elements}
+\hypertarget{corollary:non_divisibility_of_elements}{}
 \begin{tcolorbox}
 \textbf{Corollary}
 
@@ -472,7 +472,7 @@ Every element of $S_{1, 1}$ is prime.
 
 \noindent As such, $u$ cannot exist. Therefore, the only divisors of $s_i$ are $1$ and itself.\\
 
-\noindent Thus, $s_i$ is prime \hyperlink{definition:prime_numbers}{by defintion}.
+\noindent Thus, $s_i$ is prime \hyperlink{definition:prime_numbers}{by definition}.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
@@ -591,51 +591,56 @@ For any awkward number series $S_{a,n}$, for any basis $s_i$ of the series, it i
 \noindent
 \textit{Base Case}
 
-\noindent By definition, the initial element is $s_0 = a + n = a(0 + 1) + n$.\\
+\noindent \hyperlink{definition:awkward_number_series}{By definition}, the initial element is $s_0 = a + n = a(0 + 1) + n$.\\
 
 
 \noindent
 \textit{Inductive Hypothesis}
 
-\noindent Assume for the first $0 \leq j < \ceil{\frac{n}{a}}$, that $s_j = a(j + 1) + n$.\\
-
+\noindent Assume for the some integer $k$ such that $0 \leq k < \ceil{\frac{n}{a}}$, that $s_j = a(j + 1) + n$ for all $j \leq k$.\\
 
 \noindent
 \textit{Inductive Step}
 
-\noindent For all $x \in [a]$, $\rho(s_j + x, s_j) = x < a$. As such, $s_{j+1} \geq s_j + a$.\\
+\noindent Let $s_j$ be any element such that $s_j \leq s_k$.\\
 
-\noindent If we can show that $\rho(s_j + a, s_k) \geq a$ for all $k < j$, then $s_{j+1} = s_j + a$.\\
+\noindent By the inductive hypothesis, $s_k = a(k + 1) + n$ and $s_j = a(j + 1) + n$.\\
 
-\noindent Furthermore, $s_j + a = a(j + 1) + n + a = a(j + 2) + n$, thus we will completed our proof.\\
+\noindent Redistributing the $a$ term in $s_k$ yields $a(k + 1) + n = a(j + 1) + (k - j)a + n$.\\
 
-\noindent Let $0 \leq k < j$. Then $s_j + a = s_k + a(j - k + 1)$ according to the inductive hypothesis.\\
+\noindent As such, $s_k = s_j + (k - j)a$ by substitution.\\
 
-\noindent As such, $\rho(s_j + a, s_k) = a(j - k + 1)$ as long as $a(j - k + 1) < s_k$.\\
+\noindent Adding $a$ to both sides yields $s_k + a = s_j + (k - j + 1)a$.\\
 
-\noindent Since $j < \ceil{\frac{n}{a}}$ and $j \in \mathbb{N}$, then $j \leq \ceil{\frac{n}{a}} - 1$.\\
+\noindent By the inductive hypothesis, $k < \ceil{\frac{n}{a}}$.\\
 
-\noindent As such, $a(j - k + 1) \leq a(\ceil{\frac{n}{a}} - 1 - k + 1) = a(\ceil{\frac{n}{a}} - k) = a\ceil{\frac{n}{a}} - ak$.\\
+\noindent As such, $k - j + 1 < \ceil{\frac{n}{a}} - j + 1$.\\
 
-\noindent First, let us consider the case where $a$ $|$ $n$.\\
+\noindent Since $j > 0$, then $\ceil{\frac{n}{a}} - j + 1 < \ceil{\frac{n}{a}} + 1 \leq \ceil{\frac{n}{a}}$.\\
 
-\noindent We will then have $a \ceil{\frac{n}{a}} = n$.\\
+\noindent As such, $(k - j + 1)a \leq a\ceil{\frac{n}{a}}$.\\
 
-\noindent As such, $a(j - k + 1) \leq n - ak < s_k$.\\
+\noindent If $\rho(n, a) > 0$, then $a\ceil{\frac{n}{a}} = \frac{c}{a}$ where $c = n + a - \rho(n, a)$ \hyperlink{lemma:ceiling_function}{by previous lemma}.\\
 
-\noindent Now let us consider the case where $\rho(n, a) \geq 1$.\\\
+\noindent Since $\rho(n, a) > 0$, then $c < n + a = s_0$ \hyperlink{definition:awkward_number_series}{by definition}.\\
 
-\noindent Then $a \ceil{\frac{n}{a}} = a \frac{n + a - \rho(n, a)}{a} = n + a - \rho(n, a) = s_0 - \rho(n, a) < s_0 \leq s_k$.\\
+\noindent If $\rho(n, a) = 0$, then $a\ceil{\frac{n}{a}} = n < s_0$ \hyperlink{lemma:ceiling_function}{by previous lemma}.\\
 
-\noindent As such, $a(j - k + 1) < s_k - ak \leq s_k$.\\
+\noindent In either case, $a\ceil{\frac{n}{a}} < s_0$.\\
 
-\noindent Therefore, $\rho(s_j + a, s_k) = a(j - k + 1)$ does in fact hold.\\
+\noindent As such, $(k - j + 1)a < s_0$, therefore, $(k - j + 1)a \in [s_j]$.\\
 
-\noindent As such, we now need to show that $a(j - k + 1) \geq a$.\\
+\noindent As such, since $s_{k + 1} = s_j + (k - j + 1)a$, then $\rho(s_{k + 1}, s_j) = (k - j + 1)a$.\\
 
-\noindent We chose $k < j$, as such, $a(j - k + 1) \geq a(j - j + 1) = a$.\\
+\noindent Since $j \leq k$, then $(k - j + 1)a \geq (k - k + 1)a = a$.\\
 
-\noindent We have shown that $s_j + a = a(j + 2) + n$ is the least greatest integer greater than $s_j$ such that $\rho(s_j + a, s_k) \geq a$ for all $k \leq j$. Therefore, $s_{j+1} = a(j + 2) + n$.
+\noindent As such, $\rho(s_k + a, s_j) \geq a$ for any $j \leq k$.\\
+
+\noindent \hyperlink{corollary:non_divisibility_of_elements}{By previous corollary}, $s_{k + 1} \geq s_k + a$.\\
+
+\noindent As such, $s_k + a$ is the least greatest integer greater than $s_k$ with the property that $\rho(s_k + a, s_j) \geq a$ for all $j \leq k$. Therefor, $s_{k + 1} = s_k + a$ \hyperlink{definition:awkward_number_series}{by definition}.\\
+
+\noindent Substituting for $s_k$ yields, $s_{k + 1} = a(k + 1) + n + a = a(k + 2) + n$.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
