@@ -125,6 +125,17 @@
 
 
 
+\label{lemma:remainder_powers}
+\hypertarget{lemma:remainder_powers}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+\noindent For any positive integers $x, y \geq 2$, such that $\rho(x,y) = 0$, it is the case that there exists some integers $z, p \in \mathbb{N}^+$ such that $x = zy^p$, $z < x$ and $\rho(z, y) > 0$.\\
+
+\noindent \hyperlink{proof:remainder_powers}{Go to proof}
+
+\end{tcolorbox}
+
 
 
 
@@ -1439,20 +1450,122 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 \subsection{Awkward Factorization}
 \label{subsection:awkward_factorization}
 
+\label{definition:awkward_factorization}
+\hypertarget{definition:awkward_factorization}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any positive integer $x \geq 1 + n$. Whenever there exists some subset, $A$, of the elements of $S_{1,n}$ such that $x = cp$ for some integers $c$ and $p$ such that $1 \leq c < 1 + n$ and $p = \displaystyle \prod_{s_a \in A} s_a^{p_a}$ where $p_a \in \mathbb{N}^+$, then we call $cp$ an awkward factorization of $x$ in $S_{1, n}$.\\
+
+\noindent For simplicity, whenever $c = 1$ we may exclude it from the awkward factorization of $x$. Similarly, we may exclude any of the powers $p_a$ from the awkward factorization if they are equal to $1$.
+
+\end{tcolorbox}
+\noindent \\
 
 
-\label{lemma:awkward_factorization}
-\hypertarget{lemma:awkward_factorization}{}
+
+
+
+
+\label{lemma:awkward_factorization_of_element}
+\hypertarget{lemma:awkward_factorization_of_element}{}
 \begin{tcolorbox}
 \textbf{Lemma}
 
-For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any positive integer $x$, it is the case that $x = c \displaystyle \prod_{i = 0}^{j} s_i ^ {p_i}$ where $1 \leq c < s_0$, $s_j \leq x < s_{j + 1}$ and $p_i \in \mathbb{N}$ for all $i$.\\
-
-\noindent We call $c \displaystyle \prod_{i = 0}^{j} s_i ^ {p_i}$ the \textit{awkward factorization} of $x$ in $S_{1, n}$.
+For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any element $s_i \in S_{a, n}$, it is the case that $s_i$ is an awkward factorization of itself in $S_{1, n}$.
 \end{tcolorbox}
 
+\noindent \\
+\textit{Proof}
+
+\noindent Let $n \in \mathbb{N}^+$, let $s_i \in S_{1, n}$, and let $A = \{s_i\}$.\\
+
+\noindent Then $s_i = (1)(s_i)^1$ is an awkward factorization of $s_i \in S_{1, n}$ \hyperlink{definition:awkward_factorization}{by definition}.
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+\label{lemma:non_common_factorization}
+\hypertarget{lemma:non_common_factorization}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any positive integer $x \geq 1 + n$, it is the case that there exists some integers $c, p \in \mathbb{N}^+$ and some element $s_t \in S_{1, n}$ such that $x = c(s_t)^p$, $c < x$, and $\rho(c, s_t) > 0$.
+
+\end{tcolorbox}
 
 \noindent \\
+\textit{Proof}
+
+\noindent Let $n \in \mathbb{N}^+$, let $x$ be any integer such that $x \geq 1 + n$.\\
+
+\noindent If $x \in S_{1, n}$, then $x = 1(x) = 1(x)^1$ and we would be done since $\rho(1, x) = 1 > 0$ and $1 < 1 + n \leq x$.\\
+
+\noindent As such, assume that $x$ is not an element of $S_{1, n}$.\\
+
+\noindent \noindent \hyperlink{lemma:exists_element_less_than_x}{By previous lemma}, there exists some $s_t \in S_{1, n}$ such that $\rho(x, s_t) < 1$.\\
+
+\noindent Since $\rho(x, s_t) \in [s_t]$ by definition, and $\rho(x, s_j) < 1$, then it must be the case that $\rho(x, s_j) = 0$.\\
+
+\noindent Since $n \in \mathbb{N}^+$, then $n \geq 1$. As such, $x \geq 1 + n \geq 1 + 1 = 2$ by substitution.\\
+
+\noindent Since $s_t \in S_{1, n}$, then $s_t \geq s_0 = 1 + n$ \hyperlink{definition:awkward_number_series}{by definition of an awkward number series}.\\
+
+\noindent Furthermore, $s_t \geq 1 + n \geq 1 + 1 = 2$ by substitution.\\
+
+\noindent As such, there exists integers $c, p \in \mathbb{N}^+$ such that $x = c(s_t)^p$, $c < x$, and $\rho(c, s_t) > 0$ \hyperlink{lemma:remainder_powers}{by previous lemma}.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
+
+\label{lemma:max_difference_of_elements}
+\hypertarget{lemma:max_difference_of_elements}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any awkward number series $S_{a, n}$, for any element $s_i \in S_{a, n}$, it is the case that $s_{i + 1} \leq a + l$, where $l$ is the least common multiple of all elements $s_k \in S_{a, n}$ such that $s_k \leq s_i$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent TODO: proof follows directly from the infinite theorem.
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
+\label{lemma:closed_form_of_factorization}
+\hypertarget{lemma:closed_form_of_factorization}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any $j \in \mathbb{N}^+$, if for all $i \in [j]$, $x_i = x_{i + 1}(a_i)^{p_i}$ such that $x_i, x_{i + 1}, a_i, p_i \in \mathbb{N}^+$, then for any $k, l \in [j]$ such that $k < l$, it is the case that $\displaystyle x_k = x_l \prod_{i = k}^{l - 1} (a_i)^{p_i}$
+\end{tcolorbox}
+
+\noindent\\
 \textit{Proof}
 
 
@@ -1461,6 +1574,195 @@ For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any p
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 \noindent \\
+
+
+
+
+
+\label{lemma:awkward_expansion}
+\hypertarget{lemma:awkward_expansion}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$ for any $j \in \mathbb{N}^+$, if for all $i \in [j]$, $x_i = x_{i + 1}(a_i)^{p_i}$ where:
+
+\begin{itemize}
+\item $x_i, x_{i + 1}, p_i \in \mathbb{N}^+$
+
+\item $x_i > x_{i + 1}$
+
+\item $a_i \in S_{1, n}$ and $a_i = a_k$ if and only if $i = k$
+
+\item $\rho(x_{i + 1}, a_k) > 0$ whenever $k \leq i$
+
+\item $x_j \geq 1 + n$
+\end{itemize}
+
+then $x_j = x_{j + 1}(a_j)^{p_j}$ such that:
+
+\begin{itemize}
+\item $x_{j + 1}, p_j \in \mathbb{N}^+$
+
+\item $x_j > x_{j + 1}$
+
+\item $a_j \in S_{1, n}$ and $a_j \neq a_k$ for all $k < j$
+
+\item $\rho(x_{j + 1}, a_k) > 0$ whenever $k \leq j$
+\end{itemize}
+
+\end{tcolorbox}
+
+\noindent\\
+\textit{Proof}
+
+\noindent Assume for some integer $j$ that the properties described above hold.\\
+
+\noindent Then there exists some integers $x, p \in \mathbb{N}^+$ and some element $a \in S_{1, n}$ such that $x_j = x(a)^p$, $x < x_j$, and $\rho(x, a) > 0$ \hyperlink{lemma:non_common_factorization}{by previous lemma}.\\
+
+\noindent If we can show that $\rho(x, a_k) > 0$ for all $k \in [j]$, and $a \neq a_k$ for all $k \in [j]$, then we will have shown that $x = x_{j + 1}$, $a = a_j$, and $p = p_j$ and we will have completed our proof.\\
+
+
+
+\noindent Let us begin by showing $\rho(x, a_k) > 0$ for all $k \in [j]$. We shall accomplish this by contradiction.\\
+
+\noindent Assume that there exists $k \in [j]$ such that $\rho(x, a_k) = 0$.\\
+
+\noindent As such, there exists some integer $u$ such that $x = ua_k$ \hyperlink{theorem:remainder_theorem}{by the remainder theorem}.\\
+
+\noindent We shall now show that this leads to $\rho(x_{k + 1}, a_k) = 0$. In order to do so, we need to express $x_{k + 1}$ as a multiple of $a_k$.\\
+
+\noindent There are two cases to consider, when $k = j - 1$ and $k < j - 1$. Let us start with the case where $k = j - 1$.\\
+
+\noindent We know $x_{k + 1} = x_j = x(a)^p = ua_k(a)^p$ by substitution. Therefor, $\rho(x_j, a_k) = \rho(x_j, a_{j - 1}) = 0$. However, this contradicts our original assumption that $\rho(x_j, a_{j - 1}) > 0$. Therefor, $k < j - 1$ must be the case.\\
+
+\noindent Now let us consider the case where $k < j - 1$.
+
+\noindent We can apply \hyperlink{lemma:closed_form_of_factorization}{the previous lemma} to get $\displaystyle x_{k + 1} = x(a)^p \prod_{i = k + 1}^{j - 1} (a_i)^{p_i}$ .
+
+\noindent As such, $\displaystyle x_{k+1} = ua_k \prod_{i = k + 1}^{j} (a_i)^p_i$ by substitution.\\
+
+\noindent Therefor,  $\rho(x_{k + 1}, a_k) = 0$ \hyperlink{theorem:remainder_function}{by the definition of a remainder}.\\ 
+
+\noindent However, we have that $k \in [j]$, thus our assumption $\rho(x_{k + 1}, a_k) > 0$ holds. As such, we have reached a contradiction by assuming $\rho(x, a_k) = 0$. Therefore, $\rho(x, a_k) > 0$ must actually be the case for all $k \in [j]$.\\
+
+
+
+\noindent Now we are only left with showing that $a \neq a_k$ for all $k \in [j]$ to complete our proof. We shall once again use contradiction.\\
+
+\noindent Assume there exists some integer $k \in [j]$ such that $a = a_k$.\\
+
+\noindent We have $x_j = x(a)^p$. As such, $x_j = x(a)^p = x(a_k)^p$ by substitution.\\
+
+\noindent Furthermore, $\displaystyle x_{k + 1} = x(a)^p \prod_{i = k + 1}^{j - 1} (a_i)^{p_i} = x(a_k)^p \prod_{i = k + 1}^{j - 1} (a_i)^{p_i}$ whenever $k + 1 < j$; and $x_{k + 1} = x_j = x(a_k)^p$ by substitution when $k + 1 = j$. In either case, $\rho(x_{k + 1}, a_k) = 0$.\\
+
+\noindent However, this contradicts our assumption that $\rho(x_{k + 1}, a_k) > 0$. As such, our assumption that $a = a_k$ must have been incorrect. Therefore, $a \neq a_k$ for all $k \in [j]$ must hold.\\
+
+\noindent As such, we have now shown that $x_j = x(a)^p$ where $x, p \in \mathbb{N}^+$, $x < x_j$, $a \in S_{1, n}$, $a \neq a_k$ for all $k \in [j]$, and $\rho(x, a_k) > 0$ as well as $\rho(x, a) > 0$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
+
+
+
+\label{thereom:awkward_factorization}
+\hypertarget{thereom:awkward_factorization}{}
+\begin{tcolorbox}
+\textbf{Awkward Factorization Theorem}
+
+For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any positive integer $x$, it is the case that $x$ has an awkward factorization in $S_{1, n}$.
+\end{tcolorbox}
+
+\noindent\\
+\textit{Outline}
+
+\noindent In this proof we are going to construct the awkward factorization of any positive integer $x_0$.\\
+
+\noindent We will do so by showing we can find a subset of elements of $A \subset S_{1, n}$ such that $x_0 = x_1(a_0)^{p_0}$, $x_1 = x_2(a_1)^{p_1}$, ..., $x_k = x_{k + 1}(a_k)^{p_k}$ where:
+\begin{itemize}
+\item $x_i \in \mathbb{N}^+$ and $x_{i - 1} < x_i$ for all $x_i$
+\item $x_{k+1} \in [1 + n]$
+\item $\rho(x_i, a_j) > 0$ for any $j < i$
+\item $a_i \in A$ and $p_i \in \mathbb{N}^+$ for all $a_i$ and $p_i$
+\end{itemize}
+
+\noindent As such, we will have that:
+\begin{center}
+$x_0 = x_1(a_0)^{p_0} = x_2(a_1)^{p_1}(a_0)^{p_0} = ... = \displaystyle x_{k + 1} \prod_{i = 0}^k a_i^{p_i}$
+\end{center}
+which is an awkward factorization of $x_0$.
+
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $n$ and $x_0$ be any positive integers.\\
+
+\noindent If $x_0 \in [1 + n]$, then $x_0$ is the awkward factorization of itself and we are done.\\
+
+\noindent As such, let us assume $x_0 \geq [1 + n]$.\\
+
+\noindent As such, there exists some integers $x_1, p_0 \in \mathbb{N}^+$ and some element $a_0 \in S_{1, n}$ such that $x_0 = x_1(a_0)^{p_0}$, $x_1 < x_0$, and $\rho(x_1, a_0) > 0$ \hyperlink{lemma:non_common_factorization}{by previous lemma}.\\
+
+\noindent If $x_1 < 1 + n$, then $x_1(a_0)^{p_0}$ is an awkward factorization and we are done.\\
+
+\noindent As such, let us assume $x_1 \geq 1 + n$.\\
+
+\noindent Applying the previous lemma yields $x_1 = x_2(a_1)^{p_1}$.\\
+
+\noindent Once again, if $x_2 < 1 + n$ then $x = x_2(a_1)^{p_1}(a_0)^{p_0}$ would be an awkward factorization and we would be down.\\
+
+\noindent Notice that we can repeatedly apply this argument to yield $x_i = x_{i + 1}(a_i)^{p_i}$ as long as $x_i > 1 + n$.\\
+
+\noindent Let $s_t \in S_{1, n}$ be the element such that $s_t \leq x_0 < s_{t + 1}$.\\
+
+\noindent Let $A = \{$ $a_i$ $|$ $i \in [t + 1]$ $\}$.\\
+
+\noindent Since the elements of a
+
+
+
+\noindent We shall now construct a repeatable argument to show that whenever\\ $x_k \geq 1 + n$ that we can find some $x_{k + 1}$ such that $x_i = x_{i + 1}(a_i)^{p_i}$ for all $i \in [k + 1]$ with $a_i \in S_{1, n}$ and $p_i \in \mathbb{N}^+$.\\
+
+
+
+\noindent Assume the above argument was repeated such that we found $t + 1$ elements of $S_{1, n}$, such that $x_i = x_{i+1}(a_i)^{p_i}$ for all $i \in [t + 1]$.\\
+
+\noindent Then $\displaystyle x_0 = x_{t + 1} \prod_{i = 0}^t (a_i)^{p_i}$.\\
+
+\noindent As such, $a_i \leq x_0$ for all elements $a_i$.\\
+
+\noindent Furthermore, $a_i \neq a_j$ unless $i = j$.\\
+
+\noindent As such, by the pigeon hole principle, $\{ a_i$ $|$ $i \in [t + 1] \}$ $=$ $\{ s_i$ $|$ $i \in [t + 1]$.\\
+
+\noindent As such, $\displaystyle x_0 = x_{t + 1} \prod_{i = 0}^t (a_i)^{p_i} = x_{t + 1} \prod_{i = 0}^t (s_i)^{q_i}$.\\
+
+\noindent However, $\displaystyle x_0 < s_{t + 1} < lcm(s_i) + 1 \leq lcm(s_i) \leq \prod_{i = 0}^t (s_i)$.\\
+
+\noindent As such, we have reached a contradiction. Therefor, it must be the case that we found some $x_k \in [1 + n]$ with $k \leq t$.\\
+
+\noindent Therefore, $\displaystyle x_0 = x_{k} \prod_{i = 0}^{k - 1} (a_i)^{p_i}$ is an awkward factorization of $x_0$ by the elements of $S_{1, n}$.
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
+
 
 
 
@@ -1506,6 +1808,72 @@ For any awkward number series $S_{a,n}$, $S_{a, n}$ contains an infinite number 
 \end{tcolorbox}
 \noindent \\
 
+
+
+
+
+
+
+
+\subsection{Proofs for Assumed Knowledge}
+\label{subsection:assumed_knowledge_proofs}
+
+
+
+
+
+\begin{tcolorbox}
+\textbf{Lemma}
+
+\noindent For any positive integers $x, y \geq 2$, such that $\rho(x,y) = 0$, it is the case that there exists some integers $z, p \in \mathbb{N}^+$ such that $x = zy^p$, $z < x$ and $\rho(z, y) > 0$.\\
+
+\end{tcolorbox}
+
+
+\noindent \\
+\textit{Proof}
+\label{proof:remainder_powers}
+\hypertarget{proof:remainder_powers}{}
+
+\noindent Let $x, y$ be any integers such that $x, y \geq 2$ and $\rho(x, y) = 0$.\\
+
+\noindent If $x = y^p = (1)y^p$ for some $p \in \mathbb{N}^+$, then we would be done since $\rho(1, y) = 1$ and $1 < x$.\\
+
+\noindent As such, assume $x \neq y^p$ for any $p \in \mathbb{N}^+$.\\
+
+\noindent Since $\rho(x, y) = 0$, then there exists some integer $t \in \mathbb{N}^+$ such that $x = ty = ty^1$ by the remainder theorem.\\
+
+\noindent Assume that for all $p \in \mathbb{N}^+$, that $\rho(x, y^p) = 0$.\\
+
+\noindent Let $q$ be any integer such that $x < y^q$.\\
+
+\noindent Then $\rho(x, y^q) = x$ since $x < y^q$ which contradicts $\rho(z, y^p) = 0$ for all $p \in \mathbb{N}^+$.\\
+
+\noindent As such, there must exist some integer $p \in \mathbb{N}^+$ such that $\rho(x, y^p) = 0$ and $\rho(x, y^{p + 1}) \neq 0$.\\
+
+\noindent By the remainder theorem, there exists some integer $z \in \mathbb{N}^+$ such that $x = zy^p$.\\
+
+\noindent Assume that $\rho(z, y) = 0$.\\
+
+\noindent Then there exists some integer $w$ such that $z = wy$ by the remainder theorem.\\
+
+\noindent As such, $x = zy^p = wyy^p$ by substitution.\\
+
+\noindent Furthermore, $x = wyy^p = wy^{p + 1}$ by properties of powers.\\
+
+\noindent As such, $\rho(x, y^{p + 1}) = 0$ by definition of the remainder. However, we chose $p$ such that $\rho(x, y^{p + 1}) \neq 0$. Therefor, we have reached a contradiction and our assumption that $\rho(z, y) = 0$ must be false.\\
+
+\noindent As such, $\rho(z, y) \neq 0$ must be the case.\\
+
+\noindent Furthermore, since $y \geq 2$ then $y^p \geq 2 > 1$.\\
+
+\noindent As such, $x = zy^p > z(1) = z$.
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
 
 
 
