@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.30)  16 MAY 2021 08:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.30)  16 MAY 2021 12:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2030,77 +2030,62 @@ Underfull \hbox (badness 10000) in paragraph at lines 1553--1554
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1576--1577
+Underfull \hbox (badness 10000) in paragraph at lines 1571--1572
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1573--1574
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1578--1579
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1581
 
  []
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 1618--1619
+Underfull \hbox (badness 10000) in paragraph at lines 1591--1592
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1620--1621
+Underfull \hbox (badness 10000) in paragraph at lines 1593--1594
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1622--1623
+Underfull \hbox (badness 10000) in paragraph at lines 1595--1596
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1626--1627
+Underfull \hbox (badness 10000) in paragraph at lines 1597--1598
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1628--1629
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1630--1631
+Underfull \hbox (badness 10000) in paragraph at lines 1604--1605
 
  []
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 1632--1633
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1634--1635
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1636--1637
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1642--1643
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1644--1645
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 1646--1647
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1650--1651
+Underfull \hbox (badness 10000) in paragraph at lines 1648--1649
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1652--1653
+Underfull \hbox (badness 10000) in paragraph at lines 1650--1651
 
  []
 
@@ -2120,7 +2105,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 1658--1659
  []
 
 [29]
-Underfull \hbox (badness 10000) in paragraph at lines 1665--1666
+Underfull \hbox (badness 10000) in paragraph at lines 1660--1661
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1662--1663
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1664--1665
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1670--1671
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1672--1673
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1674--1675
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1678--1679
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1680--1681
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1682--1683
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1684--1685
 
  []
 
@@ -2129,23 +2159,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 1686--1687
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1706--1707
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1708--1709
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1712--1713
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 1693--1694
 
  []
 
@@ -2154,38 +2169,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 1714--1715
 
  []
 
-[30]
-Underfull \hbox (badness 10000) in paragraph at lines 1716--1717
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1718--1719
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1720--1721
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1722--1723
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1724--1725
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1726--1727
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1732--1733
+Underfull \hbox (badness 10000) in paragraph at lines 1734--1735
 
  []
 
@@ -2209,7 +2194,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1742--1743
 
  []
 
-
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 1744--1745
 
  []
@@ -2229,93 +2214,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 1750--1751
 
  []
 
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+
+Underfull \hbox (badness 10000) in paragraph at lines 1752--1753
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1790--1791
+Underfull \hbox (badness 10000) in paragraph at lines 1754--1755
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1809--1810
+Underfull \hbox (badness 10000) in paragraph at lines 1760--1761
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1828--1829
+Underfull \hbox (badness 10000) in paragraph at lines 1764--1765
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1838--1839
+Underfull \hbox (badness 10000) in paragraph at lines 1766--1767
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1840--1841
+Underfull \hbox (badness 10000) in paragraph at lines 1768--1769
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1770--1771
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1772--1773
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1774--1775
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1776--1777
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1778--1779
 
  []
 
 [32]
-Underfull \hbox (badness 10000) in paragraph at lines 1842--1843
+Underfull \hbox (badness 10000) in paragraph at lines 1786--1787
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1844--1845
+Underfull \hbox (badness 10000) in paragraph at lines 1818--1819
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1846--1847
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1848--1849
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1850--1851
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1852--1853
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1854--1855
+Underfull \hbox (badness 10000) in paragraph at lines 1837--1838
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1856--1857
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1858--1859
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1860--1861
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1862--1863
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1864--1865
 
  []
 
@@ -2329,25 +2299,95 @@ Underfull \hbox (badness 10000) in paragraph at lines 1868--1869
 
  []
 
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 1870--1871
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1872--1873
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1874--1875
+
+ []
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 1876--1877
 
  []
 
-[33]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1882.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1882.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1878--1879
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1880--1881
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1882--1883
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1884--1885
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1886--1887
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1888--1889
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1890--1891
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1892--1893
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1894--1895
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1896--1897
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1904--1905
+
+ []
+
+[34]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1910.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1910.
  (./awkward_number_series.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1882.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1882.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1910.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1910.
 
 Package rerunfilecheck Info: File `awkward_number_series.out' has not changed.
 (rerunfilecheck)             Checksum: 14A29066F950AB8E8C8DCAEEC8351A79;983.
  ) 
 Here is how much of TeX's memory you used:
- 16470 strings out of 483183
- 311407 string characters out of 5966292
- 557183 words of memory out of 5000000
+ 16471 strings out of 483183
+ 311414 string characters out of 5966292
+ 556184 words of memory out of 5000000
  31079 multiletter control sequences out of 15000+600000
  541785 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -2365,13 +2405,14 @@ onts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on awkward_number_series.pdf (33 pages, 217670 bytes).
+cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on awkward_number_series.pdf (34 pages, 226823 bytes).
 PDF statistics:
- 412 PDF objects out of 1000 (max. 8388607)
- 359 compressed objects within 4 object streams
- 97 named destinations out of 1000 (max. 500000)
+ 420 PDF objects out of 1000 (max. 8388607)
+ 365 compressed objects within 4 object streams
+ 98 named destinations out of 1000 (max. 500000)
  125 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1568,7 +1568,35 @@ For any $j \in \mathbb{N}^+$, if for all $i \in [j]$, $x_i = x_{i + 1}(a_i)^{p_i
 \noindent\\
 \textit{Proof}
 
+\noindent We shall complete this proof by induction on the difference of the indexes.\\
 
+\noindent Assume for all $i \in [j]$, for some integer $j \in \mathbb{N}^+$, that $x_i = x_{i + 1}(a_i)^{p_i}$ with $x_i, x_{i + 1}, a_i, p_i \in \mathbb{N}^+$.\\
+
+\noindent\\
+\textit{Base Case}
+
+\noindent Let $k \in [j - 1]$. By assumption, $x_k = x_{k + 1}(a_k)^{p_k}$.\\
+
+\noindent Furthermore, $\displaystyle \prod_{i = k}^{k}(a_i)^{p_i} = (a_k)^{p_k}$. As such, $\displaystyle x_k = x_{k + 1} \prod_{i = k}^{k}(a_i)^{p_i}$ by substitution.\\
+
+
+\noindent \\
+\textit{Inductive Hypothesis}
+
+\noindent Assume for some integer $m$ such that $1 \leq m < j - 1$, that $\displaystyle x_k = x_l \prod_{i = k}^{l - 1} (a_i)^{p_i}$ whenever $l - k \leq m$.
+
+\noindent \\
+\textit{Inductive Step}
+
+\noindent Let $k, l \in [j]$ be any integers such that $k - l = m + 1$.\\
+
+\noindent Since $k - l = m + 1$, then we can subtract $1$ from both sides to yield $k - (l - 1) = m$. Furthermore, $m \geq 1$, so $k - (l - 1) \geq 1$ is also true.\\
+
+\noindent As such, we can apply the inductive hypothesis: $\displaystyle x_k = x_{l - 1} \prod_{i = k}^{l - 2}(a_i)^{p_i}$.\\
+
+\noindent By assumption, $x_{l - 1} = x_l(a_{l - 1})^{p_{l - 1}}$.\\
+
+\noindent As such, $\displaystyle x_k = x_l(a_{l - 1})^{p_{l - 1}} \prod_{i = k}^{l - 2}(a_i)^{p_i} = x_l \prod_{i = k}^{l - 1}(a_i)^{p_i}$ by substitution.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
@@ -1639,7 +1667,7 @@ then $x_j = x_{j + 1}(a_j)^{p_j}$ such that:
 
 \noindent We can apply \hyperlink{lemma:closed_form_of_factorization}{the previous lemma} to get $\displaystyle x_{k + 1} = x(a)^p \prod_{i = k + 1}^{j - 1} (a_i)^{p_i}$ .
 
-\noindent As such, $\displaystyle x_{k+1} = ua_k \prod_{i = k + 1}^{j} (a_i)^p_i$ by substitution.\\
+\noindent As such, $\displaystyle x_{k+1} = ua_k(a)^p \prod_{i = k + 1}^{j - 1} (a_i)^p_i$ by substitution.\\
 
 \noindent Therefor,  $\rho(x_{k + 1}, a_k) = 0$ \hyperlink{theorem:remainder_function}{by the definition of a remainder}.\\ 
 
