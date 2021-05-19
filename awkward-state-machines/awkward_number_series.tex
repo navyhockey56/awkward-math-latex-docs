@@ -1532,29 +1532,6 @@ For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any p
 
 
 
-\label{lemma:max_difference_of_elements}
-\hypertarget{lemma:max_difference_of_elements}{}
-\begin{tcolorbox}
-\textbf{Lemma}
-
-For any awkward number series $S_{a, n}$, for any element $s_i \in S_{a, n}$, it is the case that $s_{i + 1} \leq a + l$, where $l$ is the least common multiple of all elements $s_k \in S_{a, n}$ such that $s_k \leq s_i$.
-
-\end{tcolorbox}
-
-\noindent \\
-\textit{Proof}
-
-\noindent TODO: proof follows directly from the infinite theorem.
-
-
-\begin{center}
-\noindent\rule{8cm}{0.4pt}
-\end{center}
-\noindent \\
-
-
-
-
 
 
 \label{lemma:closed_form_of_factorization}
@@ -1602,6 +1579,8 @@ For any $j \in \mathbb{N}^+$, if for all $i \in [j]$, $x_i = x_{i + 1}(a_i)^{p_i
 \noindent\rule{8cm}{0.4pt}
 \end{center}
 \noindent \\
+
+
 
 
 
@@ -1708,25 +1687,6 @@ then $x_j = x_{j + 1}(a_j)^{p_j}$ such that:
 For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any positive integer $x$, it is the case that $x$ has an awkward factorization in $S_{1, n}$.
 \end{tcolorbox}
 
-\noindent\\
-\textit{Outline}
-
-\noindent In this proof we are going to construct the awkward factorization of any positive integer $x_0$.\\
-
-\noindent We will do so by showing we can find a subset of elements of $A \subset S_{1, n}$ such that $x_0 = x_1(a_0)^{p_0}$, $x_1 = x_2(a_1)^{p_1}$, ..., $x_k = x_{k + 1}(a_k)^{p_k}$ where:
-\begin{itemize}
-\item $x_i \in \mathbb{N}^+$ and $x_{i - 1} < x_i$ for all $x_i$
-\item $x_{k+1} \in [1 + n]$
-\item $\rho(x_i, a_j) > 0$ for any $j < i$
-\item $a_i \in A$ and $p_i \in \mathbb{N}^+$ for all $a_i$ and $p_i$
-\end{itemize}
-
-\noindent As such, we will have that:
-\begin{center}
-$x_0 = x_1(a_0)^{p_0} = x_2(a_1)^{p_1}(a_0)^{p_0} = ... = \displaystyle x_{k + 1} \prod_{i = 0}^k a_i^{p_i}$
-\end{center}
-which is an awkward factorization of $x_0$.
-
 
 \noindent \\
 \textit{Proof}
@@ -1735,7 +1695,7 @@ which is an awkward factorization of $x_0$.
 
 \noindent If $x_0 \in [1 + n]$, then $x_0$ is the awkward factorization of itself and we are done.\\
 
-\noindent As such, let us assume $x_0 \geq [1 + n]$.\\
+\noindent As such, let us assume $x_0 \geq 1 + n$.\\
 
 \noindent As such, there exists some integers $x_1, p_0 \in \mathbb{N}^+$ and some element $a_0 \in S_{1, n}$ such that $x_0 = x_1(a_0)^{p_0}$, $x_1 < x_0$, and $\rho(x_1, a_0) > 0$ \hyperlink{lemma:non_common_factorization}{by previous lemma}.\\
 
@@ -1747,38 +1707,13 @@ which is an awkward factorization of $x_0$.
 
 \noindent Once again, if $x_2 < 1 + n$ then $x = x_2(a_1)^{p_1}(a_0)^{p_0}$ would be an awkward factorization and we would be down.\\
 
-\noindent Notice that we can repeatedly apply this argument to yield $x_i = x_{i + 1}(a_i)^{p_i}$ as long as $x_i > 1 + n$.\\
+\noindent Notice that we can repeatedly apply the \hyperlink{lemma:non_common_factorization}{previous lemma} to yield\\ $x_i = x_{i + 1}(a_i)^{p_i}$ as long as $x_i > 1 + n$.\\
 
 \noindent Let $s_t \in S_{1, n}$ be the element such that $s_t \leq x_0 < s_{t + 1}$.\\
 
-\noindent Let $A = \{$ $a_i$ $|$ $i \in [t + 1]$ $\}$.\\
+\noindent Since $x_0 \leq s_t$, then $a_i \leq s_t$ for all $i$. Furthermore, $a_i$ are all unique elements of $S_{1, n}$. As such, there must exist some $j \leq t + 1$ such that $x_j < 1 + n$, otherwise we would have $t + 1$ unique elements when there is only $t$ elements to choose from.\\
 
-\noindent Since the elements of a
-
-
-
-\noindent We shall now construct a repeatable argument to show that whenever\\ $x_k \geq 1 + n$ that we can find some $x_{k + 1}$ such that $x_i = x_{i + 1}(a_i)^{p_i}$ for all $i \in [k + 1]$ with $a_i \in S_{1, n}$ and $p_i \in \mathbb{N}^+$.\\
-
-
-
-\noindent Assume the above argument was repeated such that we found $t + 1$ elements of $S_{1, n}$, such that $x_i = x_{i+1}(a_i)^{p_i}$ for all $i \in [t + 1]$.\\
-
-\noindent Then $\displaystyle x_0 = x_{t + 1} \prod_{i = 0}^t (a_i)^{p_i}$.\\
-
-\noindent As such, $a_i \leq x_0$ for all elements $a_i$.\\
-
-\noindent Furthermore, $a_i \neq a_j$ unless $i = j$.\\
-
-\noindent As such, by the pigeon hole principle, $\{ a_i$ $|$ $i \in [t + 1] \}$ $=$ $\{ s_i$ $|$ $i \in [t + 1]$.\\
-
-\noindent As such, $\displaystyle x_0 = x_{t + 1} \prod_{i = 0}^t (a_i)^{p_i} = x_{t + 1} \prod_{i = 0}^t (s_i)^{q_i}$.\\
-
-\noindent However, $\displaystyle x_0 < s_{t + 1} < lcm(s_i) + 1 \leq lcm(s_i) \leq \prod_{i = 0}^t (s_i)$.\\
-
-\noindent As such, we have reached a contradiction. Therefor, it must be the case that we found some $x_k \in [1 + n]$ with $k \leq t$.\\
-
-\noindent Therefore, $\displaystyle x_0 = x_{k} \prod_{i = 0}^{k - 1} (a_i)^{p_i}$ is an awkward factorization of $x_0$ by the elements of $S_{1, n}$.
-
+\noindent By previous lemma, $\displaystyle x_0 = x_j \prod_{i = 0}^{j - 1}(a_i)^{p_i}$. Furthermore, this is an awkward factorization of $x$ in $S_{1, n}$.
 
 \begin{center}
 \noindent\rule{8cm}{0.4pt}
@@ -1791,6 +1726,14 @@ which is an awkward factorization of $x_0$.
 
 
 
+\label{definition:expressability}
+\hypertarget{definition:expressability}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+For any $n \in \mathbb{N}^+$, for any awkward number series $S_{1,n}$, for any positive integer $x$, if $k$ is the number of unique awkward factorizations of $x$ in $S_{1, n}$, then we say that $x$ is \textit{k-expressible} in $S_{1, n}$.
+
+\end{tcolorbox}
 
 
 
@@ -1835,6 +1778,65 @@ For any awkward number series $S_{a,n}$, $S_{a, n}$ contains an infinite number 
 
 \end{tcolorbox}
 \noindent \\
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Awkward State Machines}
+\label{subsection:awkward_state_machines}
+
+
+
+
+
+
+
+
+
+
+\subsection{Awkward Vectors}
+\label{subsection:awkward_vectors}
+
+
+
+
+
+
+
+
+
+\subsection{Uncategorized}
+\label{subsection:uncategorized}
+
+\label{lemma:max_difference_of_elements}
+\hypertarget{lemma:max_difference_of_elements}{}
+\begin{tcolorbox}
+\textbf{Lemma}
+
+For any awkward number series $S_{a, n}$, for any element $s_i \in S_{a, n}$, it is the case that $s_{i + 1} \leq a + l$, where $l$ is the least common multiple of all elements $s_k \in S_{a, n}$ such that $s_k \leq s_i$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent TODO: proof follows directly from the infinite theorem.
+
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
 
 
 
