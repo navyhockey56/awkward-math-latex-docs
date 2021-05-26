@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.30)  23 MAY 2021 13:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.30)  26 MAY 2021 07:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1780,6 +1780,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 1341--1342
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 1356--1357
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1358--1359
 
  []
@@ -1815,6 +1820,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 1370--1371
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 1372--1373
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1374--1375
 
  []
@@ -1829,12 +1839,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 1378--1379
 
  []
 
-
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 1380--1381
 
  []
 
-[23]
+
+Overfull \hbox (20.11366pt too wide) in paragraph at lines 1382--1383
+[][]\OT1/cmr/m/n/12 By prop-erty of the re-main-der func-tion[][], $\OML/cmm/m/
+it/12 ^^Z\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 tj \OT1/cmr/m/n/12 + \OML/cmm/m/it/1
+2 r; js[]\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 ^^Z\OT1/cmr/m/n/12 (\OML/cmm/m/it
+/12 ^^Z\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 tj; js[]\OT1/cmr/m/n/12 ) + \OML/cmm/m
+/it/12 ^^Z\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r; js[]\OT1/cmr/m/n/12 )\OML/cmm/m/
+it/12 ; js[]\OT1/cmr/m/n/12 )$. 
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1382--1383
 
  []
@@ -1924,12 +1944,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 1416--1417
 
  []
 
-
+[24]
 Underfull \hbox (badness 10000) in paragraph at lines 1418--1419
 
  []
 
-[24]
+
 Underfull \hbox (badness 10000) in paragraph at lines 1420--1421
 
  []
@@ -2337,7 +2357,7 @@ Package rerunfilecheck Info: File `awkward_number_series.out' has not changed.
 Here is how much of TeX's memory you used:
  16482 strings out of 483183
  311658 string characters out of 5966292
- 556379 words of memory out of 5000000
+ 556378 words of memory out of 5000000
  31087 multiletter control sequences out of 15000+600000
  541785 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -2359,10 +2379,10 @@ cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on awkward_number_series.pdf (33 pages, 226141 bytes).
+Output written on awkward_number_series.pdf (33 pages, 226784 bytes).
 PDF statistics:
- 430 PDF objects out of 1000 (max. 8388607)
- 376 compressed objects within 4 object streams
+ 438 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
  101 named destinations out of 1000 (max. 500000)
  149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

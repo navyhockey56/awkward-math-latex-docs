@@ -1347,65 +1347,65 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 \noindent \\
 \textit{Inductive Hypothesis}
 
-\noindent Assume for all $0 \leq i$ that $s^*_i = js_i$.
+\noindent Assume for all some integer $i \in \mathbb{N}$, that for all $k \in [i + 1]$ that $s^*_k = js_k$.
 
 
 \noindent \\
 \textit{Inductive Step}
 
-\noindent We shall start by showing that $\rho(js_{i+1}, s^*_k) \geq ja$ for all $k \leq i$. Afterwards, we will then show that $js_{i+1}$ is the least greatest integer that is both greater than $s^*_i$ with this property. As such, $s^*{i+1} = js^{i+1}$ by definition.
+\noindent We shall start by showing that $\rho(js_{i+1}, s^*_k) \geq ja$ for all $k \leq i$. Afterwards, we will then show that $js_{i+1}$ is the least greatest integer that is both greater than $s^*_i$ with this property. As such, $s^*_{i+1} = js_{i+1}$ by definition.\\
 
 \noindent By the inductive hypothesis, $s^*_k = js_k$ for all $k \leq i$.\\
 
 \noindent As such, $\rho(js_{i+1}, s^*_k) = \rho(js_{i+1}, js_k)$.\\
 
-\noindent By previous lemma (TODO), $\rho(js_{i+1}, js_k) = j \rho(s_{i+1}, s_k)$.\\
+\noindent \hyperlink{remainder_properties}{By property of the remainder function}, $\rho(js_{i+1}, js_k) = j \rho(s_{i+1}, s_k)$.\\
 
-\noindent By definition, $\rho(s_{i+1}, s_k) \geq a$ for all $k \leq i$.\\
+\noindent \hyperlink{definition:awkward_number_series}{By definition of an awkward number series}, $\rho(s_{i+1}, s_k) \geq a$ for all $k \leq i$.\\
 
 \noindent As such, $\rho(js_{i+1}, s^*_k) = j \rho(s_{i+1}, s_k) \geq ja$.\\
 
-\noindent Thus, we have shown that $js^{i+1}$ is a viable element of $S_{ja, jn}$. We now must show that that $js^{i+1}$ is the least greatest integer greater than $s^*_i$ with the divisibility property.\\
+\noindent Thus, we have shown that $js_{i+1}$ is a viable element of $S_{ja, jn}$. We now must show that that $js_{i+1}$ is the least greatest integer greater than $s^*_i$ with the divisibility property.\\
 
-\noindent Assume there exists some integer $s^*_i < x < js^{i+1}$ such that $\rho(x, s^*_k) \geq ja$ for all $k \leq i$.\\
+\noindent Assume there exists some integer $s^*_i < x < js_{i+1}$ such that $\rho(x, s^*_k) \geq ja$ for all $k \leq i$.\\
 
-\noindent We know that $x = tj + \rho(x, j)$, for some $x \in \mathbb{N}$.
+\noindent \hyperlink{theorem:remainder_theorem}{By the remainder theorem}, $x = tj + \rho(x, j)$, for some $t \in \mathbb{N}$.\\
 
 \noindent Let $r = \rho(x, j)$. Then $x = tj + r$.\\
 
-\noindent Let $k \in [i + 1]$. Then $\rho(x, s^*_k) = \rho(tj + r, s^*_k)$.\\
+\noindent Let $k \in [i + 1]$. Then $\rho(x, s^*_k) = \rho(tj + r, s^*_k)$ by substitution.\\
 
 \noindent By the inductive hypothesis, $s^*_k = js_k$.\\
 
-\noindent As such, $\rho(tj + r, s^*_k) = \rho(tj + r, js_k)$\\
+\noindent As such, $\rho(tj + r, s^*_k) = \rho(tj + r, js_k)$ by substitution.\\
 
-\noindent By remainder property (TODO), $\rho(tj + r, js_k) = \rho(\rho(tj, js_k) + \rho(r, js_k), js_k)$.\\
+\noindent \hyperlink{remainder_properties}{By property of the remainder function}, $\rho(tj + r, js_k) = \rho(\rho(tj, js_k) + \rho(r, js_k), js_k)$.\\
 
-\noindent By remainder property (TODO), $\rho(tj, js_k) = j \rho(t, s_k)$.\\
+\noindent \hyperlink{remainder_properties}{By property of the remainder function}, $\rho(tj, js_k) = j \rho(t, s_k)$.\\
 
-\noindent Since $r < j < js_k$, then $\rho(r, js_k) = r$.\\
+\noindent Since $r < j < js_k$, then $\rho(r, js_k) = r$ \hyperlink{remainder_properties}{by property of the remainder function}.\\
 
-\noindent As such, $\rho(\rho(tj, js_k) + \rho(r, js_k), js_k) = \rho(j \rho(t, s_k) + r, js_k)$.\\
+\noindent As such, $\rho(\rho(tj, js_k) + \rho(r, js_k), js_k) = \rho(j \rho(t, s_k) + r, js_k)$ by substitution.\\
 
-\noindent By definition, $0 \leq \rho(t, s_k) < s_k$. Furthermore, $\rho(t, s_k) \in \mathbb{N}$. As such, $\rho(t, s_k) \leq s_k - 1$.\\
+\noindent \hyperlink{theorem:remainder_theorem}{By definition of the remainder}, $\rho(t, s_k) \in [s_k]$, as such, $\rho(t, s_k) \leq s_k - 1$.\\
 
-\noindent As such, $j \rho(t, s_k) \leq j(s_k - 1)$.\\
+\noindent As such, $j \rho(t, s_k) \leq j(s_k - 1)$ by substitution.\\
 
-\noindent Thus, $j \rho(t, s_k) + r \leq j(s_k - 1) + r$.\\
+\noindent Adding $r$ to both sides yields: $j \rho(t, s_k) + r \leq j(s_k - 1) + r$.\\
 
 \noindent We also know that $r < j$.\\
 
-\noindent As such, $j(s_k - 1) + r < j(s_k - 1) + j = j(s_k - 1 + 1) = js_k$.\\
+\noindent As such, $j(s_k - 1) + r < j(s_k - 1) + j = j(s_k - 1 + 1) = js_k$ by substitution.\\
 
-\noindent As such, $j \rho(t, s_k) + r < js_k$, thus $\rho(x, s^*_k) = \rho(j \rho(t, s_k) + r, js_k) = j \rho(t, s_k) + r$.\\
+\noindent As such, $j \rho(t, s_k) + r < js_k$, thus $\rho(x, s^*_k) = \rho(j \rho(t, s_k) + r, js_k) = j \rho(t, s_k) + r$ \hyperlink{remainder_properties}{by property of the remainder function}.\\
 
 \noindent By assumption, $\rho(x, s^*_k) \geq ja$.\\
 
-\noindent As such, $j \rho(t, s_k) + j) > j \rho(t, s_k) + r \geq ja$.\\
+\noindent As such, $j(\rho(t, s_k) + 1) = j \rho(t, s_k) + j > j \rho(t, s_k) + r  = \rho(x, s^*_k) \geq ja$.\\
 
 \noindent As such, $j(\rho(t, s_k) + 1) > ja$.\\
 
-\noindent As such, $\rho(t, s_k) + 1 > a$.\\
+\noindent As such, $\rho(t, s_k) + 1 > a$ by dividing both sides by $j$.\\
 
 \noindent Thus, $\rho(t, s_k) \geq a$.\\
 
@@ -1415,17 +1415,17 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 
 \noindent $s^*_i = js_i$ by the inductive hypothesis.\\
 
-\noindent As such, $js_i < jt + r < jt + j = j(t + 1)$\\
+\noindent As such, $js_i < jt + r < jt + j = j(t + 1)$ by substitution.\\
 
-\noindent Thus $s_i < t + 1$. Since $s_i \in \mathbb{N}$, then $s_i \leq t$.\\
+\noindent Dividing by $j$ yields: $s_i < t + 1$. Furthermore, $s_i \in \mathbb{N}$, as such $s_i \leq t$.\\
 
 \noindent However, we've shown that $\rho(t, s_i) \geq a > 0$. As such, $t \neq s_i$. Thus, $s_i < t$ must be the case.\\
 
-\noindent Now we just need to show that $t < js_{i + 1}$.\\
+\noindent Now we just need to show that $t < s_{i + 1}$.\\
 
-\noindent We know that $x = tj + r < js_{i+1}$.\\
+\noindent We know that $x = tj + r < js_{i+1}$ by assumption on $x$.\\
 
-\noindent As such, $tj \leq tj + r < js_{i+1}$. Thus, $t < s_{i + 1}$.\\
+\noindent As such, $tj \leq tj + r < js_{i+1}$. Thus, $t < s_{i + 1}$ by dividing by $j$.\\
 
 \noindent But this would mean that $t$ must be the $(i + 2)^{th}$ element of $S_{a, n}$, which is a contradiction.
 
