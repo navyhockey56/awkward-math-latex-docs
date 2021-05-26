@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.30)  26 MAY 2021 07:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.30)  26 MAY 2021 07:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2379,7 +2379,7 @@ cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on awkward_number_series.pdf (33 pages, 226784 bytes).
+Output written on awkward_number_series.pdf (33 pages, 226789 bytes).
 PDF statistics:
  438 PDF objects out of 1000 (max. 8388607)
  384 compressed objects within 4 object streams
