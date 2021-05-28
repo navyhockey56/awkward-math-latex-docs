@@ -1279,39 +1279,6 @@ For any awkward number series $S_{a,n}$, for any $s_0 < s_i \in S_{a,n}$, there 
 
 
 
-\label{definition:simple_and_redundant_series}
-\hypertarget{definition:simple_and_redundant_series}{}
-\begin{tcolorbox}
-\textbf{Definition}
-
-An awkward number series, $S_{a,n}$ is called \textit{simple} if the $gcd(a,n) = 1$. Otherwise the awkward number series is said to be \textit{redundant}.
-
-\end{tcolorbox}
-\noindent \\
-
-
-
-
-
-
-
-
-
-\label{definition:similar_series}
-\hypertarget{definition:similar_series}{}
-\begin{tcolorbox}
-\textbf{Definition}
-
-Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar} whenever $\frac{a}{gcd(a,b)} = \frac{c}{gcd(c,d)}$ and $\frac{b}{gcd(a,b)} = \frac{d}{gcd(c,d)}$. Otherwise the series are said to be \textit{dissimilar}.
-
-\end{tcolorbox}
-\noindent \\
-
-
-
-
-
-
 
 \label{theorem:similar_theorem}
 \hypertarget{theorem:similar_theorem}{}
@@ -1436,6 +1403,103 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 \noindent \\
 
 
+
+
+
+
+
+
+
+\label{definition:similar_series}
+\hypertarget{definition:similar_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar} whenever $\frac{a}{gcd(a,b)} = \frac{c}{gcd(c,d)}$ and $\frac{b}{gcd(a,b)} = \frac{d}{gcd(c,d)}$. Otherwise the series are said to be \textit{dissimilar}.
+
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+\label{corollary:similar_corollary}
+\hypertarget{corollary:similar_corollary}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+\noindent For any similar awkward number series $S_{a, b}$ and $S_{c, d}$, it is the case that $S_{a, b} = \{$ $\frac{gcd(a,b)}{gcd(c,d)}(s_i)$ $|$ $s_i \in S_{c, d}$ $\}$.
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a, b}$ and $S_{c, d}$ be any two similar awkward number series.\\
+
+\noindent Let $e = \frac{a}{gcd(a,b)}$ and $f = \frac{b}{gcd(a,b)}$.\\
+
+\noindent Since $S_{a, b}$ and $S_{e,f}$ are similar, then $e = \frac{c}{gcd(c,d)}$ and $f = \frac{d}{gcd(c,d)}$.\\
+
+\noindent As such, $gcd(a,b)(e) = \frac{gcd(a,b)(a)}{gcd(a,b)} = a$ and $gcd(a,b)(f) = \frac{gcd(a,b)(b)}{gcd(a,b)} = b$.\\
+
+\noindent Furthermore, $gcd(c,d)(e) = \frac{gcd(c,d)(c)}{gcd(c,d)} = c$ and $gcd(c,d)(f) = \frac{gcd(c,d)(d)}{gcd(c,d)} = d$.\\
+
+\noindent Consider the awkward number series $S_{e, f}$.\\
+
+\noindent \hyperlink{theorem:awkward_similarity_theorem}{By the awkward similarity theorem}, $S_{a, b} = \{$ $gcd(a,b)(s^*_i)$ $|$ $s^*_i \in S_{e,f}$ $\}$.\\
+
+\noindent Equivalently, for any $s_i \in S_{a,b}$, $s_i = gcd(a,b)(s^*_i)$ where $s^*_i \in S_{e,f}$.\\
+
+\noindent \hyperlink{theorem:awkward_similarity_theorem}{By the awkward similarity theorem}, $S_{c, d} = \{$ $gcd(c,d)(s^*_i)$ $|$ $s^*_i \in S_{e,f}$ $\}$.\\
+
+\noindent Equivalently, for any $r_i \in S_{c,d}$, $r_i = gcd(c,d)(s^*_i)$ where $s^*_i \in S_{e,f}$.\\
+
+\noindent As such, $s^*_i = \frac{r_i}{gcd(c,d)}$.\\
+
+\noindent As such, for any $s_i \in S_{a,b}$, $s_i = gcd(a,b)(s^*_i) = \frac{gcd(a,b)}{gcd(c,d)}(r_i)$ where $r_i \in S_{c,d}$ by substitution.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
+
+
+
+
+
+\label{definition:simple_and_redundant_series}
+\hypertarget{definition:simple_and_redundant_series}{}
+\begin{tcolorbox}
+\textbf{Definition}
+
+An awkward number series, $S_{a,n}$ is called \textit{simple} if the $gcd(a,n) = 1$. Otherwise the awkward number series is said to be \textit{redundant}.
+
+\end{tcolorbox}
+\noindent \\
+
+
+
+
+
+
+
+\label{corollary:redundancy_divisible_by_gcd}
+\hypertarget{definition:redundancy_divisible_by_gcd}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+For any redundant awkward number series $S_{a,n}$, for any $s_i \in S_{a, n}$, it is the case that $s_i$ is divisible by $gcd(a,n)$.
+
+\end{tcolorbox}
+\noindent \\
 
 
 
