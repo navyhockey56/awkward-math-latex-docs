@@ -1473,6 +1473,37 @@ Any two awkward number series $S_{a,b}$ and $S_{c,d}$ are called \textit{similar
 
 
 
+\label{corollary:divisible_by_gcd}
+\hypertarget{definition:redundancy_divisible_by_gcd}{}
+\begin{tcolorbox}
+\textbf{Corollary}
+
+For any awkward number series $S_{a,n}$, for any $s_i \in S_{a, n}$, it is the case that $s_i$ is divisible by $gcd(a,n)$.
+
+\end{tcolorbox}
+
+\noindent \\
+\textit{Proof}
+
+\noindent Let $S_{a,n}$ be any awkward number series.  Let $gcd(a,n) = g$.\\
+
+\noindent Let $b = \frac{a}{g}$ and $m = \frac{n}{g}$. As such $a = bg$ and $n = mg$.\\
+
+\noindent Since $g$ divides both $a$ and $n$ and $g, a, n \in \mathbb{N}^+$, then both $b$ and $m$ are positive integers.\\
+
+\noindent As such, $S_{a, n} = S_{bg, mg} = \{$ $gs_i$ $|$ $s_i \in S_{b,m}$ $\}$ \hyperlink{theorem:similar_theorem}{by the awkward similarity theorem}.\\
+
+\noindent As such, every element of $S_{a,n}$ is a multiple of $g = gcd(a, n)$.
+
+\begin{center}
+\noindent\rule{8cm}{0.4pt}
+\end{center}
+\noindent \\
+
+
+
+
+
 
 
 \label{definition:simple_and_redundant_series}
@@ -1484,29 +1515,6 @@ An awkward number series, $S_{a,n}$ is called \textit{simple} if the $gcd(a,n) =
 
 \end{tcolorbox}
 \noindent \\
-
-
-
-
-
-
-
-\label{corollary:redundancy_divisible_by_gcd}
-\hypertarget{definition:redundancy_divisible_by_gcd}{}
-\begin{tcolorbox}
-\textbf{Corollary}
-
-For any redundant awkward number series $S_{a,n}$, for any $s_i \in S_{a, n}$, it is the case that $s_i$ is divisible by $gcd(a,n)$.
-
-\end{tcolorbox}
-\noindent \\
-
-
-
-
-
-
-
 
 
 
