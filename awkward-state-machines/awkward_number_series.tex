@@ -24,10 +24,9 @@
 
 \noindent This paper defines and explores awkward number series - a generalization of the prime number series. In doing so, we shall find that the prime number series is an awkward number series itself. Not only that, but several of the basic proofs about the prime numbers can instead be proven about awkward number series as a whole. In particular, we shall find that every awkward number series contains an infinite number of elements; that every positive integer can be awkwardly factorized - a generalization on prime factorization - within a special class of awkward number series; and that every awkward number series can be produced by a state machine called an awkward state machine.\\
 
-\noindent Awkward number series are born out of the less-used definition of the series of prime numbers: that the first prime number is the integer $2$, and the next prime number in the series is the least greatest integer that is greater than the previous prime number, but not divisible by any of the previous prime numbers. Awkward numbers series apply two generalizations to this definition of primes. Rather than starting with the integer $2$, what if we were to start with the integer $3$ or $7$ or $4353460983$? Secondly, rather than the next element be simply not divisible by the previous elements, what would happen if we insisted that the next integer cannot have a remainder greater than $2$ or $8$ or $13453411$ when divided by any of the previous elements?\\
+\noindent Awkward number series are born out of the less-used definition of the series of prime numbers: that the first prime number is the integer $2$, and the next prime number in the series is the least greatest integer that is greater than the previous prime number, but not divisible by any of the previous prime numbers. Awkward numbers series apply two generalizations to this definition of primes. Rather than starting with the integer $2$, what if we were to start with the integer $3$ or $7$ or $4353460983$? Secondly, rather than the next element be simply not divisible by the previous elements, what would happen if we insisted that the next element cannot have a remainder greater than $2$ or $8$ or $13453411$ when divided by any of the previous elements?\\
 
-\noindent This paper does not claim to be groundbreaking; nevertheless, reading through the generalizations of Euclid's proofs on primes should be of interest to many in the mathematics community.
-
+\noindent This paper does not claim to be groundbreaking; nevertheless, reading through the generalizations of Euclid's proofs on primes should be of interest to many in the mathematics community. Perhaps most interestingly, this paper will prove that the prime number series is an awkward number series, as such, any result about awkward number series can be immediately applied to the primes, and many unanswered questions about primes can be restated about awkward number series.
 
 
 
@@ -41,7 +40,7 @@
 \section{Notation and Assumed Knowledge}
 \label{section:notation_and_assumed_knowledge}
 
-\noindent This paper does not require a great deal of prior knowledge in order to be understood. In fact, anyone who is familiar with how to prove things should have the background knowledge required to read through this paper. In this section we shall lay out the notation we shall be using an any previous knowledge we expect the reader to have. For the most part, this paper will stick to the standard notation used within mathematics today.
+\noindent This paper does not require a great deal of prior knowledge in order to be understood. In fact, anyone who is familiar with how to prove things should have the background knowledge required to read through this paper. In this section we shall lay out the notation we shall be using, and any previous knowledge we expect the reader to have. For the most part, this paper will stick to the standard notation used within mathematics today.
 
 
 
@@ -266,6 +265,7 @@
 
 
 
+
 \subsection{Definition \& Basic Properties}
 
 \label{definition:awkward_number_series}
@@ -476,6 +476,9 @@ Every awkward number series contains an infinite number of elements.
 
 
 \subsection{Prime Numbers}
+
+\noindent Now that we have wet our feet with awkward number series, it is a worthwhile exercise to tie them to the prime numbers. Doing so should strengthen our understanding of awkward number series as a whole. Not only that, we shall also then be able to restate any major results about awkward number series in terms of the primes. To accomplish this, this section will prove that the awkward number series $S_{1, 1}$ is in fact equal to the prime number series.\\
+
 
 \label{lemma:asn_subset_prime}
 \hypertarget{lemma:asn_subset_prime}{}
@@ -1041,8 +1044,21 @@ For any awkward number series $S_{a,n}$, for any integer $0 < i < dim(S_{a,n})$,
 \noindent \\
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Linearity Theorem}
 
+\noindent It is natural to ask if there is any format to the elements of awkward number series. In this section we shall provide an answer to this question via the awkward linearity theorem, which states that every element of an awkward number series can be expressed as a linearly combination of the activators and initial non-activators using positive integer coefficients.\\
 
 
 \label{lemma:relation_to_other}
